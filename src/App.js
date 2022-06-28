@@ -8,6 +8,7 @@ import Profile from './components/Profile/Profile';
 import EditProfile from './components/EditProfile/EditProfile';
 import Edit from './components/Edit/Edit';
 import DeleteModal from './components/DeleteModal/DeleteModal';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
     return (
@@ -20,7 +21,8 @@ function App() {
             {/* <Profile /> */}
             {/* <EditProfile /> */}
             {/* <Edit /> */}
-            <DeleteModal />
+            {/* <DeleteModal /> */}
+            <NotFound />
         </Container>
     );
 }
