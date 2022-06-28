@@ -11,6 +11,14 @@ function NavBar() {
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
+                <Navbar.Brand>
+                    <img
+                        src="/images/clipart88403.png"
+                        width="30"
+                        height="30"
+                        alt="logo"
+                    />
+                </Navbar.Brand>
                 <Navbar.Brand>AMoviesDB</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">

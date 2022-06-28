@@ -51,9 +51,15 @@ const mockData = [
 
 function Catalog() {
     return (
-        <Row xs={1} md={4} className="g-3">
-            <MovieList movies={mockData} />
-        </Row>
+        <>
+            <div className="p-5 text-center bg-light">
+                <h1 className="mb-3">Welcome to AMoviesDB</h1>
+                <h4 className="mb-3">Subheading</h4>
+            </div>
+            <Row xs={1} md={4} className="g-3">
+                <MovieList movies={mockData} />
+            </Row>
+        </>
     );
 }
 
