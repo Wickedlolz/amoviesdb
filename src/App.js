@@ -6,6 +6,7 @@ import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/EditProfile/EditProfile';
+import Edit from './components/Edit/Edit';
 
 function App() {
     return (
@@ -16,7 +17,8 @@ function App() {
             {/* <SignIn /> */}
             {/* <SignUp /> */}
             {/* <Profile /> */}
-            <EditProfile />
+            {/* <EditProfile /> */}
+            <Edit />
         </Container>
     );
 }
