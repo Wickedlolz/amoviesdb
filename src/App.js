@@ -9,18 +9,20 @@ import EditProfile from './components/EditProfile/EditProfile';
 import Edit from './components/Edit/Edit';
 import DeleteModal from './components/DeleteModal/DeleteModal';
 import NotFound from './components/NotFound/NotFound';
+import Create from './components/Create/Create';
 
 function App() {
     return (
         <Container>
             <NavBar />
-            <Catalog />
+            {/* <Catalog /> */}
             {/* <MovieDetails /> */}
             {/* <SignIn /> */}
             {/* <SignUp /> */}
             {/* <Profile /> */}
             {/* <EditProfile /> */}
             {/* <Edit /> */}
+            <Create />
             {/* <DeleteModal /> */}
             {/* <NotFound /> */}
         </Container>

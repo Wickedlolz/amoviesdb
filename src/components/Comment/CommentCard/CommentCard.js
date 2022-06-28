@@ -6,7 +6,7 @@ function CommentCard({ comment }) {
                     <img
                         src="/images/programmer.png"
                         className="img-circle img-responsive"
-                        alt=""
+                        alt="profile"
                     />
                 </div>
                 <div className="col-xs-10 col-md-11">

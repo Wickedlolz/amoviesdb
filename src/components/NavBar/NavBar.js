@@ -31,7 +31,7 @@ function NavBar() {
                         <Nav.Link>Sign In</Nav.Link>
                         <Nav.Link>Sign Up</Nav.Link>
                     </Nav>
-                    <Navbar.Text>
+                    <Navbar.Text className="p-3">
                         Signed in as: <a href="#/">Viktor Dimitrov</a>
                     </Navbar.Text>
                     <Form className="d-flex">
