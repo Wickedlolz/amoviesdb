@@ -9,10 +9,10 @@ function App() {
     return (
         <Container>
             <NavBar />
-            {/* <Catalog /> */}
+            <Catalog />
             {/* <MovieDetails /> */}
             {/* <SignIn /> */}
-            <SignUp />
+            {/* <SignUp /> */}
         </Container>
     );
 }

@@ -1,5 +1,5 @@
 import { Row, Col } from 'react-bootstrap';
-import MovieCard from './MovieCard';
+import MovieList from '../MovieList/MovieList';
 
 const mockData = [
     {
@@ -52,11 +52,7 @@ const mockData = [
 function Catalog() {
     return (
         <Row xs={1} md={4} className="g-3">
-            {mockData.map((m) => (
-                <Col key={m.id}>
-                    <MovieCard key={m.id} movie={m} />
-                </Col>
-            ))}
+            <MovieList movies={mockData} />
         </Row>
     );
 }
