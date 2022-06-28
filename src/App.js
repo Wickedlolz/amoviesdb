@@ -7,6 +7,7 @@ import SignUp from './components/SignUp/SignUp';
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/EditProfile/EditProfile';
 import Edit from './components/Edit/Edit';
+import DeleteModal from './components/DeleteModal/DeleteModal';
 
 function App() {
     return (
@@ -18,7 +19,8 @@ function App() {
             {/* <SignUp /> */}
             {/* <Profile /> */}
             {/* <EditProfile /> */}
-            <Edit />
+            {/* <Edit /> */}
+            <DeleteModal />
         </Container>
     );
 }
