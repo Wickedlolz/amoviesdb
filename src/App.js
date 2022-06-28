@@ -4,15 +4,17 @@ import Catalog from './components/Catalog/Catalog';
 import MovieDetails from './components/Details/MovieDetails';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
+import Profile from './components/Profile/Profile';
 
 function App() {
     return (
         <Container>
             <NavBar />
             {/* <Catalog /> */}
-            <MovieDetails />
+            {/* <MovieDetails /> */}
             {/* <SignIn /> */}
             {/* <SignUp /> */}
+            <Profile />
         </Container>
     );
 }
