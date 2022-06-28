@@ -3,16 +3,16 @@ import './CommentList.css';
 
 function CommentList({ comments }) {
     return (
-        <div class="container">
-            <div class="row">
-                <div class="panel panel-default widget">
-                    <div class="panel-heading">
-                        <span class="glyphicon glyphicon-comment"></span>
-                        <h3 class="panel-title">Recent Comments</h3>
-                        <span class="label label-info">78</span>
+        <div className="container">
+            <div className="row">
+                <div className="panel panel-default widget">
+                    <div className="panel-heading">
+                        <span className="glyphicon glyphicon-comment"></span>
+                        <h3 className="panel-title">Recent Comments</h3>
+                        <span className="label label-info">78</span>
                     </div>
-                    <div class="panel-body">
-                        <ul class="list-group">
+                    <div className="panel-body">
+                        <ul className="list-group">
                             {comments.map((comment) => (
                                 <CommentCard
                                     key={comment.id}
