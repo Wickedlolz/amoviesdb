@@ -5,6 +5,7 @@ import MovieDetails from './components/Details/MovieDetails';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import Profile from './components/Profile/Profile';
+import EditProfile from './components/EditProfile/EditProfile';
 
 function App() {
     return (
@@ -14,7 +15,8 @@ function App() {
             {/* <MovieDetails /> */}
             {/* <SignIn /> */}
             {/* <SignUp /> */}
-            <Profile />
+            {/* <Profile /> */}
+            <EditProfile />
         </Container>
     );
 }
