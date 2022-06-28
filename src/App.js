@@ -15,14 +15,14 @@ function App() {
         <Container>
             <NavBar />
             {/* <Catalog /> */}
-            {/* <MovieDetails /> */}
+            <MovieDetails />
             {/* <SignIn /> */}
             {/* <SignUp /> */}
             {/* <Profile /> */}
             {/* <EditProfile /> */}
             {/* <Edit /> */}
             {/* <DeleteModal /> */}
-            <NotFound />
+            {/* <NotFound /> */}
         </Container>
     );
 }
