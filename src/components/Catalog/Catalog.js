@@ -51,7 +51,10 @@ function Catalog() {
         <>
             <div className="p-5 text-center bg-light">
                 <h1 className="mb-3">Welcome to AMoviesDB</h1>
-                <h4 className="mb-3">Subheading</h4>
+                <h4 className="mb-3">
+                    Here you can find all newest and most popular movies.
+                </h4>
+                <p>Fell free to join and add your best movies.</p>
             </div>
             {movies.length > 0 ? (
                 <>
