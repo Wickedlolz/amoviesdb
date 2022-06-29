@@ -16,11 +16,11 @@ function App() {
     return (
         <Container>
             <NavBar />
-            <Catalog />
+            {/* <Catalog /> */}
             {/* <MovieDetails /> */}
             {/* <SignIn /> */}
             {/* <SignUp /> */}
-            {/* <Profile /> */}
+            <Profile />
             {/* <EditProfile /> */}
             {/* <Edit /> */}
             {/* <Create /> */}
