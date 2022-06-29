@@ -1,5 +1,6 @@
 import CommentForm from '../Comment/CommentForm/CommentForm';
 import CommentList from '../Comment/CommentList/CommentList';
+import './MovieDetails.css';
 
 const mockCommentsData = [
     { id: 1, content: 'Aweseome design', user: 'Peter Peterson' },
@@ -70,7 +71,7 @@ function MovieDetails() {
                     </div>
                     <div className="col-md-5">
                         <img
-                            className="d-block img-thumbnail"
+                            className="d-block img-thumbnail movie-image-card"
                             src="https://source.unsplash.com/random"
                             alt="movie"
                         />

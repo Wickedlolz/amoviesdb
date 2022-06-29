@@ -16,13 +16,13 @@ function App() {
         <Container>
             <NavBar />
             {/* <Catalog /> */}
-            {/* <MovieDetails /> */}
+            <MovieDetails />
             {/* <SignIn /> */}
             {/* <SignUp /> */}
             {/* <Profile /> */}
             {/* <EditProfile /> */}
             {/* <Edit /> */}
-            <Create />
+            {/* <Create /> */}
             {/* <DeleteModal /> */}
             {/* <NotFound /> */}
         </Container>
