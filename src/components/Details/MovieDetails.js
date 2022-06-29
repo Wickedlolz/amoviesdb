@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import CommentForm from '../Comment/CommentForm/CommentForm';
 import CommentList from '../Comment/CommentList/CommentList';
 import './MovieDetails.css';
@@ -8,30 +9,34 @@ import {
     Trash3,
 } from 'react-bootstrap-icons';
 
-const mockCommentsData = [
-    { id: 1, content: 'Aweseome design', user: 'Peter Peterson' },
-    { id: 2, content: 'Amazing!', user: 'Viktor Dimitrov' },
-    { id: 3, content: 'LoL :)', user: 'Jessica Alba' },
-];
-
 function MovieDetails() {
+    const [movie, setMovie] = useState({
+        id: 123,
+        title: 'Avengers Endgame',
+        imageUrl: 'https://source.unsplash.com/random',
+        author: 'Viktor Dimitrov',
+        description:
+            'Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images',
+        comments: [
+            { id: 1, content: 'Aweseome design', user: 'Peter Peterson' },
+            { id: 2, content: 'Amazing!', user: 'Viktor Dimitrov' },
+            { id: 3, content: 'LoL :)', user: 'Jessica Alba' },
+        ],
+        likes: 20,
+    });
+
     return (
         <div className="container py-3">
-            <div className="title h1 text-center">Avengers Endgame</div>
+            <div className="title h1 text-center">{movie.title}</div>
 
             <div className="card">
                 <div className="row ">
                     <div className="col-md-7 px-3">
                         <div className="card-block px-6">
                             <h4 className="card-title">Description</h4>
-                            <p className="card-text">Author: Viktor Dimitrov</p>
-                            <p className="card-text">
-                                Made for usage, commonly searched for. Fork,
-                                like and use it. Just move the carousel div
-                                above the col containing the text for left
-                                alignment of images
-                            </p>
-                            <p className="card-text">Rating: 0</p>
+                            <p className="card-text">Author: {movie.author}</p>
+                            <p className="card-text">{movie.description}</p>
+                            <p className="card-text">Rating: {movie.likes}</p>
                             <a href="#/" className="mt-auto btn btn-light">
                                 <HandThumbsUp />
                             </a>{' '}
@@ -49,14 +54,14 @@ function MovieDetails() {
                     <div className="col-md-5">
                         <img
                             className="d-block img-thumbnail movie-image-card"
-                            src="https://source.unsplash.com/random"
+                            src={movie.imageUrl}
                             alt="movie"
                         />
                     </div>
                 </div>
             </div>
             <CommentForm />
-            <CommentList comments={mockCommentsData} />
+            <CommentList comments={movie.comments} />
         </div>
     );
 }
