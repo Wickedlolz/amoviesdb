@@ -1,8 +1,9 @@
 import { Card, Button } from 'react-bootstrap';
+import './MovieCard.css';
 
 function MovieCard({ movie }) {
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card className="movie-card">
             <Card.Img variant="top" src={movie.imageUrl} />
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
