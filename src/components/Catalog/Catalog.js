@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Row } from 'react-bootstrap';
+import LoadingSpinner from '../Loading/Loading';
 import MovieList from '../MovieList/MovieList';
 import Pagination from '../Pagination/Pagination';
 
@@ -56,6 +57,7 @@ function Catalog() {
                 </h4>
                 <p>Fell free to join and add your best movies.</p>
             </div>
+            <LoadingSpinner />
             {movies.length > 0 ? (
                 <>
                     <Row xs={1} md={4} className="g-3">
