@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Row } from 'react-bootstrap';
 import LoadingSpinner from '../Loading/Loading';
 import MovieList from '../MovieList/MovieList';
@@ -47,6 +47,13 @@ function Catalog() {
             imageUrl: 'https://source.unsplash.com/random',
         },
     ]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 3000);
+    }, []);
 
     return (
         <>
@@ -57,17 +64,18 @@ function Catalog() {
                 </h4>
                 <p>Fell free to join and add your best movies.</p>
             </div>
-            <LoadingSpinner />
-            {movies.length > 0 ? (
+            {isLoading ? (
+                <LoadingSpinner />
+            ) : movies.length > 0 ? (
                 <>
                     <Row xs={1} md={4} className="g-3">
                         <MovieList movies={movies} />
                     </Row>
-                    <Pagination />
                 </>
             ) : (
                 <h3 className="p-5 text-center">No movies in database.</h3>
             )}
+            <Pagination />
         </>
     );
 }
