@@ -5,8 +5,8 @@ function MovieList({ movies }) {
     return (
         <>
             {movies.map((movie) => (
-                <Col key={movie.id}>
-                    <MovieCard key={movie.id} movie={movie} />
+                <Col key={movie._id}>
+                    <MovieCard key={movie._id} movie={movie} />
                 </Col>
             ))}
         </>
