@@ -1,5 +1,6 @@
 import { Row } from 'react-bootstrap';
 import MovieList from '../MovieList/MovieList';
+import Pagination from '../Pagination/Pagination';
 
 const mockData = [
     {
@@ -38,11 +39,6 @@ const mockData = [
         imageUrl: 'https://source.unsplash.com/random',
     },
     {
-        id: 8,
-        title: 'Hulk',
-        imageUrl: 'https://source.unsplash.com/random',
-    },
-    {
         id: 9,
         title: 'Iron Man',
         imageUrl: 'https://source.unsplash.com/random',
@@ -56,9 +52,12 @@ function Catalog() {
                 <h4 className="mb-3">Subheading</h4>
             </div>
             {mockData.length > 0 ? (
-                <Row xs={1} md={4} className="g-3">
-                    <MovieList movies={mockData} />
-                </Row>
+                <>
+                    <Row xs={1} md={4} className="g-3">
+                        <MovieList movies={mockData} />
+                    </Row>
+                    <Pagination />
+                </>
             ) : (
                 <h3 className="p-5 text-center">No movies in database.</h3>
             )}
