@@ -37,18 +37,18 @@ function MovieDetails() {
                             <p className="card-text">Author: {movie.author}</p>
                             <p className="card-text">{movie.description}</p>
                             <p className="card-text">Rating: {movie.likes}</p>
-                            <a href="#/" className="mt-auto btn btn-light">
+                            <button className="mt-auto btn btn-light">
                                 <HandThumbsUp />
-                            </a>{' '}
-                            <a href="#/" className="mt-auto btn btn-light">
+                            </button>{' '}
+                            <button className="mt-auto btn btn-light">
                                 <HandThumbsDown />
-                            </a>{' '}
-                            <a href="#/" className="mt-auto btn btn-warning">
+                            </button>{' '}
+                            <button className="mt-auto btn btn-warning">
                                 <PencilSquare />
-                            </a>{' '}
-                            <a href="#/" className="mt-auto btn btn-danger">
+                            </button>{' '}
+                            <button className="mt-auto btn btn-danger">
                                 <Trash3 />
-                            </a>
+                            </button>
                         </div>
                     </div>
                     <div className="col-md-5">
