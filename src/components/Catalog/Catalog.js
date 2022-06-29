@@ -48,7 +48,6 @@ const mockData = [
         imageUrl: 'https://source.unsplash.com/random',
     },
 ];
-
 function Catalog() {
     return (
         <>
@@ -56,9 +55,13 @@ function Catalog() {
                 <h1 className="mb-3">Welcome to AMoviesDB</h1>
                 <h4 className="mb-3">Subheading</h4>
             </div>
-            <Row xs={1} md={4} className="g-3">
-                <MovieList movies={mockData} />
-            </Row>
+            {mockData.length > 0 ? (
+                <Row xs={1} md={4} className="g-3">
+                    <MovieList movies={mockData} />
+                </Row>
+            ) : (
+                <h3 className="p-5 text-center">No movies in database.</h3>
+            )}
         </>
     );
 }
