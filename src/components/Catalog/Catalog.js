@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
 import LoadingSpinner from '../Loading/Loading';
 import MovieList from '../MovieList/MovieList';
@@ -25,6 +26,9 @@ function Catalog() {
                     Here you can find all newest and most popular movies.
                 </h4>
                 <p>Fell free to join and add your best movies.</p>
+                <Link to={'/create'} className="btn btn-warning">
+                    Create
+                </Link>
             </div>
             {isLoading ? (
                 <LoadingSpinner />
