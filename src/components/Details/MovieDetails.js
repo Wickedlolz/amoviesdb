@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import CommentForm from '../Comment/CommentForm/CommentForm';
 import CommentList from '../Comment/CommentList/CommentList';
 import './MovieDetails.css';
@@ -43,9 +44,12 @@ function MovieDetails() {
                             <button className="mt-auto btn btn-light">
                                 <HandThumbsDown />
                             </button>{' '}
-                            <button className="mt-auto btn btn-warning">
+                            <Link
+                                to={'/edit/' + movie.id}
+                                className="mt-auto btn btn-warning"
+                            >
                                 <PencilSquare />
-                            </button>{' '}
+                            </Link>
                             <button className="mt-auto btn btn-danger">
                                 <Trash3 />
                             </button>

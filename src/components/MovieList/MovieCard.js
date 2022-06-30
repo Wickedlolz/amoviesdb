@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import './MovieCard.css';
 
@@ -8,9 +9,9 @@ function MovieCard({ movie }) {
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
                 <Card.Text>Rating: 0</Card.Text>
-                <a className="btn btn-primary" href={movie._id}>
+                <Link to={'/movie/' + movie._id} className="btn btn-primary">
                     Details
-                </a>
+                </Link>
             </Card.Body>
         </Card>
     );

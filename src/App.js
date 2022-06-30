@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import NavBar from './components/NavBar/NavBar';
 import Catalog from './components/Catalog/Catalog';
@@ -16,16 +17,17 @@ function App() {
     return (
         <Container>
             <NavBar />
-            {/* <Catalog /> */}
-            {/* <MovieDetails /> */}
-            {/* <SignIn /> */}
-            {/* <SignUp /> */}
-            {/* <Profile /> */}
-            {/* <EditProfile /> */}
-            <Edit />
-            {/* <Create /> */}
-            {/* <DeleteModal /> */}
-            {/* <NotFound /> */}
+            <Routes>
+                <Route path="/" element={<Catalog />} />
+                <Route path="/signin" element={<SignIn />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/profile/edit/:id" element={<EditProfile />} />
+                <Route path="/movie/:id" element={<MovieDetails />} />
+                <Route path="/create" element={<Create />} />
+                <Route path="/edit/:id" element={<Edit />} />
+                <Route path="/*" element={<NotFound />} />
+            </Routes>
             <Footer />
         </Container>
     );

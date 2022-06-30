@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Profile() {
     return (
         <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
@@ -21,16 +23,16 @@ function Profile() {
                             1069 <span className="follow">Followers</span>
                         </span>
                     </div> */}
-                    <div className=" d-flex mt-2">
-                        <button className="btn1 btn-dark">Edit Profile</button>
+                    <div className="d-flex mt-2">
+                        <Link to={'/profile/edit/24'} className="btn btn-dark">
+                            Edit Profile
+                        </Link>
                     </div>
-                    <div className=" px-2 rounded mt-4 date ">
+                    <div className="px-2 rounded mt-4 date ">
                         <span className="join">Joined May,2021</span>
                     </div>
-                    <div className=" d-flex mt-2">
-                        <button className="btn1 btn-dark">
-                            Show My Movies
-                        </button>
+                    <div className="d-flex mt-2">
+                        <button className="btn btn-dark">Show My Movies</button>
                     </div>
                     {/* <div className="text mt-3">
                         <p>
