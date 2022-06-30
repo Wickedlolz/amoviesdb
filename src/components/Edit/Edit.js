@@ -1,3 +1,5 @@
+import styles from './Edit.module.css';
+
 function Edit() {
     return (
         <section className="vh-100">
@@ -6,7 +8,7 @@ function Edit() {
                     <div className="col-md-8 col-lg-7 col-xl-6">
                         <img
                             src="https://source.unsplash.com/random"
-                            className="img-fluid"
+                            className={'img-fluid ' + styles['image-size']}
                             alt="SignUp"
                         />
                     </div>

@@ -17,12 +17,12 @@ function App() {
         <Container>
             <NavBar />
             {/* <Catalog /> */}
-            <MovieDetails />
+            {/* <MovieDetails /> */}
             {/* <SignIn /> */}
             {/* <SignUp /> */}
             {/* <Profile /> */}
             {/* <EditProfile /> */}
-            {/* <Edit /> */}
+            <Edit />
             {/* <Create /> */}
             {/* <DeleteModal /> */}
             {/* <NotFound /> */}
