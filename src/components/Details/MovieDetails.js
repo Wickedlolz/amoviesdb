@@ -39,9 +39,11 @@ function MovieDetails() {
                         <div className="col-md-7 px-3">
                             <div className="card-block px-6">
                                 <h4 className="card-title">Description</h4>
-                                <p className="card-text">Author: Viktor</p>
+                                <p className="card-text">Author: </p>
                                 <p className="card-text">{movie.description}</p>
-                                <p className="card-text">Rating: 0</p>
+                                <p className="card-text">
+                                    Rating: {movie.likes.length}
+                                </p>
                                 <button className="mt-auto btn btn-light">
                                     <HandThumbsUp />
                                 </button>{' '}

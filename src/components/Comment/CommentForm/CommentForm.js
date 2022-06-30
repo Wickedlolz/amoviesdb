@@ -1,4 +1,5 @@
 import styles from './CommentForm.module.css';
+import { ArrowRight } from 'react-bootstrap-icons';
 
 function CommentForm() {
     return (
@@ -37,8 +38,7 @@ function CommentForm() {
                                                     ' btn-sm'
                                                 }
                                             >
-                                                Send{' '}
-                                                <i className="fa fa-long-arrow-right ml-1"></i>
+                                                Send <ArrowRight />
                                             </button>
                                         </div>
                                     </div>

@@ -17,7 +17,8 @@ function CommentCard({ comment }) {
                     <div>
                         <div className="mic-info">
                             By: {comment.author.firstName}{' '}
-                            {comment.author.lastName} on {comment.createdAt}
+                            {comment.author.lastName} on{' '}
+                            {new Date(comment.createdAt).toLocaleString()}
                         </div>
                     </div>
                     <div className="comment-text">{comment.content}</div>
