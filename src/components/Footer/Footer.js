@@ -1,5 +1,5 @@
 import { Facebook, Twitter, Instagram } from 'react-bootstrap-icons';
-import './Footer.css';
+import styles from './Footer.module.css';
 
 function Footer() {
     return (
@@ -10,7 +10,7 @@ function Footer() {
                     className="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1"
                 >
                     <img
-                        className="footer-logo"
+                        className={styles['footer-logo']}
                         src="/images/clipart88403.png"
                         alt="logo"
                     />

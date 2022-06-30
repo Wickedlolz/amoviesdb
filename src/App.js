@@ -16,8 +16,8 @@ function App() {
     return (
         <Container>
             <NavBar />
-            <Catalog />
-            {/* <MovieDetails /> */}
+            {/* <Catalog /> */}
+            <MovieDetails />
             {/* <SignIn /> */}
             {/* <SignUp /> */}
             {/* <Profile /> */}

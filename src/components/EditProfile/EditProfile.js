@@ -1,39 +1,39 @@
-import './EditProfile.css';
+import styles from './EditProfile.module.css';
 
 function EditProfile() {
     return (
         <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
             <form>
-                <div className="edit-profile-card">
+                <div className={styles['edit-profile-card']}>
                     {' '}
-                    <div className="info">
+                    <div className={styles.info}>
                         {' '}
                         <span>Edit Viktor's Profile</span>{' '}
                         <button id="savebutton">edit</button>{' '}
                     </div>{' '}
-                    <div className="forms">
+                    <div className={styles.forms}>
                         {' '}
-                        <div className="inputs">
+                        <div className={styles.inputs}>
                             {' '}
                             <span>First Name</span>{' '}
                             <input type="text" name="firstName" />{' '}
                         </div>{' '}
-                        <div className="inputs">
+                        <div className={styles.inputs}>
                             {' '}
                             <span>Last Name</span>{' '}
                             <input type="text" name="lastName" />{' '}
                         </div>{' '}
-                        <div className="inputs">
+                        <div className={styles.inputs}>
                             {' '}
                             <span>Email</span>{' '}
                             <input type="text" name="email" />{' '}
                         </div>{' '}
-                        <div className="inputs">
+                        <div className={styles.inputs}>
                             {' '}
                             <span>Username</span>{' '}
                             <input type="text" name="username" />{' '}
                         </div>{' '}
-                        <div className="inputs">
+                        <div className={styles.inputs}>
                             {' '}
                             <span>Avatar</span>
                             <span>Allowed formats: png/svg</span>

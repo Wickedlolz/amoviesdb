@@ -1,9 +1,9 @@
-import './CommentForm.css';
+import styles from './CommentForm.module.css';
 
 function CommentForm() {
     return (
         <form>
-            <div className="comment-card">
+            <div className={styles['comment-card']}>
                 <div className="row">
                     <div className="col-2">
                         <img
@@ -14,23 +14,29 @@ function CommentForm() {
                         />
                     </div>
                     <div className="col-10">
-                        <div className="comment-box ml-2">
+                        <div className={styles['comment-box'] + ' ml-2'}>
                             <h4>Add a comment</h4>
 
-                            <div className="comment-area">
+                            <div className={styles['comment-area']}>
                                 <textarea
-                                    className="form-control"
+                                    className={styles['form-control']}
                                     placeholder="what is your view?"
                                     name="content"
                                     rows="4"
                                 ></textarea>
                             </div>
 
-                            <div className="comment-btns mt-2">
+                            <div className="mt-2">
                                 <div className="row">
                                     <div className="col-6">
                                         <div className="pull-right">
-                                            <button className="btn btn-success send btn-sm">
+                                            <button
+                                                className={
+                                                    'btn btn-success ' +
+                                                    styles.send +
+                                                    ' btn-sm'
+                                                }
+                                            >
                                                 Send{' '}
                                                 <i className="fa fa-long-arrow-right ml-1"></i>
                                             </button>
