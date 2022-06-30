@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import styles from './Edit.module.css';
 
 function Edit() {
+    const { id } = useParams();
     const [movie, setMovie] = useState({});
 
     useEffect(() => {
-        fetch('http://localhost:3030/api/catalog/62b9952e553de9fc82cab5bc')
+        fetch('http://localhost:3030/api/catalog/' + id)
             .then((res) => res.json())
             .then((movie) => {
                 console.log(movie);
                 setMovie(movie);
             });
-    }, []);
+    }, [id]);
 
     return (
         <section>

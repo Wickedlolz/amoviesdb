@@ -10,18 +10,19 @@ import {
     Trash3,
 } from 'react-bootstrap-icons';
 import LoadingSpinner from '../Loading/Loading';
+import MovieDetailsCard from './MovieDetailsCard';
 
 function MovieDetails() {
     const { id } = useParams();
-    const [movie, setMovie] = useState({ comments: [] });
+    const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:3030/api/catalog/' + id)
             .then((res) => res.json())
             .then((movie) => {
-                setIsLoading(false);
                 setMovie(movie);
+                setIsLoading(false);
             });
     }, [id]);
 
@@ -34,45 +35,14 @@ function MovieDetails() {
             {isLoading ? (
                 <LoadingSpinner />
             ) : (
-                <div className="card">
-                    <div className="row ">
-                        <div className="col-md-7 px-3">
-                            <div className="card-block px-6">
-                                <h4 className="card-title">Description</h4>
-                                <p className="card-text">Author: </p>
-                                <p className="card-text">{movie.description}</p>
-                                <p className="card-text">
-                                    Rating: {movie.likes.length}
-                                </p>
-                                <button className="mt-auto btn btn-light">
-                                    <HandThumbsUp />
-                                </button>{' '}
-                                <button className="mt-auto btn btn-light">
-                                    <HandThumbsDown />
-                                </button>{' '}
-                                <Link
-                                    to={'/edit/' + movie._id}
-                                    className="mt-auto btn btn-warning"
-                                >
-                                    <PencilSquare />
-                                </Link>
-                                <button className="mt-auto btn btn-danger">
-                                    <Trash3 />
-                                </button>
-                            </div>
-                        </div>
-                        <div className="col-md-5">
-                            <img
-                                className="d-block img-thumbnail movie-image-card"
-                                src={movie.imageUrl}
-                                alt="movie"
-                            />
-                        </div>
+                <>
+                    <div className="card">
+                        <MovieDetailsCard movie={movie} />
                     </div>
-                </div>
+                    <CommentForm />
+                    <CommentList comments={movie.comments} />
+                </>
             )}
-            <CommentForm />
-            <CommentList comments={movie.comments} />
         </div>
     );
 }
