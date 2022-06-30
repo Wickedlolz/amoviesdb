@@ -1,13 +1,25 @@
+import { useState, useEffect } from 'react';
 import styles from './Edit.module.css';
 
 function Edit() {
+    const [movie, setMovie] = useState({});
+
+    useEffect(() => {
+        fetch('http://localhost:3030/api/catalog/62b9952e553de9fc82cab5bc')
+            .then((res) => res.json())
+            .then((movie) => {
+                console.log(movie);
+                setMovie(movie);
+            });
+    }, []);
+
     return (
-        <section className="vh-100">
+        <section>
             <div className="container py-5 h-100">
                 <div className="row d-flex align-items-center justify-content-center h-100">
                     <div className="col-md-8 col-lg-7 col-xl-6">
                         <img
-                            src="https://source.unsplash.com/random"
+                            src={movie.imageUrl}
                             className={'img-fluid ' + styles['image-size']}
                             alt="SignUp"
                         />
@@ -20,6 +32,7 @@ function Edit() {
                                     id="title"
                                     className="form-control form-control-lg"
                                     name="title"
+                                    defaultValue={movie.title}
                                 />
                                 <label className="form-label" htmlFor="title">
                                     Title
@@ -32,6 +45,7 @@ function Edit() {
                                     id="imageUrl"
                                     className="form-control form-control-lg"
                                     name="imageUrl"
+                                    defaultValue={movie.imageUrl}
                                 />
                                 <label
                                     className="form-label"
@@ -42,18 +56,23 @@ function Edit() {
                             </div>
 
                             <div className="form-outline mb-4">
-                                <input
+                                {/* <input
                                     type="text"
                                     id="description"
                                     className="form-control form-control-lg"
                                     name="description"
-                                />
-                                <label
-                                    className="form-label"
-                                    htmlFor="description"
-                                >
+                                    defaultValue={movie.description}
+                                /> */}
+                                <textarea
+                                    name="description"
+                                    id="description"
+                                    cols="50"
+                                    rows="5"
+                                    defaultValue={movie.description}
+                                ></textarea>
+                                <p className="form-label" htmlFor="description">
                                     Description
-                                </label>
+                                </p>
                             </div>
 
                             <button
