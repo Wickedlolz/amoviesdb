@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
+
 function SignIn() {
     return (
-        <section className="vh-100">
+        <section>
             <div className="container py-5 h-100">
                 <div className="row d-flex align-items-center justify-content-center h-100">
                     <div className="col-md-8 col-lg-7 col-xl-6">
@@ -42,9 +44,12 @@ function SignIn() {
                             <div className="d-flex justify-content-around align-items-center mb-4">
                                 <p className="small fw-bold mt-2 pt-1 mb-0">
                                     Don't have an account?{' '}
-                                    <a href="#/" className="link-danger">
+                                    <Link
+                                        to={'/signup'}
+                                        className="link-danger"
+                                    >
                                         Sign Up
-                                    </a>
+                                    </Link>
                                 </p>
                             </div>
 
