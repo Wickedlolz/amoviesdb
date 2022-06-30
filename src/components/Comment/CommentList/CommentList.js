@@ -1,5 +1,5 @@
 import CommentCard from '../CommentCard/CommentCard';
-import './CommentList.css';
+import styles from './CommentList.module.css';
 
 function CommentList({ comments }) {
     return (
@@ -8,11 +8,15 @@ function CommentList({ comments }) {
                 <div className="panel panel-default widget">
                     <div className="panel-heading">
                         <span className="glyphicon glyphicon-comment"></span>
-                        <h3 className="panel-title">Recent Comments</h3>
-                        <span className="label label-info">78</span>
+                        <h3 className={styles['panel-title']}>
+                            Recent Comments
+                        </h3>
+                        <span className={'label ' + styles['label-info']}>
+                            78
+                        </span>
                     </div>
-                    <div className="panel-body">
-                        <ul className="list-group">
+                    <div className={styles['panel-body']}>
+                        <ul className={styles['list-group']}>
                             {comments.map((comment) => (
                                 <CommentCard
                                     key={comment.id}

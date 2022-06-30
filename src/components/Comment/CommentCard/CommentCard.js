@@ -1,3 +1,5 @@
+import styles from './CommentCard.module.css';
+
 function CommentCard({ comment }) {
     return (
         <li className="list-group-item">
@@ -11,11 +13,13 @@ function CommentCard({ comment }) {
                 </div>
                 <div className="col-xs-10 col-md-11">
                     <div>
-                        <div className="mic-info">
+                        <div className={styles['mic-info']}>
                             By: {comment.user} on 2 Aug 2013
                         </div>
                     </div>
-                    <div className="comment-text">{comment.content}</div>
+                    <div className={styles['comment-text']}>
+                        {comment.content}
+                    </div>
                 </div>
             </div>
         </li>

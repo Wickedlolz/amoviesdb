@@ -22,13 +22,7 @@ li.list-group-item:hover {
     color: #666666;
     font-size: 11px;
 }
-.action {
-    margin-top: 5px;
-}
+
 .comment-text {
     font-size: 12px;
-}
-.btn-block {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
 }
