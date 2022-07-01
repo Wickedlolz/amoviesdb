@@ -24,10 +24,7 @@ function MovieDetailsCard({
                     <p className="card-text">{movie.description}</p>
                     <p className="card-text">Likes: {movie.likes.length}</p>
                     <div className="p-3">
-                        <ReactPlayer
-                            url="https://www.youtube.com/watch?v=aWzlQ2N6qqg"
-                            controls={true}
-                        />
+                        <ReactPlayer url={movie.youtubeUrl} controls={true} />
                     </div>
                     <button
                         onClick={onLikeClick}

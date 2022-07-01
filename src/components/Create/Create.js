@@ -7,14 +7,20 @@ function Create() {
         const formData = new FormData(event.target);
         const title = formData.get('title').trim();
         const imageUrl = formData.get('imageUrl').trim();
+        const youtubeLink = formData.get('youtubeLink').trim();
         const description = formData.get('description').trim();
 
-        if (title == '' || imageUrl == '' || description == '') {
+        if (
+            title == '' ||
+            imageUrl == '' ||
+            description == '' ||
+            youtubeLink == ''
+        ) {
             return;
         }
 
         movieService
-            .create({ title, imageUrl, description })
+            .create({ title, imageUrl, youtubeLink, description })
             .then((result) => console.log(result))
             .catch((error) => console.log(error));
     };
@@ -56,6 +62,21 @@ function Create() {
                                     htmlFor="imageUrl"
                                 >
                                     Image URL
+                                </label>
+                            </div>
+
+                            <div className="form-outline mb-4">
+                                <input
+                                    type="text"
+                                    id="youtubeLink"
+                                    className="form-control form-control-lg"
+                                    name="youtubeLink"
+                                />
+                                <label
+                                    className="form-label"
+                                    htmlFor="youtubeLink"
+                                >
+                                    YouTube Link URL
                                 </label>
                             </div>
 
