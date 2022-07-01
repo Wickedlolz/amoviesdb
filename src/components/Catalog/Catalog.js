@@ -18,6 +18,15 @@ function Catalog() {
             });
     }, []);
 
+    const movieList =
+        movies.length > 0 ? (
+            <Row xs={1} md={4} className="g-3">
+                <MovieList movies={movies} />
+            </Row>
+        ) : (
+            <h3 className="p-5 text-center">No movies in database.</h3>
+        );
+
     return (
         <>
             <div className="p-5 text-center bg-light">
@@ -30,15 +39,7 @@ function Catalog() {
                     Create
                 </Link>
             </div>
-            {isLoading ? (
-                <LoadingSpinner />
-            ) : movies.length > 0 ? (
-                <Row xs={1} md={4} className="g-3">
-                    <MovieList movies={movies} />
-                </Row>
-            ) : (
-                <h3 className="p-5 text-center">No movies in database.</h3>
-            )}
+            {isLoading ? <LoadingSpinner /> : movieList}
             <Pagination />
         </>
     );

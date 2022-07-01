@@ -6,7 +6,7 @@ import {
 } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
-function MovieDetailsCard({ movie }) {
+function MovieDetailsCard({ movie, onDeleteClick }) {
     return (
         <div className="row ">
             <div className="col-md-7 px-3">
@@ -27,7 +27,10 @@ function MovieDetailsCard({ movie }) {
                     >
                         <PencilSquare />
                     </Link>
-                    <button className="mt-auto btn btn-danger">
+                    <button
+                        onClick={onDeleteClick}
+                        className="mt-auto btn btn-danger"
+                    >
                         <Trash3 />
                     </button>
                 </div>
