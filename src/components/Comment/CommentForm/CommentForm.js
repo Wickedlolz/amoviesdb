@@ -1,9 +1,9 @@
 import styles from './CommentForm.module.css';
 import { ArrowRight } from 'react-bootstrap-icons';
 
-function CommentForm() {
+function CommentForm({ onSubmitCommentFormHandler }) {
     return (
-        <form>
+        <form onSubmit={onSubmitCommentFormHandler}>
             <div className={styles['comment-card']}>
                 <div className="row">
                     <div className="col-2">

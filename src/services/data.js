@@ -9,6 +9,7 @@ const endpoints = {
     LIKE: (movieId) => `/catalog/like/${movieId}`,
     DISLIKE: (movieId) => `/catalog/dislike/${movieId}`,
     DELETE_BY_ID: (movieId) => `/catalog/${movieId}`,
+    COMMENT: (movieId) => `/catalog/comments/${movieId}`,
 };
 
 export async function getAll() {
@@ -37,4 +38,8 @@ export async function dislike(movieId) {
 
 export async function deleteById(movieId) {
     return await request.del(endpoints.DELETE_BY_ID(movieId));
+}
+
+export async function comment(movieId, content) {
+    return await request.post(endpoints.COMMENT(movieId, content));
 }

@@ -56,6 +56,23 @@ function MovieDetails() {
             });
     };
 
+    const onSubmitCommentFormHandler = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const content = formData.get('content').trim();
+
+        movieService
+            .comment(id, content)
+            .then((result) => {
+                console.log(result);
+                event.target.reset();
+            })
+            .catch((error) => {
+                console.log(error);
+                event.target.reset();
+            });
+    };
+
     const movieDetails = (
         <>
             <DeleteModal
@@ -73,7 +90,9 @@ function MovieDetails() {
                     onDislikeClick={onDislikeClick}
                 />
             </div>
-            <CommentForm />
+            <CommentForm
+                onSubmitCommentFormHandler={onSubmitCommentFormHandler}
+            />
             <CommentList comments={movie.comments} />
         </>
     );
