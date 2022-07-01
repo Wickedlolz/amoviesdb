@@ -23,6 +23,7 @@ function CommentForm() {
                                     className={styles['form-control']}
                                     placeholder="what is your view?"
                                     name="content"
+                                    cols="65"
                                     rows="4"
                                 ></textarea>
                             </div>

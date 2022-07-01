@@ -6,7 +6,7 @@ function CommentCard({ comment }) {
             <div className="row">
                 <div className="col-xs-2 col-md-1">
                     <img
-                        src={'http://localhost:3030' + comment.author.avatar}
+                        src={comment.author.avatar}
                         className={
                             'img-circle img-responsive ' + styles['image-width']
                         }

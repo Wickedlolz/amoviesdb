@@ -1,6 +1,6 @@
 import {
-    HandThumbsUp,
-    HandThumbsDown,
+    HandThumbsUpFill,
+    HandThumbsDownFill,
     PencilSquare,
     Trash3,
 } from 'react-bootstrap-icons';
@@ -24,13 +24,13 @@ function MovieDetailsCard({
                         onClick={onLikeClick}
                         className="mt-auto btn btn-light"
                     >
-                        <HandThumbsUp />
+                        <HandThumbsUpFill />
                     </button>{' '}
                     <button
                         onClick={onDislikeClick}
                         className="mt-auto btn btn-light"
                     >
-                        <HandThumbsDown />
+                        <HandThumbsDownFill />
                     </button>{' '}
                     <Link
                         to={'/edit/' + movie._id}
