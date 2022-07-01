@@ -23,7 +23,7 @@ function CommentForm({ onSubmitCommentFormHandler }) {
                                     className={styles['form-control']}
                                     placeholder="what is your view?"
                                     name="content"
-                                    cols="65"
+                                    cols="50"
                                     rows="4"
                                 ></textarea>
                             </div>

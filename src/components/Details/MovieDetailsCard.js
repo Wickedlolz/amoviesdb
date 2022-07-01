@@ -25,30 +25,32 @@ function MovieDetailsCard({
                     <div className="p-3 card-text">
                         <ReactPlayer url={movie.youtubeUrl} controls={true} />
                     </div>
-                    <button
-                        onClick={onLikeClick}
-                        className="mt-auto btn btn-light"
-                    >
-                        <HandThumbsUpFill /> {movie.likes.length}
-                    </button>{' '}
-                    <button
-                        onClick={onDislikeClick}
-                        className="mt-auto btn btn-light"
-                    >
-                        <HandThumbsDownFill /> {movie.likes.length}
-                    </button>{' '}
-                    <Link
-                        to={'/edit/' + movie._id}
-                        className="mt-auto btn btn-warning"
-                    >
-                        <PencilSquare />
-                    </Link>{' '}
-                    <button
-                        onClick={onDeleteClick}
-                        className="mt-auto btn btn-danger"
-                    >
-                        <Trash3 />
-                    </button>
+                    <div className="p-3 text-center">
+                        <button
+                            onClick={onLikeClick}
+                            className="mt-auto btn btn-light"
+                        >
+                            <HandThumbsUpFill /> {movie.likes.length}
+                        </button>{' '}
+                        <button
+                            onClick={onDislikeClick}
+                            className="mt-auto btn btn-light"
+                        >
+                            <HandThumbsDownFill /> {movie.likes.length}
+                        </button>{' '}
+                        <Link
+                            to={'/edit/' + movie._id}
+                            className="mt-auto btn btn-warning"
+                        >
+                            <PencilSquare />
+                        </Link>{' '}
+                        <button
+                            onClick={onDeleteClick}
+                            className="mt-auto btn btn-danger"
+                        >
+                            <Trash3 />
+                        </button>
+                    </div>
                 </div>
             </div>
             <div className="col-md-5">
