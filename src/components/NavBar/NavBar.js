@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {
     Navbar,
     Nav,
@@ -28,19 +28,19 @@ function NavBar() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Nav.Link to={'/'} as={Link}>
+                        <Nav.Link to={'/'} as={NavLink}>
                             Home
                         </Nav.Link>
-                        <Nav.Link to={'/signin'} as={Link}>
+                        <Nav.Link to={'/signin'} as={NavLink}>
                             Sign In
                         </Nav.Link>
-                        <Nav.Link to={'/signup'} as={Link}>
+                        <Nav.Link to={'/signup'} as={NavLink}>
                             Sign Up
                         </Nav.Link>
                     </Nav>
                     <Navbar.Text className="p-3">
                         Signed in as:{' '}
-                        <Link to={'/profile/24'}>Viktor Dimitrov</Link>
+                        <NavLink to={'/profile/24'}>Viktor Dimitrov</NavLink>
                     </Navbar.Text>
                     <Form className="d-flex">
                         <FormControl
