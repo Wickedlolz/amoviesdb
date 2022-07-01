@@ -13,7 +13,7 @@ async function request(method, url, data) {
 
     const user = JSON.parse(sessionStorage.getItem('user'));
     if (user) {
-        options.headers['X-Authorization'] = user.sessionToken;
+        options.headers['X-Authorization'] = user.accessToken;
     }
 
     try {

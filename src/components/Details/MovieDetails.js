@@ -61,6 +61,10 @@ function MovieDetails() {
         const formData = new FormData(event.target);
         const content = formData.get('content').trim();
 
+        if (content == '') {
+            return;
+        }
+
         movieService
             .comment(id, content)
             .then((result) => {

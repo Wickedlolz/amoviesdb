@@ -25,7 +25,7 @@ export async function create(movieData) {
 }
 
 export async function editById(movieId, movieData) {
-    return await request.put(endpoints.EDIT_MOVIE(movieId), movieData);
+    return await request.put(endpoints.EDIT_MOVIE(movieId), { movieData });
 }
 
 export async function like(movieId) {
@@ -40,6 +40,8 @@ export async function deleteById(movieId) {
     return await request.del(endpoints.DELETE_BY_ID(movieId));
 }
 
-export async function comment(movieId, content) {
-    return await request.post(endpoints.COMMENT(movieId, content));
+export async function comment(movieId, commentData) {
+    return await request.post(endpoints.COMMENT(movieId), {
+        content: commentData,
+    });
 }
