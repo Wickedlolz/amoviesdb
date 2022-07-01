@@ -1,8 +1,16 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import TermsAndConditions from '../TermsAndConditions/TermsAndConditions';
 
 function SignUp() {
+    const [isVisible, setIsVisivle] = useState(false);
+
+    const onTermsClickHandler = () => setIsVisivle(true);
+    const onTermsClose = () => setIsVisivle(false);
+
     return (
         <section>
+            <TermsAndConditions show={isVisible} onTermsClose={onTermsClose} />
             <div className="container py-5 h-100">
                 <div className="row d-flex align-items-center justify-content-center h-100">
                     <div className="col-md-8 col-lg-7 col-xl-6">
@@ -113,9 +121,12 @@ function SignUp() {
                                     htmlFor="acceptTerms"
                                 >
                                     I agree all statements in{' '}
-                                    <a href="#!" className="text-body">
+                                    <span
+                                        onClick={onTermsClickHandler}
+                                        className="text-body"
+                                    >
                                         <u>Terms of service</u>
-                                    </a>
+                                    </span>
                                 </label>
                             </div>
 
