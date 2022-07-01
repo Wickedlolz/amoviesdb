@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TermsAndConditions from '../TermsAndConditions/TermsAndConditions';
 
+import styles from './SignUp.module.css';
+
 function SignUp() {
     const [isVisible, setIsVisivle] = useState(false);
 
@@ -123,7 +125,7 @@ function SignUp() {
                                     I agree all statements in{' '}
                                     <span
                                         onClick={onTermsClickHandler}
-                                        className="text-body"
+                                        className={'text-body ' + styles.terms}
                                     >
                                         <u>Terms of service</u>
                                     </span>
