@@ -1,15 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import CommentForm from '../Comment/CommentForm/CommentForm';
 import CommentList from '../Comment/CommentList/CommentList';
 import './MovieDetails.css';
-import {
-    HandThumbsUp,
-    HandThumbsDown,
-    PencilSquare,
-    Trash3,
-} from 'react-bootstrap-icons';
-import LoadingSpinner from '../Loading/Loading';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieDetailsCard from './MovieDetailsCard';
 
 function MovieDetails() {
@@ -25,8 +19,6 @@ function MovieDetails() {
                 setIsLoading(false);
             });
     }, [id]);
-
-    console.log(movie.comments);
 
     return (
         <div className="container py-3">

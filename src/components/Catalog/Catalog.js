@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
-import LoadingSpinner from '../Loading/Loading';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieList from '../MovieList/MovieList';
 import Pagination from '../Pagination/Pagination';
 
