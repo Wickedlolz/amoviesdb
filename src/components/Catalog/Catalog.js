@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import * as gameService from '../../services/data';
+import * as movieService from '../../services/data';
 
 import { Row } from 'react-bootstrap';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -13,7 +13,7 @@ function Catalog() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        gameService.getAll().then((movies) => {
+        movieService.getAll().then((movies) => {
             setIsLoading(false);
             setMovies(movies);
         });

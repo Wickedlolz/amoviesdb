@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+import * as movieService from '../../services/data';
+
 import CommentForm from '../Comment/CommentForm/CommentForm';
 import CommentList from '../Comment/CommentList/CommentList';
 import './MovieDetails.css';
@@ -14,12 +17,10 @@ function MovieDetails() {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:3030/api/catalog/' + id)
-            .then((res) => res.json())
-            .then((movie) => {
-                setMovie(movie);
-                setIsLoading(false);
-            });
+        movieService.getById(id).then((movie) => {
+            setMovie(movie);
+            setIsLoading(false);
+        });
     }, [id]);
 
     const onDeleteClick = (event) => {
