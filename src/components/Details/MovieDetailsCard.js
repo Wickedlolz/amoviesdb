@@ -6,7 +6,12 @@ import {
 } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
-function MovieDetailsCard({ movie, onDeleteClick, onLikeClick }) {
+function MovieDetailsCard({
+    movie,
+    onDeleteClick,
+    onLikeClick,
+    onDislikeClick,
+}) {
     return (
         <div className="row ">
             <div className="col-md-7 px-3">
@@ -21,7 +26,10 @@ function MovieDetailsCard({ movie, onDeleteClick, onLikeClick }) {
                     >
                         <HandThumbsUp />
                     </button>{' '}
-                    <button className="mt-auto btn btn-light">
+                    <button
+                        onClick={onDislikeClick}
+                        className="mt-auto btn btn-light"
+                    >
                         <HandThumbsDown />
                     </button>{' '}
                     <Link

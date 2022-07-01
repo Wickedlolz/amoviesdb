@@ -23,11 +23,18 @@ function MovieDetails() {
         });
     }, [id]);
 
-    const onLikeClick = (event) => {
+    const onLikeClick = () => {
         movieService
             .like(id)
             .then((result) => console.log(result))
             .catch((error) => console.log(error));
+    };
+
+    const onDislikeClick = () => {
+        movieService
+            .dislike(id)
+            .then((result) => console.log(result))
+            .catch((error) => console.log(error.message));
     };
 
     const onDeleteClick = (event) => {
@@ -36,7 +43,18 @@ function MovieDetails() {
 
     const onModalNoClickHandler = () => setShowModal(false);
 
-    const onModalYesClickHandler = () => {};
+    const onModalYesClickHandler = () => {
+        movieService
+            .deleteById(id)
+            .then((result) => {
+                console.log(result);
+                setShowModal(false);
+            })
+            .catch((error) => {
+                console.log(error);
+                setShowModal(false);
+            });
+    };
 
     const movieDetails = (
         <>
@@ -52,6 +70,7 @@ function MovieDetails() {
                     movie={movie}
                     onDeleteClick={onDeleteClick}
                     onLikeClick={onLikeClick}
+                    onDislikeClick={onDislikeClick}
                 />
             </div>
             <CommentForm />

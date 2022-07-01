@@ -7,6 +7,8 @@ const endpoints = {
     DELETE_MOVIE: (movieId) => `/catalog/${movieId}`,
     EDIT_MOVIE: (movieId) => `/catalog/${movieId}`,
     LIKE: (movieId) => `/catalog/like/${movieId}`,
+    DISLIKE: (movieId) => `/catalog/dislike/${movieId}`,
+    DELETE_BY_ID: (movieId) => `/catalog/${movieId}`,
 };
 
 export async function getAll() {
@@ -23,4 +25,12 @@ export async function editById(movieId, movieData) {
 
 export async function like(movieId) {
     return await request.post(endpoints.LIKE(movieId));
+}
+
+export async function dislike(movieId) {
+    return await request.post(endpoints.DISLIKE(movieId));
+}
+
+export async function deleteById(movieId) {
+    return await request.del(endpoints.DELETE_BY_ID(movieId));
 }
