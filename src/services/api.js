@@ -25,12 +25,12 @@ async function request(method, url, data) {
             }
 
             const err = await response.json();
-            throw new Error(err.error);
+            throw new Error(err.message);
         }
 
         if (response.status == 400) {
             const err = await response.json();
-            throw new Error(err.error);
+            throw new Error(err.message);
         }
 
         if (response.status == 204) {

@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+import * as movieService from '../../services/data';
+
 import styles from './Edit.module.css';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
@@ -9,14 +12,28 @@ function Edit() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:3030/api/catalog/' + id)
-            .then((res) => res.json())
-            .then((movie) => {
-                console.log(movie);
-                setMovie(movie);
-                setIsLoading(false);
-            });
+        movieService.getById(id).then((movie) => {
+            setMovie(movie);
+            setIsLoading(false);
+        });
     }, [id]);
+
+    const onSubmitEditHandler = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const title = formData.get('title').trim();
+        const imageUrl = formData.get('imageUrl').trim();
+        const description = formData.get('description').trim();
+
+        if (title == '' || imageUrl == '' || description == '') {
+            return;
+        }
+
+        movieService
+            .editById(id, { title, imageUrl, description })
+            .then((result) => console.log(result))
+            .catch((error) => console.log(error.message));
+    };
 
     return (
         <>
@@ -36,7 +53,7 @@ function Edit() {
                                 />
                             </div>
                             <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                                <form>
+                                <form onSubmit={onSubmitEditHandler}>
                                     <div className="form-outline mb-4">
                                         <input
                                             type="text"
