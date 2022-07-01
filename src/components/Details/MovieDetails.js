@@ -23,6 +23,13 @@ function MovieDetails() {
         });
     }, [id]);
 
+    const onLikeClick = (event) => {
+        movieService
+            .like(id)
+            .then((result) => console.log(result))
+            .catch((error) => console.log(error));
+    };
+
     const onDeleteClick = (event) => {
         setShowModal(true);
     };
@@ -41,7 +48,11 @@ function MovieDetails() {
                 title={movie.title}
             />
             <div className="card">
-                <MovieDetailsCard movie={movie} onDeleteClick={onDeleteClick} />
+                <MovieDetailsCard
+                    movie={movie}
+                    onDeleteClick={onDeleteClick}
+                    onLikeClick={onLikeClick}
+                />
             </div>
             <CommentForm />
             <CommentList comments={movie.comments} />

@@ -6,6 +6,7 @@ const endpoints = {
     CREATE: '/catalog',
     DELETE_MOVIE: (movieId) => `/catalog/${movieId}`,
     EDIT_MOVIE: (movieId) => `/catalog/${movieId}`,
+    LIKE: (movieId) => `/catalog/like/${movieId}`,
 };
 
 export async function getAll() {
@@ -18,4 +19,8 @@ export async function getById(movieId) {
 
 export async function editById(movieId, movieData) {
     return await request.put(endpoints.EDIT_MOVIE(movieId), movieData);
+}
+
+export async function like(movieId) {
+    return await request.post(endpoints.LIKE(movieId));
 }
