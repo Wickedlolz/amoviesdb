@@ -15,35 +15,34 @@ function MovieDetailsCard({
 }) {
     return (
         <div className="row ">
-            <div className="col-md-7 px-3">
+            <div className="col-md-7 px-4">
                 <div className="card-block px-6">
                     <h4 className="card-title">{movie.title}</h4>
                     <p className="card-text">
                         Author: {movie.owner.firstName} {movie.owner.lastName}
                     </p>
                     <p className="card-text">{movie.description}</p>
-                    <p className="card-text">Likes: {movie.likes.length}</p>
-                    <div className="p-3">
+                    <div className="p-3 card-text">
                         <ReactPlayer url={movie.youtubeUrl} controls={true} />
                     </div>
                     <button
                         onClick={onLikeClick}
                         className="mt-auto btn btn-light"
                     >
-                        <HandThumbsUpFill />
+                        <HandThumbsUpFill /> {movie.likes.length}
                     </button>{' '}
                     <button
                         onClick={onDislikeClick}
                         className="mt-auto btn btn-light"
                     >
-                        <HandThumbsDownFill />
+                        <HandThumbsDownFill /> {movie.likes.length}
                     </button>{' '}
                     <Link
                         to={'/edit/' + movie._id}
                         className="mt-auto btn btn-warning"
                     >
                         <PencilSquare />
-                    </Link>
+                    </Link>{' '}
                     <button
                         onClick={onDeleteClick}
                         className="mt-auto btn btn-danger"
