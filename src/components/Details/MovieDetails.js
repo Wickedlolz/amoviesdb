@@ -23,7 +23,6 @@ function MovieDetails() {
     }, [id]);
 
     const onDeleteClick = (event) => {
-        console.log('delete clicked');
         setShowModal(true);
     };
 

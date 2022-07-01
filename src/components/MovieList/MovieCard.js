@@ -8,7 +8,7 @@ function MovieCard({ movie }) {
             <Card.Img variant="top" src={movie.imageUrl} />
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
-                <Card.Text>Rating: 0</Card.Text>
+                <Card.Text>Rating: {movie.likes.length}</Card.Text>
                 <Link to={'/movie/' + movie._id} className="btn btn-primary">
                     Details
                 </Link>
