@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+import * as gameService from '../../services/data';
+
 import { Row } from 'react-bootstrap';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieList from '../MovieList/MovieList';
@@ -10,12 +13,10 @@ function Catalog() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:3030/api/catalog')
-            .then((res) => res.json())
-            .then((movies) => {
-                setIsLoading(false);
-                setMovies(movies);
-            });
+        gameService.getAll().then((movies) => {
+            setIsLoading(false);
+            setMovies(movies);
+        });
     }, []);
 
     const movieList =
