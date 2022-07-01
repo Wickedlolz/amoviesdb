@@ -46,3 +46,7 @@
 .edit-profile-card .inputs input[type='text'][readonly] {
     border: 2px solid rgba(0, 0, 0, 0);
 }
+
+.allowed-formats {
+    font-weight: bolder;
+}

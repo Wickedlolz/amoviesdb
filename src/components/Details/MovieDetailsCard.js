@@ -1,10 +1,11 @@
+import ReactPlayer from 'react-player/youtube';
+import { Link } from 'react-router-dom';
 import {
     HandThumbsUpFill,
     HandThumbsDownFill,
     PencilSquare,
     Trash3,
 } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
 
 function MovieDetailsCard({
     movie,
@@ -22,6 +23,12 @@ function MovieDetailsCard({
                     </p>
                     <p className="card-text">{movie.description}</p>
                     <p className="card-text">Likes: {movie.likes.length}</p>
+                    <div className="p-3">
+                        <ReactPlayer
+                            url="https://www.youtube.com/watch?v=aWzlQ2N6qqg"
+                            controls={true}
+                        />
+                    </div>
                     <button
                         onClick={onLikeClick}
                         className="mt-auto btn btn-light"

@@ -36,7 +36,9 @@ function EditProfile() {
                         <div className={styles.inputs}>
                             {' '}
                             <span>Avatar</span>
-                            <span>Allowed formats: png/svg</span>
+                            <span className={styles['allowed-formats']}>
+                                Allowed formats: png/svg
+                            </span>
                             <input type="file" name="avatar" />{' '}
                         </div>{' '}
                     </div>{' '}

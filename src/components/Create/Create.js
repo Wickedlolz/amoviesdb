@@ -1,4 +1,5 @@
 import * as movieService from '../../services/data';
+import { Link } from 'react-router-dom';
 
 function Create() {
     const onSubmitCreateHandler = (event) => {
@@ -73,12 +74,12 @@ function Create() {
                                 </label>
                             </div>
 
-                            <button
-                                type="submit"
+                            <Link
+                                to={'/'}
                                 className="btn btn-secondary btn-lg btn-block m-2"
                             >
                                 Cancel
-                            </button>
+                            </Link>
 
                             <button
                                 type="submit"
