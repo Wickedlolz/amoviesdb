@@ -16,10 +16,12 @@ function MovieDetailsCard({
         <div className="row ">
             <div className="col-md-7 px-3">
                 <div className="card-block px-6">
-                    <h4 className="card-title">Description</h4>
-                    <p className="card-text">Author: </p>
+                    <h4 className="card-title">{movie.title}</h4>
+                    <p className="card-text">
+                        Author: {movie.owner.firstName} {movie.owner.lastName}
+                    </p>
                     <p className="card-text">{movie.description}</p>
-                    <p className="card-text">Rating: {movie.likes.length}</p>
+                    <p className="card-text">Likes: {movie.likes.length}</p>
                     <button
                         onClick={onLikeClick}
                         className="mt-auto btn btn-light"

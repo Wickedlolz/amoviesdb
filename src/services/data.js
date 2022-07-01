@@ -19,6 +19,10 @@ export async function getById(movieId) {
     return await request.get(endpoints.MOVIE_BY_ID(movieId));
 }
 
+export async function create(movieData) {
+    return await request.post(endpoints.CREATE, movieData);
+}
+
 export async function editById(movieId, movieData) {
     return await request.put(endpoints.EDIT_MOVIE(movieId), movieData);
 }

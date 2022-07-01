@@ -1,4 +1,23 @@
+import * as movieService from '../../services/data';
+
 function Create() {
+    const onSubmitCreateHandler = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const title = formData.get('title').trim();
+        const imageUrl = formData.get('imageUrl').trim();
+        const description = formData.get('description').trim();
+
+        if (title == '' || imageUrl == '' || description == '') {
+            return;
+        }
+
+        movieService
+            .create({ title, imageUrl, description })
+            .then((result) => console.log(result))
+            .catch((error) => console.log(error));
+    };
+
     return (
         <section>
             <div className="container py-5 h-100">
@@ -11,7 +30,7 @@ function Create() {
                         />
                     </div>
                     <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                        <form>
+                        <form onSubmit={onSubmitCreateHandler}>
                             <div className="form-outline mb-4">
                                 <input
                                     type="text"
