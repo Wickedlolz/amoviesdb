@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import AuthContext from './contexts/Auth';
+
 import { Container } from 'react-bootstrap';
 import NavBar from './components/NavBar/NavBar';
 import Catalog from './components/Catalog/Catalog';
@@ -13,22 +16,28 @@ import Create from './components/Create/Create';
 import Footer from './components/Footer/Footer';
 
 function App() {
+    const [user, setUser] = useState();
+
+    const addUser = (user) => setUser(user);
+
     return (
-        <Container>
-            <NavBar />
-            <Routes>
-                <Route path="/" element={<Catalog />} />
-                <Route path="/signin" element={<SignIn />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/profile/:id" element={<Profile />} />
-                <Route path="/profile/edit/:id" element={<EditProfile />} />
-                <Route path="/movie/:id" element={<MovieDetails />} />
-                <Route path="/create" element={<Create />} />
-                <Route path="/edit/:id" element={<Edit />} />
-                <Route path="/*" element={<NotFound />} />
-            </Routes>
-            <Footer />
-        </Container>
+        <AuthContext.Provider value={{ user, addUser }}>
+            <Container>
+                <NavBar />
+                <Routes>
+                    <Route path="/" element={<Catalog />} />
+                    <Route path="/signin" element={<SignIn />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/profile/:id" element={<Profile />} />
+                    <Route path="/profile/edit/:id" element={<EditProfile />} />
+                    <Route path="/movie/:id" element={<MovieDetails />} />
+                    <Route path="/create" element={<Create />} />
+                    <Route path="/edit/:id" element={<Edit />} />
+                    <Route path="/*" element={<NotFound />} />
+                </Routes>
+                <Footer />
+            </Container>
+        </AuthContext.Provider>
     );
 }
 
