@@ -74,7 +74,10 @@ function MovieDetails() {
         movieService
             .comment(id, content)
             .then((result) => {
-                console.log(result);
+                setMovie((oldState) => ({
+                    ...oldState,
+                    comments: [...oldState.comments, result],
+                }));
                 event.target.reset();
             })
             .catch((error) => {
