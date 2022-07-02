@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../contexts/Auth';
 
 import * as movieService from '../../services/data';
 
@@ -9,6 +10,7 @@ import MovieList from '../MovieList/MovieList';
 import Pagination from '../Pagination/Pagination';
 
 function Catalog() {
+    const { user } = useContext(AuthContext);
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -36,10 +38,11 @@ function Catalog() {
                     Here you can find all newest and most popular movies.
                 </h4>
                 <p>Fell free to join and add your best movies.</p>
-
-                <Link to={'/create'} className="btn btn-warning">
-                    Create
-                </Link>
+                {user ? (
+                    <Link to={'/create'} className="btn btn-warning">
+                        Create
+                    </Link>
+                ) : null}
             </div>
             {isLoading ? <LoadingSpinner /> : movieList}
             <Pagination />

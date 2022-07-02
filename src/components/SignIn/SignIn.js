@@ -1,6 +1,31 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from '../../contexts/Auth';
+import { Link, useNavigate } from 'react-router-dom';
+import * as userService from '../../services/user';
 
 function SignIn() {
+    const navigate = useNavigate();
+    const { addUser } = useContext(AuthContext);
+
+    const onSubmitSignIn = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const email = formData.get('email').trim();
+        const password = formData.get('password').trim();
+
+        if (email == '' || password == '') {
+            return;
+        }
+
+        userService
+            .signIn(email, password)
+            .then((userData) => {
+                addUser(userData);
+                navigate('/');
+            })
+            .catch((error) => console.log(error));
+    };
+
     return (
         <section>
             <div className="container py-5 h-100">
@@ -13,7 +38,7 @@ function SignIn() {
                         />
                     </div>
                     <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                        <form>
+                        <form onSubmit={onSubmitSignIn}>
                             <div className="form-outline mb-4">
                                 <input
                                     type="email"
