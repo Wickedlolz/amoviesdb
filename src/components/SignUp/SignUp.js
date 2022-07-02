@@ -1,14 +1,39 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import TermsAndConditions from '../TermsAndConditions/TermsAndConditions';
+import { useState, useContext } from 'react';
+import AuthContext from '../../contexts/Auth';
+import { Link, useNavigate } from 'react-router-dom';
+import * as userService from '../../services/user';
 
+import TermsAndConditions from '../TermsAndConditions/TermsAndConditions';
 import styles from './SignUp.module.css';
 
 function SignUp() {
+    const { addUser } = useContext(AuthContext);
     const [isVisible, setIsVisivle] = useState(false);
+    const navigate = useNavigate();
 
     const onTermsClickHandler = () => setIsVisivle(true);
     const onTermsClose = () => setIsVisivle(false);
+
+    const onSubmitSignUp = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const data = [...formData.entries()].reduce(
+            (a, [k, v]) => Object.assign(a, { [k]: v.trim() }),
+            {}
+        );
+
+        if (data.acceptTerms) {
+            userService
+                .signUp(data)
+                .then((userData) => {
+                    addUser(userData);
+                    navigate('/');
+                })
+                .catch((error) => console.log(error));
+        } else {
+            console.log('Tearms are not accepted.');
+        }
+    };
 
     return (
         <section>
@@ -23,7 +48,7 @@ function SignUp() {
                         />
                     </div>
                     <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                        <form>
+                        <form onSubmit={onSubmitSignUp}>
                             <div className="form-outline mb-4">
                                 <input
                                     type="text"
@@ -115,7 +140,7 @@ function SignUp() {
                                 <input
                                     className="form-check-input me-2"
                                     type="checkbox"
-                                    name="isAccepted"
+                                    name="acceptTerms"
                                     id="acceptTerms"
                                 />
                                 <label

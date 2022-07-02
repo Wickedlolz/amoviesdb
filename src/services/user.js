@@ -9,3 +9,7 @@ const endpoints = {
 export async function signIn(email, password) {
     return await request.post(endpoints.SIGNIN, { email, password });
 }
+
+export async function signUp(userData) {
+    return await request.post(endpoints.REGISTER, userData);
+}

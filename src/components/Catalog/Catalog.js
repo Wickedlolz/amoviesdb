@@ -38,11 +38,6 @@ function Catalog() {
                     Here you can find all newest and most popular movies.
                 </h4>
                 <p>Fell free to join and add your best movies.</p>
-                {user ? (
-                    <Link to={'/create'} className="btn btn-warning">
-                        Create
-                    </Link>
-                ) : null}
             </div>
             {isLoading ? <LoadingSpinner /> : movieList}
             <Pagination />

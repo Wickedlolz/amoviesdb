@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import AuthContext from '../../contexts/Auth';
 import { NavLink } from 'react-router-dom';
 import {
     Navbar,
@@ -9,6 +11,8 @@ import {
 } from 'react-bootstrap';
 
 function NavBar() {
+    const { user } = useContext(AuthContext);
+
     return (
         <Navbar bg="light" expand="lg">
             <Container fluid>
@@ -31,17 +35,29 @@ function NavBar() {
                         <Nav.Link to={'/'} as={NavLink}>
                             Home
                         </Nav.Link>
-                        <Nav.Link to={'/signin'} as={NavLink}>
-                            Sign In
-                        </Nav.Link>
-                        <Nav.Link to={'/signup'} as={NavLink}>
-                            Sign Up
-                        </Nav.Link>
+                        {!user ? (
+                            <>
+                                <Nav.Link to={'/signin'} as={NavLink}>
+                                    Sign In
+                                </Nav.Link>
+                                <Nav.Link to={'/signup'} as={NavLink}>
+                                    Sign Up
+                                </Nav.Link>
+                            </>
+                        ) : (
+                            <Nav.Link to={'/create'} as={NavLink}>
+                                Create
+                            </Nav.Link>
+                        )}
                     </Nav>
-                    <Navbar.Text className="p-3">
-                        Signed in as:{' '}
-                        <NavLink to={'/profile/24'}>Viktor Dimitrov</NavLink>
-                    </Navbar.Text>
+                    {user ? (
+                        <Navbar.Text className="p-3">
+                            Signed in as:{' '}
+                            <NavLink to={'/profile/' + user.id}>
+                                {user.firstName} {user.lastName}
+                            </NavLink>
+                        </Navbar.Text>
+                    ) : null}
                     <Form className="d-flex">
                         <FormControl
                             type="search"
