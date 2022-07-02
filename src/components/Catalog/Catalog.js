@@ -10,7 +10,6 @@ import MovieList from '../MovieList/MovieList';
 import Pagination from '../Pagination/Pagination';
 
 function Catalog() {
-    const { user } = useContext(AuthContext);
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import AuthContext from '../../contexts/Auth';
 import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../services/user';
+import { setUserData } from '../../utils/utils';
 
 function SignIn() {
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ function SignIn() {
             .signIn(email, password)
             .then((userData) => {
                 addUser(userData);
+                setUserData(userData);
                 navigate('/');
             })
             .catch((error) => console.log(error));

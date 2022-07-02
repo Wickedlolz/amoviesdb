@@ -1,3 +1,5 @@
+import { getUserData } from '../utils/utils';
+
 const host = 'http://localhost:3030/api';
 
 async function request(method, url, data) {
@@ -11,7 +13,7 @@ async function request(method, url, data) {
         options.body = JSON.stringify(data);
     }
 
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    const user = getUserData();
     if (user) {
         options.headers['X-Authorization'] = user.accessToken;
     }

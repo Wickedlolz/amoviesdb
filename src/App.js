@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AuthContext from './contexts/Auth';
 
@@ -14,9 +14,14 @@ import Edit from './components/Edit/Edit';
 import NotFound from './components/NotFound/NotFound';
 import Create from './components/Create/Create';
 import Footer from './components/Footer/Footer';
+import { getUserData } from './utils/utils';
 
 function App() {
     const [user, setUser] = useState();
+
+    useEffect(() => {
+        setUser(getUserData());
+    }, []);
 
     const addUser = (user) => setUser(user);
 
