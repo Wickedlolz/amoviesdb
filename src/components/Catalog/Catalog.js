@@ -36,6 +36,7 @@ function Catalog() {
                     Here you can find all newest and most popular movies.
                 </h4>
                 <p>Fell free to join and add your best movies.</p>
+                {/* TODO: if is authenticated show this button */}
                 <Link to={'/create'} className="btn btn-warning">
                     Create
                 </Link>

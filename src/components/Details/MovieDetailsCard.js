@@ -18,7 +18,7 @@ function MovieDetailsCard({
             <div className="col-md-7 px-4">
                 <div className="card-block px-6">
                     <h4 className="card-title">{movie.title}</h4>
-                    <p className="card-text">
+                    <p className="card-text text-muted">
                         Author: {movie.owner.firstName} {movie.owner.lastName}
                     </p>
                     <p className="card-text">{movie.description}</p>

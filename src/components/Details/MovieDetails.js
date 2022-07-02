@@ -26,14 +26,20 @@ function MovieDetails() {
     const onLikeClick = () => {
         movieService
             .like(id)
-            .then((result) => console.log(result))
+            .then((result) => {
+                const newLikes = result.likes;
+                setMovie((oldState) => ({ ...oldState, likes: newLikes }));
+            })
             .catch((error) => console.log(error));
     };
 
     const onDislikeClick = () => {
         movieService
             .dislike(id)
-            .then((result) => console.log(result))
+            .then((result) => {
+                const newLikes = result.likes;
+                setMovie((oldState) => ({ ...oldState, likes: newLikes }));
+            })
             .catch((error) => console.log(error.message));
     };
 
