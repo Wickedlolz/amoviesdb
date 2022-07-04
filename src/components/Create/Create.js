@@ -1,28 +1,30 @@
 import * as movieService from '../../services/data';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { isAuth } from '../../hoc/isAuth';
 
 function Create() {
+    const navigate = useNavigate();
+
     const onSubmitCreateHandler = (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const title = formData.get('title').trim();
         const imageUrl = formData.get('imageUrl').trim();
-        const youtubeLink = formData.get('youtubeLink').trim();
+        const youtubeUrl = formData.get('youtubeUrl').trim();
         const description = formData.get('description').trim();
 
         if (
             title == '' ||
             imageUrl == '' ||
             description == '' ||
-            youtubeLink == ''
+            youtubeUrl == ''
         ) {
             return;
         }
 
         movieService
-            .create({ title, imageUrl, youtubeLink, description })
-            .then((result) => console.log(result))
+            .create({ title, imageUrl, youtubeUrl, description })
+            .then((result) => navigate('/movie/' + result._id))
             .catch((error) => console.log(error));
     };
 
@@ -69,13 +71,13 @@ function Create() {
                             <div className="form-outline mb-4">
                                 <input
                                     type="text"
-                                    id="youtubeLink"
+                                    id="youtubeUrl"
                                     className="form-control form-control-lg"
-                                    name="youtubeLink"
+                                    name="youtubeUrl"
                                 />
                                 <label
                                     className="form-label"
-                                    htmlFor="youtubeLink"
+                                    htmlFor="youtubeUrl"
                                 >
                                     YouTube Link URL
                                 </label>

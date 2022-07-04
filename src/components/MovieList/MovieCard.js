@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
-import { HandThumbsUp, StarHalf } from 'react-bootstrap-icons';
+import { StarHalf } from 'react-bootstrap-icons';
 import './MovieCard.css';
 
 function MovieCard({ movie }) {
     return (
-        <Card>
+        <Card className="h-100">
             <Card.Img variant="top" src={movie.imageUrl} />
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
