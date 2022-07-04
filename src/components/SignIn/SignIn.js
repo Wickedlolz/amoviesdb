@@ -49,11 +49,10 @@ function SignIn() {
     const onValidateEmail = (event) => {
         const currentEmail = event.target.value;
 
-        if (isValidEmail(currentEmail)) {
-            setErrors((oldState) => ({ ...oldState, email: null }));
-        } else {
-            setErrors((oldState) => ({ ...oldState, email: 'Invalid email.' }));
-        }
+        setErrors((oldState) => ({
+            ...oldState,
+            email: isValidEmail(currentEmail),
+        }));
     };
 
     const onValidatePassword = (event) => {
