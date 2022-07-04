@@ -4,6 +4,7 @@ const endpoints = {
     SIGNIN: '/users/login',
     REGISTER: '/users/register',
     LOGOUT: '/users/logout',
+    GET_USER: (userId) => `/users/${userId}`,
 };
 
 export async function signIn(email, password) {
@@ -16,4 +17,8 @@ export async function signUp(userData) {
 
 export async function logout() {
     return await request.get(endpoints.LOGOUT);
+}
+
+export async function getById(userId) {
+    return await request.get(endpoints.GET_USER(userId));
 }

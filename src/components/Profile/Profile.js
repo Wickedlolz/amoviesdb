@@ -1,23 +1,42 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { isAuth } from '../../hoc/isAuth';
 
+import * as userService from '../../services/user';
+
 function Profile() {
+    const { id: userId } = useParams();
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        userService
+            .getById(userId)
+            .then((user) => {
+                setUser(user);
+            })
+            .catch((error) => console.log(error));
+    }, [userId]);
+
+    console.log(user);
+
     return (
         <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
             <div className="card p-4">
                 <div className=" image d-flex flex-column justify-content-center align-items-center">
                     <button className="btn btn-secondary">
                         <img
-                            src="/images/wvxPV9S.png"
+                            src={user.avatar}
                             height="100"
                             width="100"
                             alt="profile"
                         />
                     </button>
-                    <span className="name mt-3">Eleanor Pena</span>
-                    <span className="idd">@eleanorpena</span>
+                    <span className="name mt-3">
+                        {user.firstName} {user.lastName}
+                    </span>
+                    <span className="idd">@{user.username}</span>
                     <div className="d-flex flex-row justify-content-center align-items-center gap-2">
-                        <span className="idd1">Oxc4c16a645_b21a</span>
+                        <span className="idd1">{user._id}</span>
                     </div>
                     {/* <div className="d-flex flex-row justify-content-center align-items-center mt-3">
                         <span className="number">
@@ -25,7 +44,10 @@ function Profile() {
                         </span>
                     </div> */}
                     <div className="d-flex mt-2">
-                        <Link to={'/profile/edit/24'} className="btn btn-dark">
+                        <Link
+                            to={'/profile/edit/' + user._id}
+                            className="btn btn-dark"
+                        >
                             Edit Profile
                         </Link>
                     </div>
@@ -33,7 +55,12 @@ function Profile() {
                         <span className="join">Joined May,2021</span>
                     </div>
                     <div className="d-flex mt-2">
-                        <button className="btn btn-dark">Show My Movies</button>
+                        <Link
+                            to={'/my-movies/' + user._id}
+                            className="btn btn-dark"
+                        >
+                            Show My Movies
+                        </Link>
                     </div>
                     {/* <div className="text mt-3">
                         <p>
