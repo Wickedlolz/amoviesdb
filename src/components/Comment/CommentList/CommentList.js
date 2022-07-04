@@ -14,14 +14,18 @@ function CommentList({ comments }) {
                         </span>
                     </div>
                     <div className="panel-body">
-                        <ul className="list-group">
-                            {comments.map((comment) => (
-                                <CommentCard
-                                    key={comment._id}
-                                    comment={comment}
-                                />
-                            ))}
-                        </ul>
+                        {comments.length > 0 ? (
+                            <ul className="list-group">
+                                {comments.map((comment) => (
+                                    <CommentCard
+                                        key={comment._id}
+                                        comment={comment}
+                                    />
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="text-muted">No comments added yet.</p>
+                        )}
                     </div>
                 </div>
             </div>
