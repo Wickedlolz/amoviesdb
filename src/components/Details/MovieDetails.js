@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/Auth';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import * as movieService from '../../services/data';
 
@@ -17,6 +17,7 @@ function MovieDetails() {
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         movieService.getById(id).then((movie) => {
@@ -55,11 +56,12 @@ function MovieDetails() {
         movieService
             .deleteById(id)
             .then((result) => {
-                console.log(result);
-                setShowModal(false);
+                navigate('/');
             })
             .catch((error) => {
                 console.log(error);
+            })
+            .finally(() => {
                 setShowModal(false);
             });
     };
