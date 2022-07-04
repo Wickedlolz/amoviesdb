@@ -16,7 +16,6 @@ function MovieDetailsCard({
     onDislikeClick,
 }) {
     const { user } = useContext(AuthContext);
-    console.log(movie);
 
     return (
         <div className="row ">
