@@ -1,6 +1,21 @@
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+import * as userService from '../../services/user';
+
 import styles from './EditProfile.module.css';
 
 function EditProfile() {
+    const { id: userId } = useParams();
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        userService
+            .getById(userId)
+            .then((userData) => setUser(userData))
+            .catch((error) => console.log(error));
+    }, [userId]);
+
     return (
         <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
             <form>
@@ -16,22 +31,38 @@ function EditProfile() {
                         <div className={styles.inputs}>
                             {' '}
                             <span>First Name</span>{' '}
-                            <input type="text" name="firstName" />{' '}
+                            <input
+                                type="text"
+                                name="firstName"
+                                defaultValue={user.firstName}
+                            />{' '}
                         </div>{' '}
                         <div className={styles.inputs}>
                             {' '}
                             <span>Last Name</span>{' '}
-                            <input type="text" name="lastName" />{' '}
+                            <input
+                                type="text"
+                                name="lastName"
+                                defaultValue={user.lastName}
+                            />{' '}
                         </div>{' '}
                         <div className={styles.inputs}>
                             {' '}
                             <span>Email</span>{' '}
-                            <input type="text" name="email" />{' '}
+                            <input
+                                type="text"
+                                name="email"
+                                defaultValue={user.email}
+                            />{' '}
                         </div>{' '}
                         <div className={styles.inputs}>
                             {' '}
                             <span>Username</span>{' '}
-                            <input type="text" name="username" />{' '}
+                            <input
+                                type="text"
+                                name="username"
+                                defaultValue={user.username}
+                            />{' '}
                         </div>{' '}
                         <div className={styles.inputs}>
                             {' '}
