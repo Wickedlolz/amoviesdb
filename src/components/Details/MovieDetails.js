@@ -24,7 +24,7 @@ function MovieDetails() {
             setMovie(movie);
             setIsLoading(false);
         });
-    }, [id]);
+    }, [id, movie]);
 
     const onLikeClick = () => {
         movieService

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import * as userService from '../../services/user';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -10,6 +10,7 @@ function EditProfile() {
     const { id: userId } = useParams();
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         userService
@@ -21,18 +22,44 @@ function EditProfile() {
             .catch((error) => console.log(error));
     }, [userId]);
 
+    const onSubmitEditProfile = (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const firstName = formData.get('firstName').trim();
+        const lastName = formData.get('lastName').trim();
+        const email = formData.get('email').trim();
+        const username = formData.get('username').trim();
+
+        if (
+            firstName == '' ||
+            lastName == '' ||
+            email == '' ||
+            username == ''
+        ) {
+            return;
+        }
+
+        userService
+            .updateById(userId, { firstName, lastName, email, username })
+            .then((userData) => navigate('/profile/' + userData._id))
+            .catch((error) => console.log(error));
+    };
+
     return (
         <>
             {isLoading ? (
                 <LoadingSpinner />
             ) : (
                 <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
-                    <form>
+                    <form onSubmit={onSubmitEditProfile}>
                         <div className={styles['edit-profile-card']}>
                             {' '}
                             <div className={styles.info}>
                                 {' '}
-                                <span>Edit Viktor's Profile</span>{' '}
+                                <span>
+                                    Edit {user.firstName}'s Profile
+                                </span>{' '}
                                 <button id="savebutton">edit</button>{' '}
                             </div>{' '}
                             <div className={styles.forms}>

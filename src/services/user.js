@@ -5,6 +5,7 @@ const endpoints = {
     REGISTER: '/users/register',
     LOGOUT: '/users/logout',
     GET_USER: (userId) => `/users/${userId}`,
+    SET_USER: (userId) => `/users/${userId}`,
 };
 
 export async function signIn(email, password) {
@@ -21,4 +22,8 @@ export async function logout() {
 
 export async function getById(userId) {
     return await request.get(endpoints.GET_USER(userId));
+}
+
+export async function updateById(userId, userData) {
+    return await request.post(endpoints.SET_USER(userId), userData);
 }
