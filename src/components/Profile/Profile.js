@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { isAuth } from '../../hoc/isAuth';
 
 function Profile() {
     return (
@@ -50,4 +51,4 @@ function Profile() {
     );
 }
 
-export default Profile;
+export default isAuth(Profile);

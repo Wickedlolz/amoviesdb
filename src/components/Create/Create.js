@@ -1,5 +1,6 @@
 import * as movieService from '../../services/data';
 import { Link } from 'react-router-dom';
+import { isAuth } from '../../hoc/isAuth';
 
 function Create() {
     const onSubmitCreateHandler = (event) => {
@@ -116,4 +117,4 @@ function Create() {
     );
 }
 
-export default Create;
+export default isAuth(Create);
