@@ -1,22 +1,29 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import * as movieService from '../../services/data';
 
 import styles from './Edit.module.css';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { useAuthContext } from '../../contexts/Auth';
 
 function Edit() {
     const { id } = useParams();
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
+    const { user } = useAuthContext();
 
     useEffect(() => {
         movieService.getById(id).then((movie) => {
+            if (movie.owner._id != user?.id) {
+                return navigate('/');
+            }
+
             setMovie(movie);
             setIsLoading(false);
         });
-    }, [id]);
+    }, [id, user, navigate]);
 
     const onSubmitEditHandler = (event) => {
         event.preventDefault();
