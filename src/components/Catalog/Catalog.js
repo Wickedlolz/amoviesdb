@@ -1,6 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import AuthContext from '../../contexts/Auth';
+import { useState, useEffect } from 'react';
 
 import * as movieService from '../../services/data';
 

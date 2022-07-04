@@ -10,6 +10,28 @@ import {
     Button,
 } from 'react-bootstrap';
 
+const guestUserNav = (
+    <>
+        <Nav.Link to={'/signin'} as={NavLink}>
+            Sign In
+        </Nav.Link>
+        <Nav.Link to={'/signup'} as={NavLink}>
+            Sign Up
+        </Nav.Link>
+    </>
+);
+
+const authUserNav = (
+    <>
+        <Nav.Link to={'/create'} as={NavLink}>
+            Create
+        </Nav.Link>
+        <Nav.Link to={'/logout'} as={NavLink}>
+            Logout
+        </Nav.Link>
+    </>
+);
+
 function NavBar() {
     const { user } = useContext(AuthContext);
 
@@ -35,20 +57,7 @@ function NavBar() {
                         <Nav.Link to={'/'} as={NavLink}>
                             Home
                         </Nav.Link>
-                        {!user ? (
-                            <>
-                                <Nav.Link to={'/signin'} as={NavLink}>
-                                    Sign In
-                                </Nav.Link>
-                                <Nav.Link to={'/signup'} as={NavLink}>
-                                    Sign Up
-                                </Nav.Link>
-                            </>
-                        ) : (
-                            <Nav.Link to={'/create'} as={NavLink}>
-                                Create
-                            </Nav.Link>
-                        )}
+                        {!user ? guestUserNav : authUserNav}
                     </Nav>
                     {user ? (
                         <Navbar.Text className="p-3">

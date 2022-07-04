@@ -13,3 +13,7 @@ export async function signIn(email, password) {
 export async function signUp(userData) {
     return await request.post(endpoints.REGISTER, userData);
 }
+
+export async function logout() {
+    return await request.get(endpoints.LOGOUT);
+}

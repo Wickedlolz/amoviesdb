@@ -23,7 +23,7 @@ async function request(method, url, data) {
 
         if (response.ok == false) {
             if (response.status == 403) {
-                sessionStorage.removeItem('user');
+                localStorage.removeItem('user');
             }
 
             const err = await response.json();

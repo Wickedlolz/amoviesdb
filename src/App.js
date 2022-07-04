@@ -14,7 +14,8 @@ import Edit from './components/Edit/Edit';
 import NotFound from './components/NotFound/NotFound';
 import Create from './components/Create/Create';
 import Footer from './components/Footer/Footer';
-import { getUserData } from './utils/utils';
+import { getUserData, removeUserData } from './utils/utils';
+import Logout from './components/Logout/Logout';
 
 function App() {
     const [user, setUser] = useState();
@@ -24,15 +25,20 @@ function App() {
     }, []);
 
     const addUser = (user) => setUser(user);
+    const logout = () => {
+        removeUserData();
+        setUser(null);
+    };
 
     return (
-        <AuthContext.Provider value={{ user, addUser }}>
+        <AuthContext.Provider value={{ user, addUser, logout }}>
             <Container>
                 <NavBar />
                 <Routes>
                     <Route path="/" element={<Catalog />} />
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
+                    <Route path="/logout" element={<Logout />} />
                     <Route path="/profile/:id" element={<Profile />} />
                     <Route path="/profile/edit/:id" element={<EditProfile />} />
                     <Route path="/movie/:id" element={<MovieDetails />} />
