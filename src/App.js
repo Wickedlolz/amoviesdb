@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import AuthContext from './contexts/Auth';
+import { AuthProvider } from './contexts/Auth';
 
 import { Container } from 'react-bootstrap';
 import NavBar from './components/NavBar/NavBar';
@@ -14,24 +13,11 @@ import Edit from './components/Edit/Edit';
 import NotFound from './components/NotFound/NotFound';
 import Create from './components/Create/Create';
 import Footer from './components/Footer/Footer';
-import { getUserData, removeUserData } from './utils/utils';
 import Logout from './components/Logout/Logout';
 
 function App() {
-    const [user, setUser] = useState();
-
-    useEffect(() => {
-        setUser(getUserData());
-    }, []);
-
-    const addUser = (user) => setUser(user);
-    const logout = () => {
-        removeUserData();
-        setUser(null);
-    };
-
     return (
-        <AuthContext.Provider value={{ user, addUser, logout }}>
+        <AuthProvider>
             <Container>
                 <NavBar />
                 <Routes>
@@ -48,7 +34,7 @@ function App() {
                 </Routes>
                 <Footer />
             </Container>
-        </AuthContext.Provider>
+        </AuthProvider>
     );
 }
 
