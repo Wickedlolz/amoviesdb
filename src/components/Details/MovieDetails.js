@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../contexts/Auth';
 import { useParams } from 'react-router-dom';
 
 import * as movieService from '../../services/data';
@@ -12,6 +13,7 @@ import DeleteModal from '../DeleteModal/DeleteModal';
 
 function MovieDetails() {
     const { id } = useParams();
+    const { user } = useContext(AuthContext);
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
@@ -103,9 +105,11 @@ function MovieDetails() {
                     onDislikeClick={onDislikeClick}
                 />
             </div>
-            <CommentForm
-                onSubmitCommentFormHandler={onSubmitCommentFormHandler}
-            />
+            {user ? (
+                <CommentForm
+                    onSubmitCommentFormHandler={onSubmitCommentFormHandler}
+                />
+            ) : null}
             <CommentList comments={movie.comments} />
         </>
     );
