@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import * as userService from '../../services/user';
+import { AuthContext } from '../../contexts/Auth';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 import styles from './EditProfile.module.css';
@@ -10,6 +11,7 @@ function EditProfile() {
     const { id: userId } = useParams();
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const { updateUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -42,8 +44,9 @@ function EditProfile() {
 
         userService
             .updateById(userId, { firstName, lastName, email, username })
-            .then((userData) => navigate('/profile/' + userData._id))
-            .catch((error) => console.log(error));
+            .then((userData) => updateUser(userData))
+            .catch((error) => console.log(error))
+            .finally(() => navigate('/profile/' + userId));
     };
 
     return (
