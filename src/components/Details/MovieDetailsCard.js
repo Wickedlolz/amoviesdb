@@ -64,6 +64,17 @@ function MovieDetailsCard({
                             </button>
                         </div>
                     ) : null}
+
+                    {!user ? (
+                        <div className="p-3 text-center">
+                            <button
+                                className="mt-auto btn btn-light"
+                                disabled={true}
+                            >
+                                <HandThumbsUpFill /> {movie.likes.length}
+                            </button>
+                        </div>
+                    ) : null}
                 </div>
             </div>
             <div className="col-md-5">
