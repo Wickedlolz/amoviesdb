@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/Auth';
+import { NotificationContext } from '../../contexts/Notification';
 import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../services/user';
 import { setUserData } from '../../utils/utils';
@@ -10,11 +11,11 @@ function SignIn() {
     const [errors, setErrors] = useState({
         email: null,
         password: null,
-        authError: null,
         empty: null,
     });
     const navigate = useNavigate();
     const { addUser } = useContext(AuthContext);
+    const { addNotification } = useContext(NotificationContext);
 
     const onSubmitSignIn = (event) => {
         event.preventDefault();
@@ -39,10 +40,7 @@ function SignIn() {
                 navigate('/');
             })
             .catch((error) => {
-                setErrors((oldState) => ({
-                    ...oldState,
-                    authError: error.message,
-                }));
+                addNotification(error.message);
             });
     };
 
@@ -84,9 +82,6 @@ function SignIn() {
                     </div>
                     <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
                         <form onSubmit={onSubmitSignIn}>
-                            {errors.authError ? (
-                                <AlerMessage msg={errors.authError} />
-                            ) : null}
                             {errors.empty ? (
                                 <AlerMessage msg={errors.empty} />
                             ) : null}
