@@ -13,7 +13,7 @@ function Notification() {
         <ToastContainer className="p-3" position="top-end">
             <Toast>
                 <Toast.Header onClick={clearNotification} closeButton={true}>
-                    <strong className="me-auto">Alert Notification</strong>
+                    <strong className="me-auto">{notification.type}</strong>
                     <small>11 mins ago</small>
                 </Toast.Header>
                 <Toast.Body>{notification.message}</Toast.Body>

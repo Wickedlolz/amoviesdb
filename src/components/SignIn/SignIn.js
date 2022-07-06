@@ -40,7 +40,7 @@ function SignIn() {
                 navigate('/');
             })
             .catch((error) => {
-                addNotification(error.message);
+                addNotification(error.message, 'Alert');
             });
     };
 

@@ -6,10 +6,12 @@ export const NotificationProvider = ({ children }) => {
     const [notification, setNotification] = useState({
         show: false,
         message: '',
+        type: '',
     });
 
     const addNotification = useCallback(
-        (message) => setNotification({ show: true, message }),
+        (message, notifyType) =>
+            setNotification({ show: true, message, type: notifyType }),
         []
     );
 
