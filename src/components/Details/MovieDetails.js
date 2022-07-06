@@ -13,7 +13,7 @@ import MovieDetailsCard from './MovieDetailsCard';
 import DeleteModal from '../DeleteModal/DeleteModal';
 
 function MovieDetails() {
-    const { id } = useParams();
+    const { movieId } = useParams();
     const { user } = useContext(AuthContext);
     const { addNotification } = useContext(NotificationContext);
     const [movie, setMovie] = useState({});
@@ -22,30 +22,33 @@ function MovieDetails() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        movieService.getById(id).then((movie) => {
-            setMovie(movie);
-            setIsLoading(false);
-        });
-    }, [id, movie]);
+        movieService
+            .getById(movieId)
+            .then((movie) => {
+                setMovie(movie);
+                setIsLoading(false);
+            })
+            .catch((error) => addNotification(error.message, 'Error'));
+    }, [movieId, movie, addNotification]);
 
     const onLikeClick = () => {
         movieService
-            .like(id)
+            .like(movieId)
             .then((result) => {
                 const newLikes = result.likes;
                 setMovie((oldState) => ({ ...oldState, likes: newLikes }));
             })
-            .catch((error) => console.log(error));
+            .catch((error) => addNotification(error.message, 'Error'));
     };
 
     const onDislikeClick = () => {
         movieService
-            .dislike(id)
+            .dislike(movieId)
             .then((result) => {
                 const newLikes = result.likes;
                 setMovie((oldState) => ({ ...oldState, likes: newLikes }));
             })
-            .catch((error) => console.log(error.message));
+            .catch((error) => addNotification(error.message, 'Error'));
     };
 
     const onDeleteClick = (event) => {
@@ -56,7 +59,7 @@ function MovieDetails() {
 
     const onModalYesClickHandler = () => {
         movieService
-            .deleteById(id)
+            .deleteById(movieId)
             .then((result) => {
                 addNotification(
                     'Successfully delete ' + result.title,
@@ -82,7 +85,7 @@ function MovieDetails() {
         }
 
         movieService
-            .comment(id, content)
+            .comment(movieId, content)
             .then((result) => {
                 setMovie((oldState) => ({
                     ...oldState,
@@ -91,7 +94,7 @@ function MovieDetails() {
                 event.target.reset();
             })
             .catch((error) => {
-                console.log(error);
+                addNotification(error.message, 'Error');
                 event.target.reset();
             });
     };

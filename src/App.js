@@ -35,13 +35,16 @@ function App() {
                             path="/profile/edit/:userId"
                             element={<EditProfile />}
                         />
-                        <Route path="/movie/:id" element={<MovieDetails />} />
+                        <Route
+                            path="/movie/:movieId"
+                            element={<MovieDetails />}
+                        />
                         <Route
                             path="/my-movies/:userId"
                             element={<MyMovies />}
                         />
                         <Route path="/create" element={<Create />} />
-                        <Route path="/edit/:id" element={<Edit />} />
+                        <Route path="/edit/:movieId" element={<Edit />} />
                         <Route path="/*" element={<NotFound />} />
                     </Routes>
                     <Footer />

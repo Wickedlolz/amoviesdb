@@ -9,7 +9,7 @@ import styles from './Edit.module.css';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function Edit() {
-    const { id } = useParams();
+    const { movieId } = useParams();
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const { addNotification } = useContext(NotificationContext);
@@ -17,15 +17,18 @@ function Edit() {
     const { user } = useAuthContext();
 
     useEffect(() => {
-        movieService.getById(id).then((movie) => {
-            if (movie.owner._id != user?.id) {
-                return navigate('/');
-            }
+        movieService
+            .getById(movieId)
+            .then((movie) => {
+                if (movie.owner._id != user?.id) {
+                    return navigate('/');
+                }
 
-            setMovie(movie);
-            setIsLoading(false);
-        });
-    }, [id, user, navigate]);
+                setMovie(movie);
+                setIsLoading(false);
+            })
+            .catch((error) => addNotification(error.message, 'Error'));
+    }, [movieId, user, navigate, addNotification]);
 
     const onSubmitEditHandler = (event) => {
         event.preventDefault();
@@ -39,7 +42,7 @@ function Edit() {
         }
 
         movieService
-            .editById(id, { title, imageUrl, description })
+            .editById(movieId, { title, imageUrl, description })
             .then((result) => {
                 addNotification(
                     `${result.title} updated successfully.`,
