@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/Auth';
+import { NotificationContext } from '../../contexts/Notification';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import * as movieService from '../../services/data';
@@ -14,6 +15,7 @@ import DeleteModal from '../DeleteModal/DeleteModal';
 function MovieDetails() {
     const { id } = useParams();
     const { user } = useContext(AuthContext);
+    const { addNotification } = useContext(NotificationContext);
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
@@ -56,10 +58,14 @@ function MovieDetails() {
         movieService
             .deleteById(id)
             .then((result) => {
+                addNotification(
+                    'Successfully delete ' + result.title,
+                    'Success'
+                );
                 navigate('/');
             })
             .catch((error) => {
-                console.log(error);
+                addNotification(error.message, 'Error');
             })
             .finally(() => {
                 setShowModal(false);

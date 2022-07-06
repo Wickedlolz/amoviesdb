@@ -1,8 +1,11 @@
-import * as movieService from '../../services/data';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { isAuth } from '../../hoc/isAuth';
+import { NotificationContext } from '../../contexts/Notification';
+import * as movieService from '../../services/data';
 
 function Create() {
+    const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
 
     const onSubmitCreateHandler = (event) => {
@@ -24,8 +27,14 @@ function Create() {
 
         movieService
             .create({ title, imageUrl, youtubeUrl, description })
-            .then((result) => navigate('/movie/' + result._id))
-            .catch((error) => console.log(error));
+            .then((result) => {
+                addNotification(
+                    'Successfully created ' + result.title,
+                    'Success'
+                );
+                navigate('/movie/' + result._id);
+            })
+            .catch((error) => addNotification(error.message, 'Error'));
     };
 
     return (
