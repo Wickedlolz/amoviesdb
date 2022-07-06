@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../../contexts/Auth';
+import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
 
 import styles from './Edit.module.css';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import { useAuthContext } from '../../contexts/Auth';
 
 function Edit() {
     const { id } = useParams();
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
     const { user } = useAuthContext();
 
@@ -38,8 +40,14 @@ function Edit() {
 
         movieService
             .editById(id, { title, imageUrl, description })
-            .then((result) => console.log(result))
-            .catch((error) => console.log(error.message));
+            .then((result) => {
+                addNotification(
+                    `${result.title} updated successfully.`,
+                    'Success'
+                );
+                navigate('/movie/' + result._id);
+            })
+            .catch((error) => addNotification(error.message, 'Error'));
     };
 
     return (
