@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/Auth';
+import { NotificationContext } from '../../contexts/Notification';
 import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../services/user';
 
@@ -17,7 +18,6 @@ const initialErrorsState = {
     password: null,
     rePassword: null,
     empty: null,
-    authError: null,
     acceptedTerms: null,
 };
 
@@ -25,6 +25,7 @@ function SignUp() {
     const { addUser } = useContext(AuthContext);
     const [isVisible, setIsVisivle] = useState(false);
     const [errors, setErrors] = useState(initialErrorsState);
+    const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
 
     const onTermsClickHandler = () => setIsVisivle(true);
@@ -61,13 +62,11 @@ function SignUp() {
                     .then((userData) => {
                         addUser(userData);
                         setUserData(userData);
+                        addNotification('Successfully registerd.', 'Success');
                         navigate('/');
                     })
                     .catch((error) => {
-                        setErrors((oldState) => ({
-                            ...oldState,
-                            authError: error.message,
-                        }));
+                        addNotification(error.message, 'Alert');
                     });
             }
         } else {

@@ -14,7 +14,7 @@ function Notification() {
             <Toast>
                 <Toast.Header onClick={clearNotification} closeButton={true}>
                     <strong className="me-auto">{notification.type}</strong>
-                    <small>11 mins ago</small>
+                    {/* <small>11 mins ago</small> */}
                 </Toast.Header>
                 <Toast.Body>{notification.message}</Toast.Body>
             </Toast>
