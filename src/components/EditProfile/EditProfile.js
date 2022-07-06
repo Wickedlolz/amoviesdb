@@ -9,7 +9,7 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import styles from './EditProfile.module.css';
 
 function EditProfile() {
-    const { id: userId } = useParams();
+    const { userId } = useParams();
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const { updateUser } = useContext(AuthContext);
@@ -23,8 +23,8 @@ function EditProfile() {
                 setUser(userData);
                 setIsLoading(false);
             })
-            .catch((error) => console.log(error));
-    }, [userId]);
+            .catch((error) => addNotification(error.message, 'Error'));
+    }, [userId, addNotification]);
 
     const onSubmitEditProfile = (event) => {
         event.preventDefault();

@@ -30,9 +30,9 @@ function App() {
                         <Route path="/signin" element={<SignIn />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/logout" element={<Logout />} />
-                        <Route path="/profile/:id" element={<Profile />} />
+                        <Route path="/profile/:userId" element={<Profile />} />
                         <Route
-                            path="/profile/edit/:id"
+                            path="/profile/edit/:userId"
                             element={<EditProfile />}
                         />
                         <Route path="/movie/:id" element={<MovieDetails />} />

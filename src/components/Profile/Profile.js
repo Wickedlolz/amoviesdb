@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { isAuth } from '../../hoc/isAuth';
-
+import { NotificationContext } from '../../contexts/Notification';
 import * as userService from '../../services/user';
 
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 function Profile() {
-    const { id: userId } = useParams();
+    const { userId } = useParams();
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const { addNotification } = useContext(NotificationContext);
 
     useEffect(() => {
         userService
@@ -18,8 +19,8 @@ function Profile() {
                 setUser(user);
                 setIsLoading(false);
             })
-            .catch((error) => console.log(error));
-    }, [userId]);
+            .catch((error) => addNotification(error.message, 'Error'));
+    }, [userId, addNotification]);
 
     return (
         <>
@@ -44,11 +45,6 @@ function Profile() {
                             <div className="d-flex flex-row justify-content-center align-items-center gap-2">
                                 <span className="idd1">{user._id}</span>
                             </div>
-                            {/* <div className="d-flex flex-row justify-content-center align-items-center mt-3">
-                        <span className="number">
-                            1069 <span className="follow">Followers</span>
-                        </span>
-                    </div> */}
                             <div className="d-flex mt-2">
                                 <Link
                                     to={'/profile/edit/' + user._id}
@@ -68,16 +64,6 @@ function Profile() {
                                     Show My Movies
                                 </Link>
                             </div>
-                            {/* <div className="text mt-3">
-                        <p>
-                            Avengers Endgame{' '}
-                            <button className="btn btn-light">Details</button>
-                        </p>
-                        <p>
-                            Doctor Strange Multiverse of Madness{' '}
-                            <button className="btn btn-light">Details</button>
-                        </p>
-                    </div> */}
                         </div>
                     </div>
                 </div>
