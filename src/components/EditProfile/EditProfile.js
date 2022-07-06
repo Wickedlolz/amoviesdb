@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import * as userService from '../../services/user';
 import { AuthContext } from '../../contexts/Auth';
+import { NotificationContext } from '../../contexts/Notification';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 import styles from './EditProfile.module.css';
@@ -12,6 +13,7 @@ function EditProfile() {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const { updateUser } = useContext(AuthContext);
+    const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -44,8 +46,11 @@ function EditProfile() {
 
         userService
             .updateById(userId, { firstName, lastName, email, username })
-            .then((userData) => updateUser(userData))
-            .catch((error) => console.log(error))
+            .then((userData) => {
+                addNotification('User successfully updated.', 'Success');
+                updateUser(userData);
+            })
+            .catch((error) => addNotification(error.message, 'Error'))
             .finally(() => navigate('/profile/' + userId));
     };
 
