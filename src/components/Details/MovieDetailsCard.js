@@ -7,6 +7,7 @@ import {
     HandThumbsDownFill,
     PencilSquare,
     Trash3,
+    StarHalf,
 } from 'react-bootstrap-icons';
 
 function MovieDetailsCard({
@@ -71,7 +72,7 @@ function MovieDetailsCard({
                                 className="mt-auto btn btn-light"
                                 disabled={true}
                             >
-                                <HandThumbsUpFill /> {movie.likes.length}
+                                <StarHalf /> {movie.likes.length}
                             </button>
                         </div>
                     ) : null}
