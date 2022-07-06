@@ -16,6 +16,7 @@ import Create from './components/Create/Create';
 import Footer from './components/Footer/Footer';
 import Logout from './components/Logout/Logout';
 import Notification from './components/Common/Notification';
+import MyMovies from './components/MyMovies/MyMovies';
 
 function App() {
     return (
@@ -35,6 +36,10 @@ function App() {
                             element={<EditProfile />}
                         />
                         <Route path="/movie/:id" element={<MovieDetails />} />
+                        <Route
+                            path="/my-movies/:userId"
+                            element={<MyMovies />}
+                        />
                         <Route path="/create" element={<Create />} />
                         <Route path="/edit/:id" element={<Edit />} />
                         <Route path="/*" element={<NotFound />} />

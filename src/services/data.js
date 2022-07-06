@@ -10,10 +10,15 @@ const endpoints = {
     DISLIKE: (movieId) => `/catalog/dislike/${movieId}`,
     DELETE_BY_ID: (movieId) => `/catalog/${movieId}`,
     COMMENT: (movieId) => `/catalog/comments/${movieId}`,
+    MY_MOVIES: (userId) => `/catalog/my-movies/${userId}`,
 };
 
 export async function getAll() {
     return await request.get(endpoints.ALL_MOVIES);
+}
+
+export async function getMyMovies(userId) {
+    return await request.get(endpoints.MY_MOVIES(userId));
 }
 
 export async function getById(movieId) {
