@@ -53,6 +53,11 @@ function Edit() {
             .catch((error) => addNotification(error.message, 'Error'));
     };
 
+    const onCancelClick = (event) => {
+        event.preventDefault();
+        navigate('/movie/' + movieId);
+    };
+
     return (
         <>
             {isLoading ? (
@@ -123,6 +128,7 @@ function Edit() {
                                     <button
                                         type="submit"
                                         className="btn btn-secondary btn-lg btn-block m-2"
+                                        onClick={onCancelClick}
                                     >
                                         Cancel
                                     </button>
