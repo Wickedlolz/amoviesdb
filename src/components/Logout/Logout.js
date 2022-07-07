@@ -19,7 +19,7 @@ function Logout() {
                 navigate('/');
             })
             .catch((error) => addNotification(error.message, 'Error'));
-    }, []);
+    }, [logout, navigate, addNotification]);
 
     return <LoadingSpinner />;
 }
