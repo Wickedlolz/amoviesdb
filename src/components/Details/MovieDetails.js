@@ -30,7 +30,6 @@ function MovieDetails() {
             })
             .catch((error) => addNotification(error.message, 'Error'));
     }, [movieId, addNotification]);
-    console.log(movie);
 
     const onLikeClick = () => {
         movieService
@@ -88,10 +87,6 @@ function MovieDetails() {
         movieService
             .comment(movieId, content)
             .then((result) => {
-                result.author = {
-                    avatar: user.avatar,
-                };
-
                 setMovie((oldState) => ({
                     ...oldState,
                     comments: [...oldState.comments, result],

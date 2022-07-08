@@ -2,14 +2,14 @@ import { getUserData } from '../utils/utils';
 
 const host = 'http://localhost:3030/api';
 
-async function request(method, url, data, multiple = false) {
+async function request(method, url, data, imageUpload = false) {
     const options = {
         method,
         headers: {},
     };
 
     if (data != undefined) {
-        if (multiple) {
+        if (imageUpload) {
             options.body = data;
         } else {
             options.headers['Content-Type'] = 'application/json';

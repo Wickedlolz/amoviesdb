@@ -58,6 +58,9 @@ function NavBar() {
                             Home
                         </Nav.Link>
                         {!user ? guestUserNav : authUserNav}
+                        <Nav.Link to={'/about'} as={NavLink}>
+                            About
+                        </Nav.Link>
                     </Nav>
                     {user ? (
                         <Navbar.Text className="p-3">

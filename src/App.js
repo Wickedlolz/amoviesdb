@@ -17,6 +17,7 @@ import Footer from './components/Footer/Footer';
 import Logout from './components/Logout/Logout';
 import Notification from './components/Common/Notification';
 import MyMovies from './components/MyMovies/MyMovies';
+import AboutUs from './components/AboutUs/AboutUs';
 
 function App() {
     return (
@@ -45,6 +46,7 @@ function App() {
                         />
                         <Route path="/create" element={<Create />} />
                         <Route path="/edit/:movieId" element={<Edit />} />
+                        <Route path="/about" element={<AboutUs />} />
                         <Route path="/*" element={<NotFound />} />
                     </Routes>
                     <Footer />
