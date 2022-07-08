@@ -57,6 +57,9 @@ function NavBar() {
                         <Nav.Link to={'/'} as={NavLink}>
                             Home
                         </Nav.Link>
+                        <Nav.Link to={'/catalog'} as={NavLink}>
+                            Catalog
+                        </Nav.Link>
                         {!user ? guestUserNav : authUserNav}
                         <Nav.Link to={'/about'} as={NavLink}>
                             About

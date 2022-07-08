@@ -29,6 +29,7 @@ function App() {
                     <Notification />
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/catalog" element={<Catalog />} />
                         <Route path="/signin" element={<SignIn />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/logout" element={<Logout />} />
