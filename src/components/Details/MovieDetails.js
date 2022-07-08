@@ -24,12 +24,13 @@ function MovieDetails() {
     useEffect(() => {
         movieService
             .getById(movieId)
-            .then((movie) => {
-                setMovie(movie);
+            .then((movieResponse) => {
+                setMovie(movieResponse);
                 setIsLoading(false);
             })
             .catch((error) => addNotification(error.message, 'Error'));
-    }, [movieId, movie, addNotification]);
+    }, [movieId, addNotification]);
+    console.log(movie);
 
     const onLikeClick = () => {
         movieService
@@ -87,6 +88,10 @@ function MovieDetails() {
         movieService
             .comment(movieId, content)
             .then((result) => {
+                result.author = {
+                    avatar: user.avatar,
+                };
+
                 setMovie((oldState) => ({
                     ...oldState,
                     comments: [...oldState.comments, result],

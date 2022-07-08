@@ -2,15 +2,19 @@ import { getUserData } from '../utils/utils';
 
 const host = 'http://localhost:3030/api';
 
-async function request(method, url, data) {
+async function request(method, url, data, multiple = false) {
     const options = {
         method,
         headers: {},
     };
 
     if (data != undefined) {
-        options.headers['Content-Type'] = 'application/json';
-        options.body = JSON.stringify(data);
+        if (multiple) {
+            options.body = data;
+        } else {
+            options.headers['Content-Type'] = 'application/json';
+            options.body = JSON.stringify(data);
+        }
     }
 
     const user = getUserData();

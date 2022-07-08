@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
             firstName: userData.firstName,
             lastName: userData.lastName,
             email: userData.email,
+            avatar: userData.avatar,
         }));
     };
 

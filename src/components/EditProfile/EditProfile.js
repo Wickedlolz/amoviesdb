@@ -34,6 +34,17 @@ function EditProfile() {
         const lastName = formData.get('lastName').trim();
         const email = formData.get('email').trim();
         const username = formData.get('username').trim();
+        const avatar = formData.get('avatar');
+
+        const submitedFormData = new FormData();
+        submitedFormData.set('firstName', firstName);
+        submitedFormData.set('lastName', lastName);
+        submitedFormData.set('email', email);
+        submitedFormData.set('username', username);
+
+        if (avatar.name !== '') {
+            submitedFormData.append('avatar', avatar);
+        }
 
         if (
             firstName == '' ||
@@ -45,12 +56,14 @@ function EditProfile() {
         }
 
         userService
-            .updateById(userId, { firstName, lastName, email, username })
+            .updateById(userId, formData)
             .then((userData) => {
                 addNotification('User successfully updated.', 'Success');
                 updateUser(userData);
             })
-            .catch((error) => addNotification(error.message, 'Error'))
+            .catch((error) => {
+                addNotification(error.message, 'Error');
+            })
             .finally(() => navigate('/profile/' + userId));
     };
 

@@ -25,5 +25,5 @@ export async function getById(userId) {
 }
 
 export async function updateById(userId, userData) {
-    return await request.post(endpoints.SET_USER(userId), userData);
+    return await request.put(endpoints.SET_USER(userId), userData, true);
 }
