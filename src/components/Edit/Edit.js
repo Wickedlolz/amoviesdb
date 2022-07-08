@@ -35,14 +35,20 @@ function Edit() {
         const formData = new FormData(event.target);
         const title = formData.get('title').trim();
         const imageUrl = formData.get('imageUrl').trim();
+        const youtubeUrl = formData.get('youtubeUrl').trim();
         const description = formData.get('description').trim();
 
-        if (title == '' || imageUrl == '' || description == '') {
+        if (
+            title == '' ||
+            imageUrl == '' ||
+            description == '' ||
+            youtubeUrl == ''
+        ) {
             return;
         }
 
         movieService
-            .editById(movieId, { title, imageUrl, description })
+            .editById(movieId, { title, imageUrl, youtubeUrl, description })
             .then((result) => {
                 addNotification(
                     `${result.title} updated successfully.`,
@@ -106,6 +112,22 @@ function Edit() {
                                             htmlFor="imageUrl"
                                         >
                                             Image URL
+                                        </label>
+                                    </div>
+
+                                    <div className="form-outline mb-4">
+                                        <input
+                                            type="text"
+                                            id="youtubeUrl"
+                                            className="form-control form-control-lg"
+                                            name="youtubeUrl"
+                                            defaultValue={movie.youtubeUrl}
+                                        />
+                                        <label
+                                            className="form-label"
+                                            htmlFor="youtubeUrl"
+                                        >
+                                            YouTube Link
                                         </label>
                                     </div>
 

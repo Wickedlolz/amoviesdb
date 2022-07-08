@@ -127,8 +127,6 @@ function MovieDetails() {
 
     return (
         <div className="container py-3">
-            <div className="title h1 text-center">Movie Details</div>
-
             {isLoading ? <LoadingSpinner /> : movieDetails}
         </div>
     );

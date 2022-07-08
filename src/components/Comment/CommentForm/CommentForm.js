@@ -1,19 +1,19 @@
 import styles from './CommentForm.module.css';
 import { ArrowRight } from 'react-bootstrap-icons';
 
-function CommentForm({ onSubmitCommentFormHandler }) {
+function CommentForm({ onSubmitCommentFormHandler, avatar }) {
     return (
         <form onSubmit={onSubmitCommentFormHandler}>
             <div className={styles['comment-card']}>
                 <div className="row">
-                    <div className="col-2">
+                    {/* <div className="col-2">
                         <img
-                            src="https://i.imgur.com/xELPaag.jpg"
+                            src={avatar}
                             width="70"
                             className="rounded-circle mt-2"
                             alt="avetar"
                         />
-                    </div>
+                    </div> */}
                     <div className="col-10">
                         <div className={styles['comment-box'] + ' ml-2'}>
                             <h4>Add a comment</h4>

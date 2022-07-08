@@ -7,7 +7,7 @@ function MovieCard({ movie }) {
     return (
         <Card className="h-100">
             <Card.Img variant="top" src={movie.imageUrl} />
-            <Card.Body>
+            <Card.Body className="text-center">
                 <Card.Title>{movie.title}</Card.Title>
                 <Card.Text>
                     <StarHalf /> {movie.likes.length}
