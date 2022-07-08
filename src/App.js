@@ -18,6 +18,7 @@ import Logout from './components/Logout/Logout';
 import Notification from './components/Common/Notification';
 import MyMovies from './components/MyMovies/MyMovies';
 import AboutUs from './components/AboutUs/AboutUs';
+import Home from './components/Home/Home';
 
 function App() {
     return (
@@ -27,7 +28,7 @@ function App() {
                     <NavBar />
                     <Notification />
                     <Routes>
-                        <Route path="/" element={<Catalog />} />
+                        <Route path="/" element={<Home />} />
                         <Route path="/signin" element={<SignIn />} />
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/logout" element={<Logout />} />
