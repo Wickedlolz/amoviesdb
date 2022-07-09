@@ -1,32 +1,29 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { isAuth } from '../../hoc/isAuth';
 import { NotificationContext } from '../../contexts/Notification';
 import * as movieService from '../../services/data';
 
+import { AlerMessage } from '../Common/AlertMessage';
+
 function Create() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
     const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
 
-    const onSubmitCreateHandler = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const title = formData.get('title').trim();
-        const imageUrl = formData.get('imageUrl').trim();
-        const youtubeUrl = formData.get('youtubeUrl').trim();
-        const description = formData.get('description').trim();
-
-        if (
-            title == '' ||
-            imageUrl == '' ||
-            description == '' ||
-            youtubeUrl == ''
-        ) {
-            return;
-        }
-
+    const onSubmitCreateHandler = (data) => {
         movieService
-            .create({ title, imageUrl, youtubeUrl, description })
+            .create({
+                title: data.title,
+                imageUrl: data.imageUrl,
+                youtubeUrl: data.youtubeUrl,
+                description: data.description,
+            })
             .then((result) => {
                 addNotification(
                     'Successfully created ' + result.title,
@@ -49,13 +46,29 @@ function Create() {
                         />
                     </div>
                     <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                        <form onSubmit={onSubmitCreateHandler}>
+                        <form onSubmit={handleSubmit(onSubmitCreateHandler)}>
                             <div className="form-outline mb-4">
+                                {errors.title?.type === 'required' && (
+                                    <AlerMessage msg={'Title is required'} />
+                                )}
+
+                                {errors.title?.type === 'maxLength' && (
+                                    <AlerMessage
+                                        msg={
+                                            'Title must have max 20 characters.'
+                                        }
+                                    />
+                                )}
+
                                 <input
                                     type="text"
                                     id="title"
                                     className="form-control form-control-lg"
                                     name="title"
+                                    {...register('title', {
+                                        required: true,
+                                        maxLength: 20,
+                                    })}
                                 />
                                 <label className="form-label" htmlFor="title">
                                     Title
@@ -63,11 +76,28 @@ function Create() {
                             </div>
 
                             <div className="form-outline mb-4">
+                                {errors.imageUrl?.type === 'required' && (
+                                    <AlerMessage
+                                        msg={'Image URL is required.'}
+                                    />
+                                )}
+
+                                {errors.imageUrl?.type === 'pattern' && (
+                                    <AlerMessage
+                                        msg={
+                                            'Image URL must start with http:// or https://.'
+                                        }
+                                    />
+                                )}
                                 <input
                                     type="text"
                                     id="imageUrl"
                                     className="form-control form-control-lg"
                                     name="imageUrl"
+                                    {...register('imageUrl', {
+                                        required: true,
+                                        pattern: /https?:\/\//g,
+                                    })}
                                 />
                                 <label
                                     className="form-label"
@@ -78,11 +108,28 @@ function Create() {
                             </div>
 
                             <div className="form-outline mb-4">
+                                {errors.youtubeUrl?.type === 'required' && (
+                                    <AlerMessage
+                                        msg={'Image URL is required.'}
+                                    />
+                                )}
+
+                                {errors.youtubeUrl?.type === 'pattern' && (
+                                    <AlerMessage
+                                        msg={
+                                            'Image URL must start with http/https'
+                                        }
+                                    />
+                                )}
                                 <input
                                     type="text"
                                     id="youtubeUrl"
                                     className="form-control form-control-lg"
                                     name="youtubeUrl"
+                                    {...register('youtubeUrl', {
+                                        required: true,
+                                        pattern: /https?:\/\//g,
+                                    })}
                                 />
                                 <label
                                     className="form-label"
@@ -93,11 +140,20 @@ function Create() {
                             </div>
 
                             <div className="form-outline mb-4">
+                                {errors.description && (
+                                    <AlerMessage
+                                        msg={'Description is required.'}
+                                    />
+                                )}
+
                                 <input
                                     type="text"
                                     id="description"
                                     className="form-control form-control-lg"
                                     name="description"
+                                    {...register('description', {
+                                        required: true,
+                                    })}
                                 />
                                 <label
                                     className="form-label"
