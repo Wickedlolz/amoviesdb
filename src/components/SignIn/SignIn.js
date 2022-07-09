@@ -1,40 +1,26 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../contexts/Auth';
 import { NotificationContext } from '../../contexts/Notification';
 import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../services/user';
+import { useForm } from 'react-hook-form';
 import { setUserData } from '../../utils/utils';
 import { AlerMessage } from '../Common/AlertMessage';
-import { isValidEmail } from '../../utils/authValidation';
 
 function SignIn() {
-    const [errors, setErrors] = useState({
-        email: null,
-        password: null,
-        empty: null,
-    });
     const navigate = useNavigate();
     const { addUser } = useContext(AuthContext);
     const { addNotification } = useContext(NotificationContext);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
-    const onSubmitSignIn = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const email = formData.get('email').trim();
-        const password = formData.get('password').trim();
-
-        if (email == '' || password == '') {
-            setErrors((oldState) => ({
-                ...oldState,
-                empty: 'All fields are required.',
-            }));
-            return;
-        }
-
+    const onSubmitSignIn = (data) => {
         userService
-            .signIn(email, password)
+            .signIn(data.email, data.password)
             .then((userData) => {
-                setErrors((oldState) => ({ ...oldState, authError: null }));
                 addUser(userData);
                 setUserData(userData);
                 navigate('/');
@@ -42,31 +28,6 @@ function SignIn() {
             .catch((error) => {
                 addNotification(error.message, 'Alert');
             });
-    };
-
-    const onValidateEmail = (event) => {
-        const currentEmail = event.target.value;
-
-        setErrors((oldState) => ({
-            ...oldState,
-            email: isValidEmail(currentEmail),
-        }));
-    };
-
-    const onValidatePassword = (event) => {
-        const currentPassword = event.target.value;
-
-        if (currentPassword.length < 3) {
-            setErrors((oldState) => ({
-                ...oldState,
-                password: 'Password must be at least 3 characters long.',
-            }));
-        } else {
-            setErrors((oldState) => ({
-                ...oldState,
-                password: null,
-            }));
-        }
     };
 
     return (
@@ -81,20 +42,29 @@ function SignIn() {
                         />
                     </div>
                     <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                        <form onSubmit={onSubmitSignIn}>
-                            {errors.empty ? (
-                                <AlerMessage msg={errors.empty} />
-                            ) : null}
+                        <form onSubmit={handleSubmit(onSubmitSignIn)}>
                             <div className="form-outline mb-4">
-                                {errors.email ? (
-                                    <AlerMessage msg={errors.email} />
-                                ) : null}
+                                {errors.email?.type === 'required' && (
+                                    <AlerMessage msg={'Email is required'} />
+                                )}
+
+                                {errors.email?.type === 'pattern' && (
+                                    <AlerMessage
+                                        msg={
+                                            'Invalid email. Email format must be (example@yahoo.com)'
+                                        }
+                                    />
+                                )}
                                 <input
                                     type="email"
                                     id="email"
                                     className="form-control form-control-lg"
                                     name="email"
-                                    onBlur={onValidateEmail}
+                                    {...register('email', {
+                                        required: true,
+                                        pattern:
+                                            /^[A-Za-z0-9]{2,}@[a-z]+\.[a-z]{2,3}$/,
+                                    })}
                                 />
                                 <label className="form-label" htmlFor="email">
                                     Email address
@@ -102,15 +72,27 @@ function SignIn() {
                             </div>
 
                             <div className="form-outline mb-4">
-                                {errors.password ? (
-                                    <AlerMessage msg={errors.password} />
-                                ) : null}
+                                {errors.password?.type === 'required' && (
+                                    <AlerMessage msg={'Password is required'} />
+                                )}
+
+                                {errors.password?.type === 'minLength' && (
+                                    <AlerMessage
+                                        msg={
+                                            'Password must be at least 3 characters long.'
+                                        }
+                                    />
+                                )}
+
                                 <input
                                     type="password"
                                     id="password"
                                     name="password"
                                     className="form-control form-control-lg"
-                                    onBlur={onValidatePassword}
+                                    {...register('password', {
+                                        required: true,
+                                        minLength: 3,
+                                    })}
                                 />
                                 <label
                                     className="form-label"
