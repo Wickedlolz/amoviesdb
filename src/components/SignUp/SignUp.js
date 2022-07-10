@@ -26,25 +26,23 @@ function SignUp() {
     const onTermsClose = () => setIsVisivle(false);
 
     const onSubmitSignUp = (data) => {
-        if (data.acceptedTerms) {
-            userService
-                .signUp({
-                    firstName: data.firstName,
-                    lastName: data.lastName,
-                    username: data.username,
-                    email: data.email,
-                    password: data.password,
-                })
-                .then((userData) => {
-                    addUser(userData);
-                    setUserData(userData);
-                    addNotification('Successfully registerd.', 'Success');
-                    navigate('/');
-                })
-                .catch((error) => {
-                    addNotification(error.message, 'Alert');
-                });
-        }
+        userService
+            .signUp({
+                firstName: data.firstName,
+                lastName: data.lastName,
+                username: data.username,
+                email: data.email,
+                password: data.password,
+            })
+            .then((userData) => {
+                addUser(userData);
+                setUserData(userData);
+                addNotification('Successfully registerd.', 'Success');
+                navigate('/');
+            })
+            .catch((error) => {
+                addNotification(error.message, 'Alert');
+            });
     };
 
     return (
@@ -230,7 +228,7 @@ function SignUp() {
                                     {...register('rePassword', {
                                         required: true,
                                         validate: (value) => {
-                                            if (watch('password') != value) {
+                                            if (watch('password') !== value) {
                                                 return 'Passwords not identical.';
                                             }
                                         },
