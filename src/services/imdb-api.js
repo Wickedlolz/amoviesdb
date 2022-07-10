@@ -9,5 +9,5 @@ export async function getAll() {
 
     const result = await response.json();
 
-    return result.items.slice(0, 8);
+    return result.items;
 }

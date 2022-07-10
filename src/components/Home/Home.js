@@ -22,7 +22,7 @@ function Home() {
     const movieList =
         movies.length > 0 ? (
             <Row xs={1} md={4} className="g-3">
-                {movies.map((movie) => (
+                {movies.slice(0, 8).map((movie) => (
                     <Col key={movie._id}>
                         <CommingSoonCard key={movie._id} movie={movie} />
                     </Col>

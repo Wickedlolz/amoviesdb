@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
-import { StarHalf } from 'react-bootstrap-icons';
+import { HeartFill } from 'react-bootstrap-icons';
 import './MovieCard.css';
 
 function MovieCard({ movie }) {
@@ -10,9 +10,12 @@ function MovieCard({ movie }) {
             <Card.Body className="text-center">
                 <Card.Title>{movie.title}</Card.Title>
                 <Card.Text>
-                    <StarHalf /> {movie.likes.length}
+                    <HeartFill /> {movie.likes.length}
                 </Card.Text>
-                <Link to={'/movie/' + movie._id} className="btn btn-primary">
+                <Link
+                    to={'/movie/' + movie._id}
+                    className="btn btn-outline-primary"
+                >
                     Details
                 </Link>
             </Card.Body>

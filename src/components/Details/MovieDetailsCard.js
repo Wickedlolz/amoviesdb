@@ -7,7 +7,7 @@ import {
     HandThumbsDownFill,
     PencilSquare,
     Trash3,
-    StarHalf,
+    HeartFill,
 } from 'react-bootstrap-icons';
 
 function MovieDetailsCard({
@@ -72,7 +72,7 @@ function MovieDetailsCard({
                                 className="mt-auto btn btn-light"
                                 disabled={true}
                             >
-                                <StarHalf /> {movie.likes.length}
+                                <HeartFill /> {movie.likes.length}
                             </button>
                         </div>
                     ) : null}

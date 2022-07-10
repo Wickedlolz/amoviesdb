@@ -1,4 +1,5 @@
 import { Card } from 'react-bootstrap';
+import { StarHalf } from 'react-bootstrap-icons';
 import './MovieCard.css';
 
 function CommingSoonCard({ movie }) {
@@ -10,11 +11,13 @@ function CommingSoonCard({ movie }) {
                 <Card.Text>
                     <p>Stars: {printStars(movie.starList)}</p>
                     <p>Genre: {movie.genreList.map((l) => l.key).join(', ')}</p>
-                    Release Date: {movie.releaseState}
+                    <p className="text-muted">
+                        Release Date: {movie.releaseState}
+                    </p>
                 </Card.Text>
-                <button className="btn btn-primary">
-                    IMDB Rating: {movie.imDbRating}
-                </button>
+                <p className="btn btn-outline-primary">
+                    IMDB Rating: <StarHalf /> {movie.imDbRating}
+                </p>
             </Card.Body>
         </Card>
     );
