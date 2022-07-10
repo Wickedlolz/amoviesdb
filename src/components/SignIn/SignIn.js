@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../services/user';
 import { useForm } from 'react-hook-form';
 import { setUserData } from '../../utils/utils';
-import { AlerMessage } from '../Common/AlertMessage';
+import { AlertMessage } from '../Common/AlertMessage';
 
 function SignIn() {
     const navigate = useNavigate();
@@ -45,11 +45,11 @@ function SignIn() {
                         <form onSubmit={handleSubmit(onSubmitSignIn)}>
                             <div className="form-outline mb-4">
                                 {errors.email?.type === 'required' && (
-                                    <AlerMessage msg={'Email is required'} />
+                                    <AlertMessage msg={'Email is required'} />
                                 )}
 
                                 {errors.email?.type === 'pattern' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'Invalid email. Email format must be (example@yahoo.com)'
                                         }
@@ -73,11 +73,13 @@ function SignIn() {
 
                             <div className="form-outline mb-4">
                                 {errors.password?.type === 'required' && (
-                                    <AlerMessage msg={'Password is required'} />
+                                    <AlertMessage
+                                        msg={'Password is required'}
+                                    />
                                 )}
 
                                 {errors.password?.type === 'minLength' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'Password must be at least 3 characters long.'
                                         }

@@ -5,7 +5,7 @@ import { isAuth } from '../../hoc/isAuth';
 import { NotificationContext } from '../../contexts/Notification';
 import * as movieService from '../../services/data';
 
-import { AlerMessage } from '../Common/AlertMessage';
+import { AlertMessage } from '../Common/AlertMessage';
 
 function Create() {
     const {
@@ -49,11 +49,11 @@ function Create() {
                         <form onSubmit={handleSubmit(onSubmitCreateHandler)}>
                             <div className="form-outline mb-4">
                                 {errors.title?.type === 'required' && (
-                                    <AlerMessage msg={'Title is required'} />
+                                    <AlertMessage msg={'Title is required'} />
                                 )}
 
                                 {errors.title?.type === 'maxLength' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'Title must have max 20 characters.'
                                         }
@@ -77,13 +77,13 @@ function Create() {
 
                             <div className="form-outline mb-4">
                                 {errors.imageUrl?.type === 'required' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={'Image URL is required.'}
                                     />
                                 )}
 
                                 {errors.imageUrl?.type === 'pattern' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'Image URL must start with http:// or https://.'
                                         }
@@ -109,13 +109,13 @@ function Create() {
 
                             <div className="form-outline mb-4">
                                 {errors.youtubeUrl?.type === 'required' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={'Image URL is required.'}
                                     />
                                 )}
 
                                 {errors.youtubeUrl?.type === 'pattern' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'Image URL must start with http/https'
                                         }
@@ -141,7 +141,7 @@ function Create() {
 
                             <div className="form-outline mb-4">
                                 {errors.description && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={'Description is required.'}
                                     />
                                 )}

@@ -5,12 +5,14 @@ import * as userService from '../../services/user';
 import { AuthContext } from '../../contexts/Auth';
 import { NotificationContext } from '../../contexts/Notification';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { AlertMessage } from '../Common/AlertMessage';
 
 import styles from './EditProfile.module.css';
 
 function EditProfile() {
     const { userId } = useParams();
     const [user, setUser] = useState({});
+    const [errors, setErrors] = useState({ emptyFields: false });
     const [isLoading, setIsLoading] = useState(true);
     const { updateUser } = useContext(AuthContext);
     const { addNotification } = useContext(NotificationContext);
@@ -52,6 +54,7 @@ function EditProfile() {
             email == '' ||
             username == ''
         ) {
+            setErrors({ emptyFields: true });
             return;
         }
 
@@ -73,6 +76,9 @@ function EditProfile() {
                 <LoadingSpinner />
             ) : (
                 <div className="container mt-4 mb-4 p-3 d-flex justify-content-center">
+                    {errors.emptyFields ? (
+                        <AlertMessage msg="All fields are required." />
+                    ) : null}
                     <form onSubmit={onSubmitEditProfile}>
                         <div className={styles['edit-profile-card']}>
                             {' '}

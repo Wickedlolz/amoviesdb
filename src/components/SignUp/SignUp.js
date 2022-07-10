@@ -7,7 +7,7 @@ import * as userService from '../../services/user';
 
 import TermsAndConditions from '../TermsAndConditions/TermsAndConditions';
 import styles from './SignUp.module.css';
-import { AlerMessage } from '../Common/AlertMessage';
+import { AlertMessage } from '../Common/AlertMessage';
 import { setUserData } from '../../utils/utils';
 
 function SignUp() {
@@ -61,13 +61,13 @@ function SignUp() {
                         <form onSubmit={handleSubmit(onSubmitSignUp)}>
                             <div className="form-outline mb-4">
                                 {errors.firstName?.type === 'required' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={'First Name is required.'}
                                     />
                                 )}
 
                                 {errors.firstName?.type === 'minLength' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'First Name must be at least 3 characters long.'
                                         }
@@ -92,13 +92,13 @@ function SignUp() {
                             </div>
                             <div className="form-outline mb-4">
                                 {errors.lastName?.type === 'required' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={'Last Name is required.'}
                                     />
                                 )}
 
                                 {errors.lastName?.type === 'minLength' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'Last Name must be at least 3 characters long.'
                                         }
@@ -123,13 +123,13 @@ function SignUp() {
                             </div>
                             <div className="form-outline mb-4">
                                 {errors.username?.type === 'required' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={'Username is required.'}
                                     />
                                 )}
 
                                 {errors.username?.type === 'pattern' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'Username must contains only letters and digits and must be at least 3 characters long.'
                                         }
@@ -154,11 +154,11 @@ function SignUp() {
                             </div>
                             <div className="form-outline mb-4">
                                 {errors.email?.type === 'required' && (
-                                    <AlerMessage msg={'Email is required.'} />
+                                    <AlertMessage msg={'Email is required.'} />
                                 )}
 
                                 {errors.email?.type === 'pattern' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'Invalid email. Email format must be (example@yahoo.com)'
                                         }
@@ -181,13 +181,13 @@ function SignUp() {
                             </div>
                             <div className="form-outline mb-4">
                                 {errors.password?.type === 'required' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={'Password is required.'}
                                     />
                                 )}
 
                                 {errors.password?.type === 'minLength' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'Password must be at least 3 characters long.'
                                         }
@@ -212,13 +212,15 @@ function SignUp() {
                             </div>
                             <div className="form-outline mb-4">
                                 {errors.rePassword?.type === 'required' && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={'Re-Password is required.'}
                                     />
                                 )}
 
                                 {errors.rePassword?.type === 'validate' && (
-                                    <AlerMessage msg={'Passwords not match!'} />
+                                    <AlertMessage
+                                        msg={'Passwords not match!'}
+                                    />
                                 )}
                                 <input
                                     type="password"
@@ -243,7 +245,7 @@ function SignUp() {
                             </div>
                             <div className="form-check d-flex justify-content-center mb-5">
                                 {errors.acceptTerms === false && (
-                                    <AlerMessage
+                                    <AlertMessage
                                         msg={
                                             'Terms of Conditions is not checked..'
                                         }
