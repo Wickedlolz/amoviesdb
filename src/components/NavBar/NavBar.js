@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/Auth';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import {
     Navbar,
     Nav,
@@ -10,30 +10,31 @@ import {
     Button,
 } from 'react-bootstrap';
 
-const guestUserNav = (
-    <>
-        <Nav.Link to={'/signin'} as={NavLink}>
-            Sign In
-        </Nav.Link>
-        <Nav.Link to={'/signup'} as={NavLink}>
-            Sign Up
-        </Nav.Link>
-    </>
-);
-
-const authUserNav = (
-    <>
-        <Nav.Link to={'/create'} as={NavLink}>
-            Create
-        </Nav.Link>
-        <Nav.Link to={'/logout'} as={NavLink}>
-            Logout
-        </Nav.Link>
-    </>
-);
-
 function NavBar() {
     const { user } = useContext(AuthContext);
+    const location = useLocation();
+
+    const guestUserNav = (
+        <>
+            <Nav.Link to={'/signin'} as={NavLink}>
+                Sign In
+            </Nav.Link>
+            <Nav.Link to={'/signup'} as={NavLink}>
+                Sign Up
+            </Nav.Link>
+        </>
+    );
+
+    const authUserNav = (
+        <>
+            <Nav.Link to={'/create'} as={NavLink}>
+                Create
+            </Nav.Link>
+            <Nav.Link to={'/logout'} as={NavLink}>
+                Logout
+            </Nav.Link>
+        </>
+    );
 
     return (
         <Navbar bg="light" expand="lg">
@@ -73,18 +74,21 @@ function NavBar() {
                             </NavLink>
                         </Navbar.Text>
                     ) : null}
-                    <Form className="d-flex">
-                        <FormControl
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            name="search"
-                            aria-label="Search"
-                        />
-                        <Button type="submit" variant="outline-success">
-                            Search
-                        </Button>
-                    </Form>
+
+                    {location.pathname == '/catalog' ? (
+                        <Form className="d-flex">
+                            <FormControl
+                                type="search"
+                                placeholder="Search"
+                                className="me-2"
+                                name="search"
+                                aria-label="Search"
+                            />
+                            <Button type="submit" variant="outline-success">
+                                Search
+                            </Button>
+                        </Form>
+                    ) : null}
                 </Navbar.Collapse>
             </Container>
         </Navbar>

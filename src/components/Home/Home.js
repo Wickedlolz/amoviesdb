@@ -24,7 +24,7 @@ function Home() {
             <Row xs={1} md={4} className="g-3">
                 {movies.slice(0, 8).map((movie) => (
                     <Col key={movie._id}>
-                        <CommingSoonCard key={movie._id} movie={movie} />
+                        <CommingSoonCard key={movie.id} movie={movie} />
                     </Col>
                 ))}
             </Row>
