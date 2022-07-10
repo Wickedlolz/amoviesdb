@@ -8,7 +8,7 @@ import CommingSoonCard from '../MovieList/CommingSoonCard';
 import { Row, Col } from 'react-bootstrap';
 
 function Home() {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState({ items: [], errorMessage: '' });
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ function Home() {
     }, []);
 
     const movieList =
-        movies.length > 0 ? (
+        movies.items.length > 0 ? (
             <Row xs={1} md={4} className="g-3">
                 {movies.slice(0, 8).map((movie) => (
                     <Col key={movie._id}>
@@ -29,8 +29,9 @@ function Home() {
                 ))}
             </Row>
         ) : (
-            <h3 className="p-5 text-center">No movies in database.</h3>
+            <h3 className="p-5 text-center">{movies.errorMessage}</h3>
         );
+    console.log(movies);
 
     return (
         <>
