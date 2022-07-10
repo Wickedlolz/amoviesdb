@@ -15,9 +15,10 @@ function CommingSoonCard({ movie }) {
                         Release Date: {movie.releaseState}
                     </p>
                 </Card.Text>
-                <p className="btn btn-outline-primary">
+                <span className="btn btn-outline-primary">
+                    {' '}
                     IMDB Rating: <StarHalf /> {movie.imDbRating}
-                </p>
+                </span>
             </Card.Body>
         </Card>
     );

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/Auth';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import {
     Navbar,
     Nav,
@@ -13,6 +13,7 @@ import {
 function NavBar() {
     const { user } = useContext(AuthContext);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const guestUserNav = (
         <>
@@ -24,6 +25,14 @@ function NavBar() {
             </Nav.Link>
         </>
     );
+
+    const onSubmtSearch = (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const search = formData.get('search').trim();
+
+        navigate('/catalog?search=' + search);
+    };
 
     const authUserNav = (
         <>
@@ -75,8 +84,8 @@ function NavBar() {
                         </Navbar.Text>
                     ) : null}
 
-                    {location.pathname == '/catalog' ? (
-                        <Form className="d-flex">
+                    {location.pathname === '/catalog' ? (
+                        <Form className="d-flex" onSubmit={onSubmtSearch}>
                             <FormControl
                                 type="search"
                                 placeholder="Search"

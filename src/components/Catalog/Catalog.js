@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import * as movieService from '../../services/data';
 
@@ -10,13 +11,15 @@ import Pagination from '../Pagination/Pagination';
 function Catalog() {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const search = searchParams.get('search');
 
     useEffect(() => {
-        movieService.getAll().then((movies) => {
+        movieService.getAll(search).then((movies) => {
             setIsLoading(false);
             setMovies(movies);
         });
-    }, []);
+    }, [search]);
 
     const movieList =
         movies.length > 0 ? (
