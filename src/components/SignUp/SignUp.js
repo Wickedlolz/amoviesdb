@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../contexts/Auth';
 import { NotificationContext } from '../../contexts/Notification';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,149 +8,42 @@ import * as userService from '../../services/user';
 import TermsAndConditions from '../TermsAndConditions/TermsAndConditions';
 import styles from './SignUp.module.css';
 import { AlerMessage } from '../Common/AlertMessage';
-import { isValidEmail, isValidUsername } from '../../utils/authValidation';
 import { setUserData } from '../../utils/utils';
-
-const initialErrorsState = {
-    firstName: null,
-    lastName: null,
-    username: null,
-    email: null,
-    password: null,
-    rePassword: null,
-    empty: null,
-    acceptedTerms: null,
-};
 
 function SignUp() {
     const { addUser } = useContext(AuthContext);
     const [isVisible, setIsVisivle] = useState(false);
-    const [errors, setErrors] = useState(initialErrorsState);
+    const {
+        register,
+        watch,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
     const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
 
     const onTermsClickHandler = () => setIsVisivle(true);
     const onTermsClose = () => setIsVisivle(false);
 
-    const onSubmitSignUp = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-
-        const firstName = formData.get('firstName').trim();
-        const lastName = formData.get('lastName').trim();
-        const username = formData.get('username').trim();
-        const email = formData.get('email').trim();
-        const password = formData.get('password').trim();
-        const rePassword = formData.get('rePassword').trim();
-        const acceptTerms = formData.get('acceptTerms');
-
-        if (acceptTerms) {
-            if (
-                firstName == '' ||
-                lastName == '' ||
-                username == '' ||
-                email == '' ||
-                password == '' ||
-                rePassword == ''
-            ) {
-                setErrors((oldState) => ({
-                    ...oldState,
-                    empty: 'All fields are not filled.',
-                }));
-            } else {
-                userService
-                    .signUp({ firstName, lastName, username, email, password })
-                    .then((userData) => {
-                        addUser(userData);
-                        setUserData(userData);
-                        addNotification('Successfully registerd.', 'Success');
-                        navigate('/');
-                    })
-                    .catch((error) => {
-                        addNotification(error.message, 'Alert');
-                    });
-            }
-        } else {
-            setErrors((oldState) => ({
-                ...oldState,
-                acceptedTerms: 'Terms and Conditions is not accpeted.',
-            }));
-        }
-    };
-
-    const onFirstNameValidate = (event) => {
-        const currentFirstName = event.target.value;
-
-        if (currentFirstName < 3) {
-            setErrors((oldState) => ({
-                ...oldState,
-                firstName: 'First Name must be at least 3 characters long.',
-            }));
-        } else {
-            setErrors((oldState) => ({ ...oldState, firstName: null }));
-        }
-    };
-
-    const onLastNameValidate = (event) => {
-        const currentLastName = event.target.value;
-
-        if (currentLastName < 3) {
-            setErrors((oldState) => ({
-                ...oldState,
-                lastName: 'Last Name must be at least 3 characters long.',
-            }));
-        } else {
-            setErrors((oldState) => ({ ...oldState, lastName: null }));
-        }
-    };
-
-    const onUsernameValidate = (event) => {
-        const currentUserName = event.target.value;
-        setErrors((oldState) => ({
-            ...oldState,
-            username: isValidUsername(currentUserName),
-        }));
-    };
-
-    const onEmailValidate = (event) => {
-        const currentEmail = event.target.value;
-
-        setErrors((oldState) => ({
-            ...oldState,
-            email: isValidEmail(currentEmail),
-        }));
-    };
-
-    const onPasswordValidate = (event) => {
-        const currentPassword = event.target.value;
-
-        if (currentPassword.length < 3) {
-            setErrors((oldState) => ({
-                ...oldState,
-                password: 'Password must be at least 3 characters long.',
-            }));
-        } else {
-            setErrors((oldState) => ({
-                ...oldState,
-                password: null,
-            }));
-        }
-    };
-
-    const onRePasswordValidate = (event) => {
-        const currentRePassword = event.target.value;
-        const pass = event.target.parentElement.parentElement[4].value;
-
-        if (currentRePassword != pass) {
-            setErrors((oldState) => ({
-                ...oldState,
-                password: 'Passwords not match.',
-            }));
-        } else {
-            setErrors((oldState) => ({
-                ...oldState,
-                password: null,
-            }));
+    const onSubmitSignUp = (data) => {
+        if (data.acceptedTerms) {
+            userService
+                .signUp({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    username: data.username,
+                    email: data.email,
+                    password: data.password,
+                })
+                .then((userData) => {
+                    addUser(userData);
+                    setUserData(userData);
+                    addNotification('Successfully registerd.', 'Success');
+                    navigate('/');
+                })
+                .catch((error) => {
+                    addNotification(error.message, 'Alert');
+                });
         }
     };
 
@@ -166,26 +60,30 @@ function SignUp() {
                         />
                     </div>
                     <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                        <form onSubmit={onSubmitSignUp}>
-                            {errors.acceptedTerms ? (
-                                <AlerMessage msg={errors.acceptedTerms} />
-                            ) : null}
-                            {errors.authError ? (
-                                <AlerMessage msg={errors.authError} />
-                            ) : null}
-                            {errors.empty ? (
-                                <AlerMessage msg={errors.empty} />
-                            ) : null}
+                        <form onSubmit={handleSubmit(onSubmitSignUp)}>
                             <div className="form-outline mb-4">
-                                {errors.firstName ? (
-                                    <AlerMessage msg={errors.firstName} />
-                                ) : null}
+                                {errors.firstName?.type === 'required' && (
+                                    <AlerMessage
+                                        msg={'First Name is required.'}
+                                    />
+                                )}
+
+                                {errors.firstName?.type === 'minLength' && (
+                                    <AlerMessage
+                                        msg={
+                                            'First Name must be at least 3 characters long.'
+                                        }
+                                    />
+                                )}
                                 <input
                                     type="text"
                                     id="firstName"
                                     className="form-control form-control-lg"
                                     name="firstName"
-                                    onBlur={onFirstNameValidate}
+                                    {...register('firstName', {
+                                        required: true,
+                                        minLength: 3,
+                                    })}
                                 />
                                 <label
                                     className="form-label"
@@ -195,15 +93,28 @@ function SignUp() {
                                 </label>
                             </div>
                             <div className="form-outline mb-4">
-                                {errors.lastName ? (
-                                    <AlerMessage msg={errors.lastName} />
-                                ) : null}
+                                {errors.lastName?.type === 'required' && (
+                                    <AlerMessage
+                                        msg={'Last Name is required.'}
+                                    />
+                                )}
+
+                                {errors.lastName?.type === 'minLength' && (
+                                    <AlerMessage
+                                        msg={
+                                            'Last Name must be at least 3 characters long.'
+                                        }
+                                    />
+                                )}
                                 <input
                                     type="text"
                                     id="lastName"
                                     className="form-control form-control-lg"
                                     name="lastName"
-                                    onBlur={onLastNameValidate}
+                                    {...register('lastName', {
+                                        required: true,
+                                        minLength: 3,
+                                    })}
                                 />
                                 <label
                                     className="form-label"
@@ -213,15 +124,28 @@ function SignUp() {
                                 </label>
                             </div>
                             <div className="form-outline mb-4">
-                                {errors.username ? (
-                                    <AlerMessage msg={errors.username} />
-                                ) : null}
+                                {errors.username?.type === 'required' && (
+                                    <AlerMessage
+                                        msg={'Username is required.'}
+                                    />
+                                )}
+
+                                {errors.username?.type === 'pattern' && (
+                                    <AlerMessage
+                                        msg={
+                                            'Username must contains only letters and digits and must be at least 3 characters long.'
+                                        }
+                                    />
+                                )}
                                 <input
                                     type="text"
                                     id="username"
                                     className="form-control form-control-lg"
                                     name="username"
-                                    onBlur={onUsernameValidate}
+                                    {...register('username', {
+                                        required: true,
+                                        pattern: /^[A-Za-z0-9]{3,}$/,
+                                    })}
                                 />
                                 <label
                                     className="form-label"
@@ -231,30 +155,55 @@ function SignUp() {
                                 </label>
                             </div>
                             <div className="form-outline mb-4">
-                                {errors.email ? (
-                                    <AlerMessage msg={errors.email} />
-                                ) : null}
+                                {errors.email?.type === 'required' && (
+                                    <AlerMessage msg={'Email is required.'} />
+                                )}
+
+                                {errors.email?.type === 'pattern' && (
+                                    <AlerMessage
+                                        msg={
+                                            'Invalid email. Email format must be (example@yahoo.com)'
+                                        }
+                                    />
+                                )}
                                 <input
                                     type="email"
                                     id="email"
                                     className="form-control form-control-lg"
                                     name="email"
-                                    onBlur={onEmailValidate}
+                                    {...register('email', {
+                                        required: true,
+                                        pattern:
+                                            /^[A-Za-z0-9]{2,}@[a-z]+\.[a-z]{2,3}$/,
+                                    })}
                                 />
                                 <label className="form-label" htmlFor="email">
                                     Email address
                                 </label>
                             </div>
                             <div className="form-outline mb-4">
-                                {errors.password ? (
-                                    <AlerMessage msg={errors.password} />
-                                ) : null}
+                                {errors.password?.type === 'required' && (
+                                    <AlerMessage
+                                        msg={'Password is required.'}
+                                    />
+                                )}
+
+                                {errors.password?.type === 'minLength' && (
+                                    <AlerMessage
+                                        msg={
+                                            'Password must be at least 3 characters long.'
+                                        }
+                                    />
+                                )}
                                 <input
                                     type="password"
                                     id="password"
                                     name="password"
                                     className="form-control form-control-lg"
-                                    onBlur={onPasswordValidate}
+                                    {...register('password', {
+                                        required: true,
+                                        minLength: 3,
+                                    })}
                                 />
                                 <label
                                     className="form-label"
@@ -264,15 +213,28 @@ function SignUp() {
                                 </label>
                             </div>
                             <div className="form-outline mb-4">
-                                {errors.rePassword ? (
-                                    <AlerMessage msg={errors.rePassword} />
-                                ) : null}
+                                {errors.rePassword?.type === 'required' && (
+                                    <AlerMessage
+                                        msg={'Re-Password is required.'}
+                                    />
+                                )}
+
+                                {errors.rePassword?.type === 'validate' && (
+                                    <AlerMessage msg={'Passwords not match!'} />
+                                )}
                                 <input
                                     type="password"
                                     id="rePassword"
                                     name="rePassword"
                                     className="form-control form-control-lg"
-                                    onBlur={onRePasswordValidate}
+                                    {...register('rePassword', {
+                                        required: true,
+                                        validate: (value) => {
+                                            if (watch('password') != value) {
+                                                return 'Passwords not identical.';
+                                            }
+                                        },
+                                    })}
                                 />
                                 <label
                                     className="form-label"
@@ -282,11 +244,19 @@ function SignUp() {
                                 </label>
                             </div>
                             <div className="form-check d-flex justify-content-center mb-5">
+                                {errors.acceptTerms === false && (
+                                    <AlerMessage
+                                        msg={
+                                            'Terms of Conditions is not checked..'
+                                        }
+                                    />
+                                )}
                                 <input
                                     className="form-check-input me-2"
                                     type="checkbox"
                                     name="acceptTerms"
                                     id="acceptTerms"
+                                    {...register('acceptTerms')}
                                 />
                                 <label
                                     className="form-check-label"
@@ -297,7 +267,7 @@ function SignUp() {
                                         onClick={onTermsClickHandler}
                                         className={'text-body ' + styles.terms}
                                     >
-                                        <u>Terms of service</u>
+                                        <u>Terms of Conditions</u>
                                     </span>
                                 </label>
                             </div>
