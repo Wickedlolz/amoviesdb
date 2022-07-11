@@ -17,6 +17,7 @@ function MovieDetails() {
     const { user } = useContext(AuthContext);
     const { addNotification } = useContext(NotificationContext);
     const [movie, setMovie] = useState({});
+    const [isUpdated, setIsUpdated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ function MovieDetails() {
                 setIsLoading(false);
             })
             .catch((error) => addNotification(error.message, 'Error'));
-    }, [movieId, addNotification]);
+    }, [movieId, addNotification, isUpdated]);
 
     const onLikeClick = () => {
         movieService
@@ -91,6 +92,7 @@ function MovieDetails() {
                     ...oldState,
                     comments: [...oldState.comments, result],
                 }));
+                setIsUpdated(true);
                 event.target.reset();
             })
             .catch((error) => {
