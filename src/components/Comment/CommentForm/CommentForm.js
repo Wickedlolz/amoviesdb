@@ -1,7 +1,7 @@
 import styles from './CommentForm.module.css';
-import { ArrowRight } from 'react-bootstrap-icons';
+import { SendFill } from 'react-bootstrap-icons';
 
-function CommentForm({ onSubmitCommentFormHandler, avatar }) {
+function CommentForm({ onSubmitCommentFormHandler }) {
     return (
         <form onSubmit={onSubmitCommentFormHandler}>
             <div className={styles['comment-card']}>
@@ -39,7 +39,7 @@ function CommentForm({ onSubmitCommentFormHandler, avatar }) {
                                                     ' btn-sm'
                                                 }
                                             >
-                                                Send <ArrowRight />
+                                                Send <SendFill />
                                             </button>
                                         </div>
                                     </div>

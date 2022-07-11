@@ -6,6 +6,7 @@ import { AuthContext } from '../../contexts/Auth';
 import { NotificationContext } from '../../contexts/Notification';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { AlertMessage } from '../Common/AlertMessage';
+import { PersonLinesFill } from 'react-bootstrap-icons';
 
 import styles from './EditProfile.module.css';
 
@@ -85,7 +86,8 @@ function EditProfile() {
                             <div className={styles.info}>
                                 {' '}
                                 <span>
-                                    Edit {user.firstName}'s Profile
+                                    <PersonLinesFill /> Edit {user.firstName}'s
+                                    Profile{' '}
                                 </span>{' '}
                                 <button id="savebutton">edit</button>{' '}
                             </div>{' '}
@@ -131,7 +133,8 @@ function EditProfile() {
                                     {' '}
                                     <span>Avatar</span>
                                     <span className={styles['allowed-formats']}>
-                                        Allowed formats: png/svg
+                                        Allowed formats: png/jpg if is any other
+                                        will not show
                                     </span>
                                     <input type="file" name="avatar" />{' '}
                                 </div>{' '}
