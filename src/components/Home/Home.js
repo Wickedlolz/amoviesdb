@@ -21,7 +21,7 @@ function Home() {
         movies.length > 0 ? (
             <Row xs={1} md={4} className="g-3">
                 {movies.map((movie) => (
-                    <Col key={movie.id}>
+                    <Col key={movie._id}>
                         <MovieCard movie={movie} />
                     </Col>
                 ))}
