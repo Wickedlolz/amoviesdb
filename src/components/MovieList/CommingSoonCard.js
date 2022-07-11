@@ -9,11 +9,15 @@ function CommingSoonCard({ movie }) {
             <Card.Body className="text-center">
                 <Card.Title>{movie.fullTitle}</Card.Title>
                 <Card.Text>
-                    <p>Stars: {printStars(movie.starList)}</p>
-                    <p>Genre: {movie.genreList.map((l) => l.key).join(', ')}</p>
-                    <p className="text-muted">
+                    <span className="d-inline-block">
+                        Stars: {printStars(movie.starList)}
+                    </span>
+                    <span className="d-inline-block">
+                        Genre: {movie.genreList.map((l) => l.key).join(', ')}
+                    </span>
+                    <span className="text-muted d-inline-block">
                         Release Date: {movie.releaseState}
-                    </p>
+                    </span>
                 </Card.Text>
                 <span className="btn btn-outline-primary">
                     {' '}

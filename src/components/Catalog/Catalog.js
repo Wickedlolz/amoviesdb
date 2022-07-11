@@ -11,15 +11,18 @@ import Pagination from '../Pagination/Pagination';
 function Catalog() {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [moviesCount, setMoviesCount] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
     const search = searchParams.get('search');
+    const page = Number(searchParams.get('page')) || 1;
 
     useEffect(() => {
-        movieService.getAll(search).then((movies) => {
+        movieService.getAll(search, page).then(([movies, moviesCount]) => {
             setIsLoading(false);
             setMovies(movies);
+            setMoviesCount(moviesCount);
         });
-    }, [search]);
+    }, [search, page]);
 
     const movieList =
         movies.length > 0 ? (
@@ -33,7 +36,7 @@ function Catalog() {
     return (
         <>
             {isLoading ? <LoadingSpinner /> : movieList}
-            <Pagination />
+            <Pagination moviesCount={moviesCount} page={page} />
         </>
     );
 }

@@ -13,12 +13,22 @@ const endpoints = {
     MY_MOVIES: (userId) => `/catalog/my-movies/${userId}`,
 };
 
-export async function getAll(search) {
-    if (search) {
-        return await request.get(endpoints.ALL_MOVIES + '?search=' + search);
-    } else {
-        return await request.get(endpoints.ALL_MOVIES);
+export async function getAll(search, page) {
+    let endpoint = endpoints.ALL_MOVIES;
+
+    if (search && page == undefined) {
+        endpoint += '?search=' + search;
     }
+
+    if (page && search == undefined) {
+        endpoint += '?page=' + page;
+    }
+
+    if (search && page) {
+        endpoint += '?search=' + search + '&page=' + page;
+    }
+
+    return await request.get(endpoint);
 }
 
 export async function getMyMovies(userId) {

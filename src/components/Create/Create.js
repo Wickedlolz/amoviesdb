@@ -67,7 +67,7 @@ function Create() {
                                     name="title"
                                     {...register('title', {
                                         required: true,
-                                        maxLength: 20,
+                                        maxLength: 50,
                                     })}
                                 />
                                 <label className="form-label" htmlFor="title">

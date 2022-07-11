@@ -22,16 +22,15 @@ function Home() {
     const movieList =
         movies.items.length > 0 ? (
             <Row xs={1} md={4} className="g-3">
-                {movies.slice(0, 8).map((movie) => (
-                    <Col key={movie._id}>
-                        <CommingSoonCard key={movie.id} movie={movie} />
+                {movies.items.slice(0, 8).map((movie) => (
+                    <Col key={movie.id}>
+                        <CommingSoonCard movie={movie} />
                     </Col>
                 ))}
             </Row>
         ) : (
             <h3 className="p-5 text-center">{movies.errorMessage}</h3>
         );
-    console.log(movies);
 
     return (
         <>
