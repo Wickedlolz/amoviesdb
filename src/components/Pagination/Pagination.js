@@ -18,7 +18,7 @@ function Pagination({ moviesCount, page }) {
                 </li>
                 <li className="page-item">
                     <p className="page-link">
-                        Showing {pageSize - 8}-
+                        Showing {pageSize - 7}-
                         {pageSize > moviesCount ? moviesCount : pageSize} of{' '}
                         {moviesCount} results
                     </p>

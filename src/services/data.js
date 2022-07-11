@@ -2,6 +2,7 @@ import * as request from './api';
 
 const endpoints = {
     ALL_MOVIES: '/catalog',
+    MOST_LIKED_MOVIES: '/catalog/most-liked',
     MOVIE_BY_ID: (movieId) => `/catalog/${movieId}`,
     CREATE: '/catalog',
     DELETE_MOVIE: (movieId) => `/catalog/${movieId}`,
@@ -29,6 +30,10 @@ export async function getAll(search, page) {
     }
 
     return await request.get(endpoint);
+}
+
+export async function getMostLiked() {
+    return await request.get(endpoints.MOST_LIKED_MOVIES);
 }
 
 export async function getMyMovies(userId) {
