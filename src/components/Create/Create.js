@@ -16,6 +16,8 @@ function Create() {
     const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
 
+    console.log(errors);
+
     const onSubmitCreateHandler = (data) => {
         movieService
             .create({
@@ -173,6 +175,7 @@ function Create() {
                             <button
                                 type="submit"
                                 className="btn btn-success btn-lg btn-block"
+                                disabled={Object.values(errors).some((x) => x)}
                             >
                                 Create
                             </button>
