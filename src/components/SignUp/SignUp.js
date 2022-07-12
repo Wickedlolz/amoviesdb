@@ -244,19 +244,14 @@ function SignUp() {
                                 </label>
                             </div>
                             <div className="form-check d-flex justify-content-center mb-5">
-                                {errors.acceptTerms === false && (
-                                    <AlertMessage
-                                        msg={
-                                            'Terms of Conditions is not checked..'
-                                        }
-                                    />
-                                )}
                                 <input
                                     className="form-check-input me-2"
                                     type="checkbox"
                                     name="acceptTerms"
                                     id="acceptTerms"
-                                    {...register('acceptTerms')}
+                                    {...register('acceptTerms', {
+                                        required: true,
+                                    })}
                                 />
                                 <label
                                     className="form-check-label"
@@ -271,6 +266,11 @@ function SignUp() {
                                     </span>
                                 </label>
                             </div>
+                            {errors.acceptTerms && (
+                                <AlertMessage
+                                    msg={'Terms of Conditions is not accepted.'}
+                                />
+                            )}
                             <div className="d-flex justify-content-around align-items-center mb-4">
                                 <p className="small fw-bold mt-2 pt-1 mb-0">
                                     Have already an account?{' '}
