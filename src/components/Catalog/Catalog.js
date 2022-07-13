@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
 
@@ -13,16 +14,20 @@ function Catalog() {
     const [isLoading, setIsLoading] = useState(true);
     const [moviesCount, setMoviesCount] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
+    const { addNotification } = useContext(NotificationContext);
     const search = searchParams.get('search');
     const page = Number(searchParams.get('page')) || 1;
 
     useEffect(() => {
-        movieService.getAll(search, page).then(([movies, moviesCount]) => {
-            setIsLoading(false);
-            setMovies(movies);
-            setMoviesCount(moviesCount);
-        });
-    }, [search, page]);
+        movieService
+            .getAll(search, page)
+            .then(([movies, moviesCount]) => {
+                setIsLoading(false);
+                setMovies(movies);
+                setMoviesCount(moviesCount);
+            })
+            .catch((error) => addNotification(error.message, 'Error'));
+    }, [search, page, addNotification]);
 
     const movieList =
         movies.length > 0 ? (

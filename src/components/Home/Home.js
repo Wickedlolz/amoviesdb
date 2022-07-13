@@ -7,7 +7,6 @@ import * as imdbService from '../../services/imdb-api';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieCard from '../MovieList/MovieCard';
 import CommingSoonCard from '../MovieList/CommingSoonCard';
-import { AlertMessage } from '../Common/AlertMessage';
 import { Row, Col } from 'react-bootstrap';
 
 function Home() {
