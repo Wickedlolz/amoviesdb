@@ -16,8 +16,6 @@ function Create() {
     const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
 
-    console.log(errors);
-
     const onSubmitCreateHandler = (data) => {
         movieService
             .create({
