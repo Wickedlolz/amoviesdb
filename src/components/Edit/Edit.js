@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { useAuthContext } from '../../contexts/Auth';
 import { NotificationContext } from '../../contexts/Notification';
 
@@ -7,11 +8,17 @@ import * as movieService from '../../services/data';
 
 import styles from './Edit.module.css';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { AlertMessage } from '../Common/AlertMessage';
 
 function Edit() {
     const { movieId } = useParams();
     const [movie, setMovie] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
     const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
     const { user } = useAuthContext();
@@ -30,25 +37,14 @@ function Edit() {
             .catch((error) => addNotification(error.message, 'Error'));
     }, [movieId, user, navigate, addNotification]);
 
-    const onSubmitEditHandler = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const title = formData.get('title').trim();
-        const imageUrl = formData.get('imageUrl').trim();
-        const youtubeUrl = formData.get('youtubeUrl').trim();
-        const description = formData.get('description').trim();
-
-        if (
-            title == '' ||
-            imageUrl == '' ||
-            description == '' ||
-            youtubeUrl == ''
-        ) {
-            return;
-        }
-
+    const onSubmitEditHandler = (data) => {
         movieService
-            .editById(movieId, { title, imageUrl, youtubeUrl, description })
+            .editById(movieId, {
+                title: data.title,
+                imageUrl: data.imageUrl,
+                youtubeUrl: data.youtubeUrl,
+                description: data.description,
+            })
             .then((result) => {
                 addNotification(
                     `${result.title} updated successfully.`,
@@ -82,14 +78,33 @@ function Edit() {
                                 />
                             </div>
                             <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                                <form onSubmit={onSubmitEditHandler}>
+                                <form
+                                    onSubmit={handleSubmit(onSubmitEditHandler)}
+                                >
                                     <div className="form-outline mb-4">
+                                        {errors.title?.type === 'required' && (
+                                            <AlertMessage
+                                                msg={'Title is required'}
+                                            />
+                                        )}
+
+                                        {errors.title?.type === 'maxLength' && (
+                                            <AlertMessage
+                                                msg={
+                                                    'Title must have max 100 characters.'
+                                                }
+                                            />
+                                        )}
                                         <input
                                             type="text"
                                             id="title"
                                             className="form-control form-control-lg"
                                             name="title"
                                             defaultValue={movie.title}
+                                            {...register('title', {
+                                                required: true,
+                                                maxLength: 100,
+                                            })}
                                         />
                                         <label
                                             className="form-label"
@@ -100,12 +115,31 @@ function Edit() {
                                     </div>
 
                                     <div className="form-outline mb-4">
+                                        {errors.imageUrl?.type ===
+                                            'required' && (
+                                            <AlertMessage
+                                                msg={'Image URL is required.'}
+                                            />
+                                        )}
+
+                                        {errors.imageUrl?.type ===
+                                            'pattern' && (
+                                            <AlertMessage
+                                                msg={
+                                                    'Image URL must start with http:// or https://.'
+                                                }
+                                            />
+                                        )}
                                         <input
                                             type="text"
                                             id="imageUrl"
                                             className="form-control form-control-lg"
                                             name="imageUrl"
                                             defaultValue={movie.imageUrl}
+                                            {...register('imageUrl', {
+                                                required: true,
+                                                pattern: /https?:\/\//g,
+                                            })}
                                         />
                                         <label
                                             className="form-label"
@@ -116,12 +150,31 @@ function Edit() {
                                     </div>
 
                                     <div className="form-outline mb-4">
+                                        {errors.youtubeUrl?.type ===
+                                            'required' && (
+                                            <AlertMessage
+                                                msg={'Image URL is required.'}
+                                            />
+                                        )}
+
+                                        {errors.youtubeUrl?.type ===
+                                            'pattern' && (
+                                            <AlertMessage
+                                                msg={
+                                                    'Image URL must start with http/https'
+                                                }
+                                            />
+                                        )}
                                         <input
                                             type="text"
                                             id="youtubeUrl"
                                             className="form-control form-control-lg"
                                             name="youtubeUrl"
                                             defaultValue={movie.youtubeUrl}
+                                            {...register('youtubeUrl', {
+                                                required: true,
+                                                pattern: /https?:\/\//g,
+                                            })}
                                         />
                                         <label
                                             className="form-label"
@@ -132,12 +185,20 @@ function Edit() {
                                     </div>
 
                                     <div className="form-outline mb-4">
+                                        {errors.description && (
+                                            <AlertMessage
+                                                msg={'Description is required.'}
+                                            />
+                                        )}
                                         <textarea
                                             name="description"
                                             id="description"
                                             cols="50"
                                             rows="5"
                                             defaultValue={movie.description}
+                                            {...register('description', {
+                                                required: true,
+                                            })}
                                         ></textarea>
                                         <p
                                             className="form-label"
