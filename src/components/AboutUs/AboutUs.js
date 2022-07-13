@@ -38,16 +38,18 @@ function AboutUs() {
                     <div className="row align-items-center mb-5">
                         <div className="col-lg-6 order-2 order-lg-1">
                             <h2 className="font-weight-light">Contact</h2>
-                            <dl class="row">
-                                <dt class="col-sm-3">
+                            <dl className="row">
+                                <dt className="col-sm-3">
                                     <At /> Email adress:
                                 </dt>
-                                <dd class="col-sm-9">amoviesdb@gmail.com</dd>
+                                <dd className="col-sm-9">
+                                    amoviesdb@gmail.com
+                                </dd>
 
-                                <dt class="col-sm-3">
+                                <dt className="col-sm-3">
                                     <TelephoneFill /> Phone number:
                                 </dt>
-                                <dd class="col-sm-9">
+                                <dd className="col-sm-9">
                                     <p>+XXX-XXXX-XXX</p>
                                 </dd>
                             </dl>
