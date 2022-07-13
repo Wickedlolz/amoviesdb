@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
 import * as imdbService from '../../services/imdb-api';
@@ -6,6 +7,7 @@ import * as imdbService from '../../services/imdb-api';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieCard from '../MovieList/MovieCard';
 import CommingSoonCard from '../MovieList/CommingSoonCard';
+import { AlertMessage } from '../Common/AlertMessage';
 import { Row, Col } from 'react-bootstrap';
 
 function Home() {
@@ -16,18 +18,25 @@ function Home() {
     });
     const [isLoading, setIsLoading] = useState(true);
     const [commingSoonIsLoading, setCommingSoonIsLoading] = useState(true);
+    const { addNotification } = useContext(NotificationContext);
 
     useEffect(() => {
-        movieService.getMostLiked().then((movies) => {
-            setMovies(movies);
-            setIsLoading(false);
-        });
+        movieService
+            .getMostLiked()
+            .then((movies) => {
+                setMovies(movies);
+                setIsLoading(false);
+            })
+            .catch((error) => addNotification(error.message, 'Error'));
 
-        imdbService.getAll().then((moviesResult) => {
-            setCommingSoonMovies(moviesResult);
-            setCommingSoonIsLoading(false);
-        });
-    }, []);
+        imdbService
+            .getAll()
+            .then((moviesResult) => {
+                setCommingSoonMovies(moviesResult);
+                setCommingSoonIsLoading(false);
+            })
+            .catch((error) => addNotification(error.message, 'Error'));
+    }, [addNotification]);
 
     const movieList =
         movies.length > 0 ? (
