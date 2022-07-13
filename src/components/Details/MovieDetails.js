@@ -76,15 +76,7 @@ function MovieDetails() {
             });
     };
 
-    const onSubmitCommentFormHandler = (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const content = formData.get('content').trim();
-
-        if (content == '') {
-            return;
-        }
-
+    const onSubmitCommentFormHandler = (content) => {
         movieService
             .comment(movieId, content)
             .then((result) => {
@@ -93,11 +85,11 @@ function MovieDetails() {
                     comments: [...oldState.comments, result],
                 }));
                 setIsUpdated(true);
-                event.target.reset();
+                // event.target.reset();
             })
             .catch((error) => {
                 addNotification(error.message, 'Error');
-                event.target.reset();
+                // event.target.reset();
             });
     };
 
