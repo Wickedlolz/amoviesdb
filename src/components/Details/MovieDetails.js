@@ -85,11 +85,9 @@ function MovieDetails() {
                     comments: [...oldState.comments, result],
                 }));
                 setIsUpdated(true);
-                // event.target.reset();
             })
             .catch((error) => {
                 addNotification(error.message, 'Error');
-                // event.target.reset();
             });
     };
 

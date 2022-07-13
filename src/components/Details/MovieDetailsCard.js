@@ -28,7 +28,17 @@ function MovieDetailsCard({
                     </p>
                     <p className="card-text">{movie.description}</p>
                     <div className="p-3 card-text">
-                        <ReactPlayer url={movie.youtubeUrl} controls={true} />
+                        <ReactPlayer
+                            url={movie.youtubeUrl}
+                            controls={true}
+                            config={{
+                                youtube: {
+                                    playerVars: {
+                                        origin: 'http://localhost:3000/',
+                                    },
+                                },
+                            }}
+                        />
                     </div>
                     {user && user.id != movie.owner._id ? (
                         <div className="p-3 text-center">
