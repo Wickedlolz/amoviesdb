@@ -31,6 +31,7 @@ function EditProfile() {
 
     const onSubmitEditProfile = (event) => {
         event.preventDefault();
+        setIsLoading(true);
 
         const formData = new FormData(event.target);
         const firstName = formData.get('firstName').trim();
