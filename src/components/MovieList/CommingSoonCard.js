@@ -19,7 +19,7 @@ function CommingSoonCard({ movie }) {
                         Release Date: {movie.releaseState}
                     </span>
                 </Card.Text>
-                <span className="btn btn-outline-primary">
+                <span className="d-inline-block">
                     {' '}
                     IMDB Rating: <StarHalf /> {movie.imDbRating}
                 </span>
