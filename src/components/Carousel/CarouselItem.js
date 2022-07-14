@@ -1,11 +1,10 @@
 import { Card } from 'react-bootstrap';
 import { StarHalf } from 'react-bootstrap-icons';
-import './MovieCard.css';
 
-function CommingSoonCard({ movie }) {
+function CarouselItem({ movie }) {
     return (
         <Card className="h-100">
-            <Card.Img variant="top" src={movie.image} />
+            <Card.Img variant="top" src={movie.image} width="400px" />
             <Card.Body className="text-center">
                 <Card.Title>{movie.fullTitle}</Card.Title>
                 <Card.Text>
@@ -32,4 +31,4 @@ function printStars(stars) {
     return stars.map((s) => s.name).join(', ');
 }
 
-export default CommingSoonCard;
+export default CarouselItem;

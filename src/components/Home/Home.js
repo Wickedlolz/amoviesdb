@@ -6,8 +6,8 @@ import * as imdbService from '../../services/imdb-api';
 
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieCard from '../MovieList/MovieCard';
-import CommingSoonCard from '../MovieList/CommingSoonCard';
 import { Row, Col } from 'react-bootstrap';
+import CarouselList from '../Carousel/CarouselList';
 
 function Home() {
     const [movies, setMovies] = useState([]);
@@ -50,19 +50,6 @@ function Home() {
             <h3 className="p-5 text-center">{movies.errorMessage}</h3>
         );
 
-    const commingSoonMovieList =
-        commingSoonMovies.length > 0 ? (
-            <Row xs={1} md={4} className="g-3">
-                {commingSoonMovies.map((movie) => (
-                    <Col key={movie.id}>
-                        <CommingSoonCard movie={movie} />
-                    </Col>
-                ))}
-            </Row>
-        ) : (
-            <h3 className="p-5 text-center">{movies.errorMessage}</h3>
-        );
-
     return (
         <>
             <div className="p-5 text-center bg-light">
@@ -75,7 +62,11 @@ function Home() {
             <h2 className="text-center p-2">Most popular movies</h2>
             {isLoading ? <LoadingSpinner /> : movieList}
             <h2 className="text-center p-3">In Theathers</h2>
-            {commingSoonIsLoading ? <LoadingSpinner /> : commingSoonMovieList}
+            {commingSoonIsLoading ? (
+                <LoadingSpinner />
+            ) : (
+                <CarouselList movies={commingSoonMovies} />
+            )}
         </>
     );
 }
