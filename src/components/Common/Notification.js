@@ -5,7 +5,7 @@ import { ToastContainer, Toast } from 'react-bootstrap';
 function Notification() {
     const { notification, clearNotification } = useContext(NotificationContext);
 
-    if (notification.show == false) {
+    if (notification.show === false) {
         return;
     }
 

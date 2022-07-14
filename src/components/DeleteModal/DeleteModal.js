@@ -10,12 +10,13 @@ function DeleteModal({
         <Modal
             show={show}
             size="lg"
+            backdrop="static"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
             <Modal.Header onClick={onModalNoClickHandler} closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Delete Movie Title
+                    Delete {title}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
