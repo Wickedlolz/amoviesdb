@@ -3,7 +3,7 @@ import * as request from './api';
 const endpoints = {
     SIGNIN: '/users/login',
     REGISTER: '/users/register',
-    LOGOUT: '/users/logout',
+    SIGN_OUT: '/users/logout',
     GET_USER: (userId) => `/users/${userId}`,
     SET_USER: (userId) => `/users/${userId}`,
 };
@@ -16,8 +16,8 @@ export async function signUp(userData) {
     return await request.post(endpoints.REGISTER, userData);
 }
 
-export async function logout() {
-    return await request.get(endpoints.LOGOUT);
+export async function signOut() {
+    return await request.get(endpoints.SIGN_OUT);
 }
 
 export async function getById(userId) {

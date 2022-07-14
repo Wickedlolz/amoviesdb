@@ -5,23 +5,23 @@ import { AuthContext } from '../../contexts/Auth';
 import { NotificationContext } from '../../contexts/Notification';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
-function Logout() {
-    const { logout } = useContext(AuthContext);
+function SignOut() {
+    const { signOut } = useContext(AuthContext);
     const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         userService
-            .logout()
+            .signOut()
             .then(() => {
-                logout();
+                signOut();
                 addNotification('Successfully logged out.', 'Success');
                 navigate('/');
             })
             .catch((error) => addNotification(error.message, 'Error'));
-    }, [logout, navigate, addNotification]);
+    }, [signOut, navigate, addNotification]);
 
     return <LoadingSpinner />;
 }
 
-export default Logout;
+export default SignOut;

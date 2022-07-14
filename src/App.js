@@ -14,7 +14,7 @@ import Edit from './components/Edit/Edit';
 import NotFound from './components/NotFound/NotFound';
 import Create from './components/Create/Create';
 import Footer from './components/Footer/Footer';
-import Logout from './components/Logout/Logout';
+import SignOut from './components/SignOut/SignOut';
 import Notification from './components/Common/Notification';
 import MyMovies from './components/MyMovies/MyMovies';
 import AboutUs from './components/AboutUs/AboutUs';
@@ -32,7 +32,7 @@ function App() {
                         <Route path="/catalog" element={<Catalog />} />
                         <Route path="/signin" element={<SignIn />} />
                         <Route path="/signup" element={<SignUp />} />
-                        <Route path="/logout" element={<Logout />} />
+                        <Route path="/signout" element={<SignOut />} />
                         <Route path="/profile/:userId" element={<Profile />} />
                         <Route
                             path="/profile/edit/:userId"

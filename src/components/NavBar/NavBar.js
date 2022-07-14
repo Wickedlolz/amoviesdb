@@ -9,6 +9,7 @@ import {
     FormControl,
     Button,
 } from 'react-bootstrap';
+import { BoxArrowDownLeft } from 'react-bootstrap-icons';
 
 function NavBar() {
     const { user } = useContext(AuthContext);
@@ -17,12 +18,17 @@ function NavBar() {
 
     const guestUserNav = (
         <>
-            <Nav.Link to={'/signin'} as={NavLink}>
-                Sign In
-            </Nav.Link>
-            <Nav.Link to={'/signup'} as={NavLink}>
-                Sign Up
-            </Nav.Link>
+            <Navbar.Text>
+                <Nav.Link to={'/signin'} as={NavLink}>
+                    Sign In
+                </Nav.Link>
+            </Navbar.Text>
+
+            <Navbar.Text>
+                <Nav.Link to={'/signup'} as={NavLink}>
+                    Sign Up
+                </Nav.Link>
+            </Navbar.Text>
         </>
     );
 
@@ -39,9 +45,9 @@ function NavBar() {
             <Nav.Link to={'/create'} as={NavLink}>
                 Create
             </Nav.Link>
-            <Nav.Link to={'/logout'} as={NavLink}>
+            {/* <Nav.Link to={'/logout'} as={NavLink}>
                 Logout
-            </Nav.Link>
+            </Nav.Link> */}
         </>
     );
 
@@ -70,19 +76,28 @@ function NavBar() {
                         <Nav.Link to={'/catalog?page=1'} as={NavLink}>
                             Catalog
                         </Nav.Link>
-                        {!user ? guestUserNav : authUserNav}
+                        {user ? authUserNav : null}
                         <Nav.Link to={'/about'} as={NavLink}>
                             About
                         </Nav.Link>
                     </Nav>
                     {user ? (
-                        <Navbar.Text className="p-3">
-                            Signed in as:{' '}
-                            <NavLink to={'/profile/' + user.id}>
-                                {user.firstName} {user.lastName}
-                            </NavLink>
-                        </Navbar.Text>
-                    ) : null}
+                        <>
+                            <Navbar.Text className="p-3">
+                                Signed in as:{' '}
+                                <NavLink to={'/profile/' + user.id}>
+                                    {user.firstName} {user.lastName}
+                                </NavLink>
+                            </Navbar.Text>
+                            <Navbar.Text>
+                                <Nav.Link to={'/signout'} as={NavLink}>
+                                    <BoxArrowDownLeft /> Sign Out
+                                </Nav.Link>
+                            </Navbar.Text>
+                        </>
+                    ) : (
+                        guestUserNav
+                    )}
 
                     {location.pathname === '/catalog' ? (
                         <Form className="d-flex" onSubmit={onSubmtSearch}>
