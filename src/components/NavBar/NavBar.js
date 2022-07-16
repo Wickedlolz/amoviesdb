@@ -54,8 +54,8 @@ function NavBar() {
                 <Navbar.Brand>
                     <img
                         src="/images/clipart88403.png"
-                        width="30"
-                        height="30"
+                        width="25"
+                        height="25"
                         alt="logo"
                     />
                 </Navbar.Brand>

@@ -15,7 +15,7 @@ function SignOut() {
             .signOut()
             .then(() => {
                 signOut();
-                addNotification('Successfully logged out.', 'Success');
+                addNotification('Successfully sign out.', 'Success');
                 navigate('/');
             })
             .catch((error) => addNotification(error.message, 'Error'));
