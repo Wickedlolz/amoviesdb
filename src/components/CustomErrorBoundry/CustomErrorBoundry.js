@@ -24,7 +24,6 @@ class CustomErrorBoundry extends React.Component {
                 <div className="d-flex align-items-center justify-content-center vh-100">
                     <div className="text-center">
                         <p className="fs-3">
-                            {' '}
                             <span className="text-danger">Opps!</span> something
                             went wrong.
                         </p>

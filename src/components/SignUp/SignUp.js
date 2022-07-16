@@ -62,15 +62,13 @@ function SignUp() {
                             <div className="form-outline mb-4">
                                 {errors.firstName?.type === 'required' && (
                                     <AlertMessage
-                                        msg={'First Name is required.'}
+                                        msg={errors.firstName.message}
                                     />
                                 )}
 
                                 {errors.firstName?.type === 'minLength' && (
                                     <AlertMessage
-                                        msg={
-                                            'First Name must be at least 3 characters long.'
-                                        }
+                                        msg={errors.firstName.message}
                                     />
                                 )}
                                 <input
@@ -79,8 +77,15 @@ function SignUp() {
                                     className="form-control form-control-lg"
                                     name="firstName"
                                     {...register('firstName', {
-                                        required: true,
-                                        minLength: 3,
+                                        required: {
+                                            value: true,
+                                            message: 'First Name is required.',
+                                        },
+                                        minLength: {
+                                            value: 3,
+                                            message:
+                                                'First Name must be at least 3 characters long.',
+                                        },
                                     })}
                                 />
                                 <label
@@ -93,15 +98,13 @@ function SignUp() {
                             <div className="form-outline mb-4">
                                 {errors.lastName?.type === 'required' && (
                                     <AlertMessage
-                                        msg={'Last Name is required.'}
+                                        msg={errors.lastName.message}
                                     />
                                 )}
 
                                 {errors.lastName?.type === 'minLength' && (
                                     <AlertMessage
-                                        msg={
-                                            'Last Name must be at least 3 characters long.'
-                                        }
+                                        msg={errors.lastName.message}
                                     />
                                 )}
                                 <input
@@ -110,8 +113,15 @@ function SignUp() {
                                     className="form-control form-control-lg"
                                     name="lastName"
                                     {...register('lastName', {
-                                        required: true,
-                                        minLength: 3,
+                                        required: {
+                                            value: true,
+                                            message: 'Last Name is required.',
+                                        },
+                                        minLength: {
+                                            value: 3,
+                                            message:
+                                                'Last Name must be at least 3 characters long.',
+                                        },
                                     })}
                                 />
                                 <label
@@ -124,15 +134,13 @@ function SignUp() {
                             <div className="form-outline mb-4">
                                 {errors.username?.type === 'required' && (
                                     <AlertMessage
-                                        msg={'Username is required.'}
+                                        msg={errors.username.message}
                                     />
                                 )}
 
                                 {errors.username?.type === 'pattern' && (
                                     <AlertMessage
-                                        msg={
-                                            'Username must contains only letters and digits and must be at least 3 characters long.'
-                                        }
+                                        msg={errors.username.message}
                                     />
                                 )}
                                 <input
@@ -141,8 +149,15 @@ function SignUp() {
                                     className="form-control form-control-lg"
                                     name="username"
                                     {...register('username', {
-                                        required: true,
-                                        pattern: /^[A-Za-z0-9]{3,}$/,
+                                        required: {
+                                            value: true,
+                                            message: 'Username is required.',
+                                        },
+                                        pattern: {
+                                            value: /^[A-Za-z0-9]{3,}$/,
+                                            message:
+                                                'Username must contains only letters and digits and must be at least 3 characters long.',
+                                        },
                                     })}
                                 />
                                 <label
@@ -154,15 +169,11 @@ function SignUp() {
                             </div>
                             <div className="form-outline mb-4">
                                 {errors.email?.type === 'required' && (
-                                    <AlertMessage msg={'Email is required.'} />
+                                    <AlertMessage msg={errors.email.message} />
                                 )}
 
                                 {errors.email?.type === 'pattern' && (
-                                    <AlertMessage
-                                        msg={
-                                            'Invalid email. Email format must be (example@yahoo.com)'
-                                        }
-                                    />
+                                    <AlertMessage msg={errors.email.message} />
                                 )}
                                 <input
                                     type="email"
@@ -170,9 +181,15 @@ function SignUp() {
                                     className="form-control form-control-lg"
                                     name="email"
                                     {...register('email', {
-                                        required: true,
-                                        pattern:
-                                            /^[A-Za-z0-9]{2,}@[a-z]+\.[a-z]{2,3}$/,
+                                        required: {
+                                            value: true,
+                                            message: 'Email is required.',
+                                        },
+                                        pattern: {
+                                            value: /^[A-Za-z0-9]{2,}@[a-z]+\.[a-z]{2,3}$/,
+                                            message:
+                                                'Invalid email. Email format must be (example@yahoo.com)',
+                                        },
                                     })}
                                 />
                                 <label className="form-label" htmlFor="email">
@@ -182,15 +199,13 @@ function SignUp() {
                             <div className="form-outline mb-4">
                                 {errors.password?.type === 'required' && (
                                     <AlertMessage
-                                        msg={'Password is required.'}
+                                        msg={errors.password.message}
                                     />
                                 )}
 
                                 {errors.password?.type === 'minLength' && (
                                     <AlertMessage
-                                        msg={
-                                            'Password must be at least 3 characters long.'
-                                        }
+                                        msg={errors.password.message}
                                     />
                                 )}
                                 <input
@@ -199,8 +214,15 @@ function SignUp() {
                                     name="password"
                                     className="form-control form-control-lg"
                                     {...register('password', {
-                                        required: true,
-                                        minLength: 3,
+                                        required: {
+                                            value: true,
+                                            message: 'Password is required.',
+                                        },
+                                        minLength: {
+                                            value: 3,
+                                            message:
+                                                'Password must be at least 3 characters long.',
+                                        },
                                     })}
                                 />
                                 <label
@@ -213,13 +235,13 @@ function SignUp() {
                             <div className="form-outline mb-4">
                                 {errors.rePassword?.type === 'required' && (
                                     <AlertMessage
-                                        msg={'Re-Password is required.'}
+                                        msg={errors.rePassword.message}
                                     />
                                 )}
 
                                 {errors.rePassword?.type === 'validate' && (
                                     <AlertMessage
-                                        msg={'Passwords not match!'}
+                                        msg={errors.rePassword.message}
                                     />
                                 )}
                                 <input
@@ -228,10 +250,13 @@ function SignUp() {
                                     name="rePassword"
                                     className="form-control form-control-lg"
                                     {...register('rePassword', {
-                                        required: true,
+                                        required: {
+                                            value: true,
+                                            message: 'Re-Password is required.',
+                                        },
                                         validate: (value) => {
                                             if (watch('password') !== value) {
-                                                return 'Passwords not identical.';
+                                                return 'Passwords not match!';
                                             }
                                         },
                                     })}
@@ -250,7 +275,11 @@ function SignUp() {
                                     name="acceptTerms"
                                     id="acceptTerms"
                                     {...register('acceptTerms', {
-                                        required: true,
+                                        required: {
+                                            value: true,
+                                            message:
+                                                'Terms of Conditions is not accepted.',
+                                        },
                                     })}
                                 />
                                 <label
