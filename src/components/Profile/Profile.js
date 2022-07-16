@@ -54,7 +54,12 @@ function Profile() {
                                 </Link>
                             </div>
                             <div className="px-2 rounded mt-4 date ">
-                                <span className="join">Joined May,2021</span>
+                                <span className="join">
+                                    Last updated:{' '}
+                                    {new Date(
+                                        user.updatedAt
+                                    ).toLocaleDateString()}
+                                </span>
                             </div>
                             <div className="d-flex mt-2">
                                 <Link

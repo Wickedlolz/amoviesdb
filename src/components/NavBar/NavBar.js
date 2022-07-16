@@ -45,9 +45,6 @@ function NavBar() {
             <Nav.Link to={'/create'} as={NavLink}>
                 Create
             </Nav.Link>
-            {/* <Nav.Link to={'/logout'} as={NavLink}>
-                Logout
-            </Nav.Link> */}
         </>
     );
 

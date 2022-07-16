@@ -4,7 +4,6 @@ import 'react-multi-carousel/lib/styles.css';
 import CarouselItem from './CarouselItem';
 
 function CarouselList({ movies }) {
-    console.log(movies);
     return (
         <Carousel
             additionalTransfrom={0}
@@ -60,7 +59,7 @@ function CarouselList({ movies }) {
             swipeable
         >
             {movies.map((movie) => (
-                <CarouselItem movie={movie} />
+                <CarouselItem key={movie.id} movie={movie} />
             ))}
         </Carousel>
     );
