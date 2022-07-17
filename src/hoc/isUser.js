@@ -1,7 +1,7 @@
 import { useAuthContext } from '../contexts/Auth';
 import { Navigate } from 'react-router-dom';
 
-export const isAuth = (Component) => {
+export const isUser = (Component) => {
     const WrappedComponent = (props) => {
         const { user } = useAuthContext();
 

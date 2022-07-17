@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { isAuth } from '../../hoc/isAuth';
+import { isUser } from '../../hoc/isUser';
 import { NotificationContext } from '../../contexts/Notification';
 import * as userService from '../../services/user';
 
@@ -77,4 +77,4 @@ function Profile() {
     );
 }
 
-export default isAuth(Profile);
+export default isUser(Profile);
