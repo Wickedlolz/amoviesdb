@@ -1,28 +1,11 @@
-import {
-    createContext,
-    useContext,
-    useState,
-    useEffect,
-    useCallback,
-} from 'react';
-import { getUserData, removeUserData } from '../utils/utils';
+import { createContext, useContext } from 'react';
+import { removeUserData } from '../utils/utils';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        id: '',
-        accessToken: '',
-    });
-
-    const getLocalStorageData = useCallback(() => getUserData(), []);
-
-    useEffect(() => {
-        setUser(getLocalStorageData);
-    }, [getLocalStorageData]);
+    const [user, setUser] = useLocalStorage('user', null);
 
     const addUser = (user) => setUser(user);
     const updateUser = (userData) => {

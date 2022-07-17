@@ -16,9 +16,12 @@ function SignOut() {
             .then(() => {
                 signOut();
                 addNotification('Successfully sign out.', 'Success');
-                navigate('/');
+                navigate('/', { replace: true });
             })
-            .catch((error) => addNotification(error.message, 'Error'));
+            .catch((error) => {
+                addNotification(error.message, 'Error');
+                navigate('/', { replace: true });
+            });
     }, [signOut, navigate, addNotification]);
 
     return <LoadingSpinner />;
