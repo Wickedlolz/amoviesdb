@@ -1,6 +1,6 @@
 import { getUserData } from '../utils/utils';
 
-const host = 'http://localhost:3030/api';
+const host = 'https://amoviesdb-rest-api.herokuapp.com/api';
 
 async function request(method, url, data, imageUpload = false) {
     const options = {
