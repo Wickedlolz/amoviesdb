@@ -34,6 +34,11 @@ function Create() {
             .catch((error) => addNotification(error.message, 'Error'));
     };
 
+    const onCancelClick = (event) => {
+        event.preventDefault();
+        navigate('/');
+    };
+
     return (
         <section>
             <div className="container py-5 h-100">
@@ -163,12 +168,12 @@ function Create() {
                                 </label>
                             </div>
 
-                            <Link
-                                to={'/'}
+                            <button
+                                onClick={onCancelClick}
                                 className="btn btn-secondary btn-lg btn-block m-2"
                             >
                                 Cancel
-                            </Link>
+                            </button>
 
                             <button
                                 type="submit"
