@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
-import * as imdbService from '../../services/imdb-api';
+import * as tmdbService from '../../services/tmdb-api';
 
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieCard from '../MovieList/MovieCard';
@@ -11,12 +11,9 @@ import CarouselList from '../Carousel/CarouselList';
 
 function Home() {
     const [movies, setMovies] = useState([]);
-    const [commingSoonMovies, setCommingSoonMovies] = useState({
-        items: [],
-        errorMessage: '',
-    });
+    const [tmdbMovies, setTmdbMovies] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const [commingSoonIsLoading, setCommingSoonIsLoading] = useState(true);
+    const [tmdbMoviesIsLoading, settmdbMoviesIsLoading] = useState(true);
     const { addNotification } = useContext(NotificationContext);
 
     useEffect(() => {
@@ -28,11 +25,11 @@ function Home() {
             })
             .catch((error) => addNotification(error.message, 'Error'));
 
-        imdbService
+        tmdbService
             .getAll()
-            .then((moviesResult) => {
-                setCommingSoonMovies(moviesResult);
-                setCommingSoonIsLoading(false);
+            .then(([upcoming, topRated, popular, nowPlaying]) => {
+                setTmdbMovies({ upcoming, topRated, popular, nowPlaying });
+                settmdbMoviesIsLoading(false);
             })
             .catch((error) => addNotification(error.message, 'Error'));
     }, [addNotification]);
@@ -59,13 +56,31 @@ function Home() {
                 </h4>
                 <p>Fell free to join and add your best movies.</p>
             </div>
-            <h2 className="text-center p-2">Most popular movies</h2>
+            <h2 className="text-center p-2">Most liked movies</h2>
             {isLoading ? <LoadingSpinner /> : movieList}
-            <h2 className="text-center p-3">In Theathers</h2>
-            {commingSoonIsLoading ? (
+            <h2 className="text-center p-3">Upcoming Movies</h2>
+            {tmdbMoviesIsLoading ? (
                 <LoadingSpinner />
             ) : (
-                <CarouselList movies={commingSoonMovies} />
+                <CarouselList movies={tmdbMovies.upcoming.results} />
+            )}
+            <h2 className="text-center p-3">Popular Movies</h2>
+            {tmdbMoviesIsLoading ? (
+                <LoadingSpinner />
+            ) : (
+                <CarouselList movies={tmdbMovies.popular.results} />
+            )}
+            <h2 className="text-center p-3">Top Rated Movies</h2>
+            {tmdbMoviesIsLoading ? (
+                <LoadingSpinner />
+            ) : (
+                <CarouselList movies={tmdbMovies.topRated.results} />
+            )}
+            <h2 className="text-center p-3">Now Playing Movies</h2>
+            {tmdbMoviesIsLoading ? (
+                <LoadingSpinner />
+            ) : (
+                <CarouselList movies={tmdbMovies.nowPlaying.results} />
             )}
         </>
     );

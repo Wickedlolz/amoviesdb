@@ -4,31 +4,27 @@ import { StarHalf } from 'react-bootstrap-icons';
 function CarouselItem({ movie }) {
     return (
         <Card className="h-100">
-            <Card.Img variant="top" src={movie.image} width="400px" />
+            <Card.Img
+                variant="top"
+                src={
+                    'https://image.tmdb.org/t/p/w500' + movie.backdrop_path ||
+                    movie.poster_path
+                }
+            />
             <Card.Body className="text-center">
-                <Card.Title>{movie.fullTitle}</Card.Title>
+                <Card.Title>{movie.title}</Card.Title>
                 <Card.Text>
-                    <span className="d-inline-block">
-                        Stars: {printStars(movie.starList)}
-                    </span>
-                    <span className="d-inline-block">
-                        Genre: {movie.genreList.map((l) => l.key).join(', ')}
-                    </span>
+                    <span className="d-inline-block">{movie.overview}</span>
                     <span className="text-muted d-inline-block">
-                        Release Date: {movie.releaseState}
+                        Release Date: {movie.release_date}
                     </span>
                 </Card.Text>
                 <span className="d-inline-block">
-                    {' '}
-                    IMDB Rating: <StarHalf /> {movie.imDbRating}
+                    <StarHalf /> {movie.vote_average}
                 </span>
             </Card.Body>
         </Card>
     );
-}
-
-function printStars(stars) {
-    return stars.map((s) => s.name).join(', ');
 }
 
 export default CarouselItem;
