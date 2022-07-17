@@ -1,5 +1,4 @@
 import { createContext, useContext } from 'react';
-import { removeUserData } from '../utils/utils';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 export const AuthContext = createContext();
@@ -19,7 +18,6 @@ export const AuthProvider = ({ children }) => {
     };
 
     const signOut = () => {
-        removeUserData();
         setUser(null);
     };
 
