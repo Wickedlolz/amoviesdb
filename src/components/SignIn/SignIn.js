@@ -4,7 +4,6 @@ import { NotificationContext } from '../../contexts/Notification';
 import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../services/user';
 import { useForm } from 'react-hook-form';
-import { setUserData } from '../../utils/utils';
 import { AlertMessage } from '../Common/AlertMessage';
 
 function SignIn() {
@@ -22,7 +21,6 @@ function SignIn() {
             .signIn(data.email, data.password)
             .then((userData) => {
                 addUser(userData);
-                setUserData(userData);
                 navigate('/');
             })
             .catch((error) => {
