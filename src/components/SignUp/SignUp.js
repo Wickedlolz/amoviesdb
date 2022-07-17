@@ -8,6 +8,7 @@ import * as userService from '../../services/user';
 import TermsAndConditions from '../TermsAndConditions/TermsAndConditions';
 import styles from './SignUp.module.css';
 import { AlertMessage } from '../Common/AlertMessage';
+import { isGuest } from '../../hoc/isGuest';
 
 function SignUp() {
     const { addUser } = useContext(AuthContext);
@@ -323,4 +324,4 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default isGuest(SignUp);
