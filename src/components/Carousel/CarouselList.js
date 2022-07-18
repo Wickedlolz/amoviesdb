@@ -1,9 +1,26 @@
+import { useState, useEffect, useContext } from 'react';
+import { request } from '../../services/tmdb-api';
+import { NotificationContext } from '../../contexts/Notification';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 import CarouselItem from './CarouselItem';
+import LoadingSpinner from '../Common/LoadingSpinner';
 
-function CarouselList({ movies }) {
+function CarouselList({ fetchUrl }) {
+    const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const { addNotification } = useContext(NotificationContext);
+
+    useEffect(() => {
+        request(fetchUrl)
+            .then((result) => {
+                setMovies(result);
+                setIsLoading(false);
+            })
+            .catch((error) => addNotification(error.message, 'Error'));
+    }, [fetchUrl, addNotification]);
+
     return (
         <Carousel
             additionalTransfrom={0}
@@ -58,9 +75,13 @@ function CarouselList({ movies }) {
             slidesToSlide={1}
             swipeable
         >
-            {movies.map((movie) => (
-                <CarouselItem key={movie.id} movie={movie} />
-            ))}
+            {isLoading ? (
+                <LoadingSpinner />
+            ) : (
+                movies.map((movie) => (
+                    <CarouselItem key={movie.id} movie={movie} />
+                ))
+            )}
         </Carousel>
     );
 }

@@ -11,14 +11,7 @@ import CarouselList from '../Carousel/CarouselList';
 
 function Home() {
     const [movies, setMovies] = useState([]);
-    const [tmdbMovies, setTmdbMovies] = useState({
-        nowPlaying: { results: [] },
-        popular: { results: [] },
-        topRated: { results: [] },
-        upcoming: { results: [] },
-    });
     const [isLoading, setIsLoading] = useState(true);
-    const [tmdbMoviesIsLoading, settmdbMoviesIsLoading] = useState(true);
     const { addNotification } = useContext(NotificationContext);
 
     useEffect(() => {
@@ -27,14 +20,6 @@ function Home() {
             .then((movies) => {
                 setMovies(movies);
                 setIsLoading(false);
-            })
-            .catch((error) => addNotification(error.message, 'Error'));
-
-        tmdbService
-            .getAll()
-            .then(([upcoming, topRated, popular, nowPlaying]) => {
-                setTmdbMovies({ upcoming, topRated, popular, nowPlaying });
-                settmdbMoviesIsLoading(false);
             })
             .catch((error) => addNotification(error.message, 'Error'));
     }, [addNotification]);
@@ -52,19 +37,6 @@ function Home() {
             <h3 className="p-5 text-center">{movies.errorMessage}</h3>
         );
 
-    const carouselCategories = (
-        <>
-            <h2 className="text-center p-3">Upcoming Movies</h2>
-            <CarouselList movies={tmdbMovies.upcoming.results} />
-            <h2 className="text-center p-3">Popular Movies</h2>
-            <CarouselList movies={tmdbMovies.popular.results} />
-            <h2 className="text-center p-3">Top Rated Movies</h2>
-            <CarouselList movies={tmdbMovies.topRated.results} />
-            <h2 className="text-center p-3">Now Playing Movies</h2>
-            <CarouselList movies={tmdbMovies.nowPlaying.results} />
-        </>
-    );
-
     return (
         <>
             <div className="p-5 text-center bg-light">
@@ -76,7 +48,14 @@ function Home() {
             </div>
             <h2 className="text-center p-2">Most liked movies</h2>
             {isLoading ? <LoadingSpinner /> : movieList}
-            {tmdbMoviesIsLoading ? <LoadingSpinner /> : carouselCategories}
+            <h2 className="text-center p-3">Upcoming Movies</h2>
+            <CarouselList fetchUrl={tmdbService.endpoints.UPCOMING} />
+            <h2 className="text-center p-3">Popular Movies</h2>
+            <CarouselList fetchUrl={tmdbService.endpoints.POPULAR} />
+            <h2 className="text-center p-3">Top Rated Movies</h2>
+            <CarouselList fetchUrl={tmdbService.endpoints.TOP_RATED} />
+            <h2 className="text-center p-3">Now Playing Movies</h2>
+            <CarouselList fetchUrl={tmdbService.endpoints.NOW_PLAYING} />
         </>
     );
 }
