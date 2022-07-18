@@ -5,7 +5,7 @@ import { NotificationContext } from '../../contexts/Notification';
 import * as movieService from '../../services/data';
 
 import { Row } from 'react-bootstrap';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../Common/LoadingSpinner';
 import MovieList from '../MovieList/MovieList';
 import Pagination from '../Pagination/Pagination';
 

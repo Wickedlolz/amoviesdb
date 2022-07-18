@@ -11,7 +11,7 @@ import SignUp from './components/SignUp/SignUp';
 import Profile from './components/Profile/Profile';
 import EditProfile from './components/EditProfile/EditProfile';
 import Edit from './components/Edit/Edit';
-import NotFound from './components/NotFound/NotFound';
+import NotFound from './components/Common/NotFound';
 import Create from './components/Create/Create';
 import Footer from './components/Footer/Footer';
 import SignOut from './components/SignOut/SignOut';

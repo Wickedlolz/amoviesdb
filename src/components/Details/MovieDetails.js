@@ -8,7 +8,7 @@ import * as movieService from '../../services/data';
 import CommentForm from '../Comment/CommentForm/CommentForm';
 import CommentList from '../Comment/CommentList/CommentList';
 import './MovieDetails.css';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../Common/LoadingSpinner';
 import MovieDetailsCard from './MovieDetailsCard';
 import DeleteModal from '../DeleteModal/DeleteModal';
 

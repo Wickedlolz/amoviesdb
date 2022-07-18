@@ -7,7 +7,7 @@ import { NotificationContext } from '../../contexts/Notification';
 import * as movieService from '../../services/data';
 
 import styles from './Edit.module.css';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../Common/LoadingSpinner';
 import { AlertMessage } from '../Common/AlertMessage';
 
 function Edit() {

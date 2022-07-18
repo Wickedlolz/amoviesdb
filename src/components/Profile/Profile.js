@@ -4,7 +4,7 @@ import { isUser } from '../../hoc/isUser';
 import { NotificationContext } from '../../contexts/Notification';
 import * as userService from '../../services/user';
 
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../Common/LoadingSpinner';
 
 function Profile() {
     const { userId } = useParams();

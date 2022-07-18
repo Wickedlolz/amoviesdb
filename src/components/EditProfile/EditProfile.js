@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import * as userService from '../../services/user';
 import { AuthContext } from '../../contexts/Auth';
 import { NotificationContext } from '../../contexts/Notification';
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../Common/LoadingSpinner';
 import { AlertMessage } from '../Common/AlertMessage';
 import { PersonLinesFill } from 'react-bootstrap-icons';
 

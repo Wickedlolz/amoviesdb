@@ -4,7 +4,7 @@ import { NotificationContext } from '../../contexts/Notification';
 import * as movieService from '../../services/data';
 import * as tmdbService from '../../services/tmdb-api';
 
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import LoadingSpinner from '../Common/LoadingSpinner';
 import MovieCard from '../MovieList/MovieCard';
 import { Row, Col } from 'react-bootstrap';
 import CarouselList from '../Carousel/CarouselList';
@@ -38,7 +38,6 @@ function Home() {
             })
             .catch((error) => addNotification(error.message, 'Error'));
     }, [addNotification]);
-    console.log(tmdbMovies);
 
     const movieList =
         movies.length > 0 ? (
