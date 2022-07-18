@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
 
-function Pagination({ moviesCount, page }) {
+function Pagination({ moviesCount, page, search }) {
     const pageSize = page * 8;
+
+    const query = search ? `?search=${search}&page=` : `?page=`;
 
     return (
         <nav aria-label="Page navigation example" className="p-3">
             <ul className="pagination justify-content-center">
                 <li className={page === 1 ? 'page-item disabled' : 'page-item'}>
                     <Link
-                        to={'/catalog?page=' + (page - 1)}
+                        to={'/catalog' + query + (page - 1)}
                         className={
                             page === 1 ? 'page-link disabled' : 'page-link'
                         }
@@ -23,16 +25,6 @@ function Pagination({ moviesCount, page }) {
                         {moviesCount} results
                     </p>
                 </li>
-                {/* <li className="page-item">
-                    <a className="page-link" href="#/">
-                        2
-                    </a>
-                </li>
-                <li className="page-item">
-                    <a className="page-link" href="#/">
-                        3
-                    </a>
-                </li> */}
                 <li
                     className={
                         pageSize >= moviesCount
@@ -41,7 +33,7 @@ function Pagination({ moviesCount, page }) {
                     }
                 >
                     <Link
-                        to={'/catalog?page=' + (page + 1)}
+                        to={`/catalog${query}${page + 1}`}
                         className="page-link"
                     >
                         Next

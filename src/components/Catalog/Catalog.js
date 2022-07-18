@@ -41,7 +41,7 @@ function Catalog() {
     return (
         <>
             {isLoading ? <LoadingSpinner /> : movieList}
-            <Pagination moviesCount={moviesCount} page={page} />
+            <Pagination moviesCount={moviesCount} page={page} search={search} />
         </>
     );
 }
