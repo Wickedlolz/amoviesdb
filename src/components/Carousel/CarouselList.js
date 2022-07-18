@@ -13,7 +13,7 @@ function CarouselList({ movies }) {
             className=""
             containerClass="container-with-dots"
             dotListClass=""
-            draggable={true}
+            draggable
             focusOnSelect={false}
             infinite
             itemClass=""
