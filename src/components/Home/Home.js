@@ -11,7 +11,12 @@ import CarouselList from '../Carousel/CarouselList';
 
 function Home() {
     const [movies, setMovies] = useState([]);
-    const [tmdbMovies, setTmdbMovies] = useState({});
+    const [tmdbMovies, setTmdbMovies] = useState({
+        nowPlaying: { results: [] },
+        popular: { results: [] },
+        topRated: { results: [] },
+        upcoming: { results: [] },
+    });
     const [isLoading, setIsLoading] = useState(true);
     const [tmdbMoviesIsLoading, settmdbMoviesIsLoading] = useState(true);
     const { addNotification } = useContext(NotificationContext);
@@ -33,6 +38,7 @@ function Home() {
             })
             .catch((error) => addNotification(error.message, 'Error'));
     }, [addNotification]);
+    console.log(tmdbMovies);
 
     const movieList =
         movies.length > 0 ? (
@@ -47,6 +53,19 @@ function Home() {
             <h3 className="p-5 text-center">{movies.errorMessage}</h3>
         );
 
+    const carouselCategories = (
+        <>
+            <h2 className="text-center p-3">Upcoming Movies</h2>
+            <CarouselList movies={tmdbMovies.upcoming.results} />
+            <h2 className="text-center p-3">Popular Movies</h2>
+            <CarouselList movies={tmdbMovies.popular.results} />
+            <h2 className="text-center p-3">Top Rated Movies</h2>
+            <CarouselList movies={tmdbMovies.topRated.results} />
+            <h2 className="text-center p-3">Now Playing Movies</h2>
+            <CarouselList movies={tmdbMovies.nowPlaying.results} />
+        </>
+    );
+
     return (
         <>
             <div className="p-5 text-center bg-light">
@@ -58,30 +77,7 @@ function Home() {
             </div>
             <h2 className="text-center p-2">Most liked movies</h2>
             {isLoading ? <LoadingSpinner /> : movieList}
-            <h2 className="text-center p-3">Upcoming Movies</h2>
-            {tmdbMoviesIsLoading ? (
-                <LoadingSpinner />
-            ) : (
-                <CarouselList movies={tmdbMovies.upcoming.results} />
-            )}
-            <h2 className="text-center p-3">Popular Movies</h2>
-            {tmdbMoviesIsLoading ? (
-                <LoadingSpinner />
-            ) : (
-                <CarouselList movies={tmdbMovies.popular.results} />
-            )}
-            <h2 className="text-center p-3">Top Rated Movies</h2>
-            {tmdbMoviesIsLoading ? (
-                <LoadingSpinner />
-            ) : (
-                <CarouselList movies={tmdbMovies.topRated.results} />
-            )}
-            <h2 className="text-center p-3">Now Playing Movies</h2>
-            {tmdbMoviesIsLoading ? (
-                <LoadingSpinner />
-            ) : (
-                <CarouselList movies={tmdbMovies.nowPlaying.results} />
-            )}
+            {tmdbMoviesIsLoading ? <LoadingSpinner /> : carouselCategories}
         </>
     );
 }
