@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
-import * as tmdbService from '../../services/tmdb-api';
+import { endpoints } from '../../services/tmdb-api';
 
 import LoadingSpinner from '../Common/LoadingSpinner';
 import MovieCard from '../MovieList/MovieCard';
@@ -34,7 +34,7 @@ function Home() {
                 ))}
             </Row>
         ) : (
-            <h3 className="p-5 text-center">{movies.errorMessage}</h3>
+            <h3 className="p-5 text-center">No movies in database.</h3>
         );
 
     return (
@@ -49,13 +49,13 @@ function Home() {
             <h2 className="text-center p-2">Most liked movies</h2>
             {isLoading ? <LoadingSpinner /> : movieList}
             <h2 className="text-center p-3">Upcoming Movies</h2>
-            <CarouselList fetchUrl={tmdbService.endpoints.UPCOMING} />
+            <CarouselList fetchUrl={endpoints.UPCOMING} />
             <h2 className="text-center p-3">Popular Movies</h2>
-            <CarouselList fetchUrl={tmdbService.endpoints.POPULAR} />
+            <CarouselList fetchUrl={endpoints.POPULAR} />
             <h2 className="text-center p-3">Top Rated Movies</h2>
-            <CarouselList fetchUrl={tmdbService.endpoints.TOP_RATED} />
+            <CarouselList fetchUrl={endpoints.TOP_RATED} />
             <h2 className="text-center p-3">Now Playing Movies</h2>
-            <CarouselList fetchUrl={tmdbService.endpoints.NOW_PLAYING} />
+            <CarouselList fetchUrl={endpoints.NOW_PLAYING} />
         </>
     );
 }
