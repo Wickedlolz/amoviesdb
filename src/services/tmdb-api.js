@@ -6,9 +6,11 @@ export const endpoints = {
     TOP_RATED: `/top_rated?api_key=${API_KEY}&language=en-US&page=2`,
     POPULAR: `/popular?api_key=${API_KEY}&language=en-US&page=2`,
     NOW_PLAYING: `/now_playing?api_key=${API_KEY}&language=en-US&page=1`,
+    GET_DETAILS_BY_ID: (movieId) =>
+        `/${movieId}?api_key=${API_KEY}&language=en-US`,
 };
 
-export async function request(url) {
+async function request(url) {
     const response = await fetch(baseUrl + url);
 
     if (response.ok === false) {
@@ -17,5 +19,15 @@ export async function request(url) {
 
     const result = await response.json();
 
-    return result.results;
+    return result;
+}
+
+export async function getAll(url) {
+    const response = await request(url);
+
+    return response.results;
+}
+
+export async function getById(movieId) {
+    return await request(endpoints.GET_DETAILS_BY_ID(movieId));
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { request } from '../../services/tmdb-api';
+import { getAll } from '../../services/tmdb-api';
 import { NotificationContext } from '../../contexts/Notification';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -13,7 +13,7 @@ function CarouselList({ fetchUrl }) {
     const { addNotification } = useContext(NotificationContext);
 
     useEffect(() => {
-        request(fetchUrl)
+        getAll(fetchUrl)
             .then((result) => {
                 setMovies(result);
                 setIsLoading(false);
