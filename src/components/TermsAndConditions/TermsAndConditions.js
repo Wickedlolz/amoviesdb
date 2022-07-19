@@ -28,8 +28,8 @@ function TermsAndConditions({ show, onTermsClose }) {
                 <p>
                     These Terms of Service (“Terms”, “Terms of Service”) govern
                     your use of our website located at{' '}
-                    <b>https://emoviesdb-web-app.com</b> (together or
-                    individually “Service”) operated by <b>EMoviesDB LLC</b>.
+                    <b>https://amoviesdb.web.app/</b> (together or individually
+                    “Service”) operated by <b>EMoviesDB LLC</b>.
                 </p>
                 <p>
                     Our Privacy Policy also governs your use of our Service and
@@ -576,7 +576,7 @@ function TermsAndConditions({ show, onTermsClose }) {
                     <Link to="https://policymaker.io/terms-and-conditions/">
                         Terms of Service
                     </Link>{' '}
-                    were created for <b>https://emoviesdb-web-app.com</b> by{' '}
+                    were created for <b>https://amoviesdb.web.app/</b> by{' '}
                     <Link to="https://policymaker.io">PolicyMaker.io</Link> on
                     2022-07-01.
                 </p>
