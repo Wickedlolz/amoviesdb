@@ -8,6 +8,7 @@ import LoadingSpinner from '../Common/LoadingSpinner';
 import MovieCard from '../MovieList/MovieCard';
 import { Row, Col } from 'react-bootstrap';
 import CarouselList from '../Carousel/CarouselList';
+import './Home.css';
 
 function Home() {
     const [movies, setMovies] = useState([]);
@@ -39,12 +40,21 @@ function Home() {
 
     return (
         <>
-            <div className="p-5 text-center bg-light">
-                <h1 className="mb-3">Welcome to AMoviesDB</h1>
-                <h4 className="mb-3">
-                    Here you can find all newest and most popular movies.
-                </h4>
-                <p>Fell free to join and add your best movies.</p>
+            <div className="p-5 text-center bg-image jumbotron-image">
+                <div className="mask jumbotron-mask">
+                    <div className="d-flex justify-content-center align-items-center h-100">
+                        <div className="text-white">
+                            <h1 className="mb-3">Welcome to AMoviesDB</h1>
+                            <h4 className="mb-3">
+                                Here you can find all newest and most popular
+                                movies.
+                            </h4>
+                            <h4 className="mb-3">
+                                Fell free to join and add your best movies.
+                            </h4>
+                        </div>
+                    </div>
+                </div>
             </div>
             <h2 className="text-center p-2">Most liked movies</h2>
             {isLoading ? <LoadingSpinner /> : movieList}
