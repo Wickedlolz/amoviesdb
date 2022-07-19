@@ -1,8 +1,9 @@
 import LoadingSpinner from '../Common/LoadingSpinner';
 import { Modal, Button } from 'react-bootstrap';
 import { StarHalf } from 'react-bootstrap-icons';
+import ReactPlayer from 'react-player/youtube';
 
-function DetailsModal({ show, onModalCloseClick, movie, isLoading }) {
+function DetailsModal({ show, onModalCloseClick, movie, isLoading, videos }) {
     return (
         <Modal
             show={show}
@@ -22,6 +23,10 @@ function DetailsModal({ show, onModalCloseClick, movie, isLoading }) {
                     </Modal.Header>
                     <Modal.Body>
                         <p>{movie.overview}</p>
+                        <ReactPlayer
+                            url={`https://www.youtube.com/watch?v=${videos[0].key}`}
+                            controls={true}
+                        />
                         <p>
                             Genres:{' '}
                             {movie.genres.map((ganre) => ganre.name).join(', ')}

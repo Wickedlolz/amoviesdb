@@ -8,6 +8,8 @@ export const endpoints = {
     NOW_PLAYING: `/now_playing?api_key=${API_KEY}&language=en-US&page=1`,
     GET_DETAILS_BY_ID: (movieId) =>
         `/${movieId}?api_key=${API_KEY}&language=en-US`,
+    GET_VIDEOS_BY_ID: (movieId) =>
+        `/${movieId}/videos?api_key=${API_KEY}&language=en-US`,
 };
 
 async function request(url) {
@@ -29,5 +31,8 @@ export async function getAll(url) {
 }
 
 export async function getById(movieId) {
-    return await request(endpoints.GET_DETAILS_BY_ID(movieId));
+    return Promise.all([
+        request(endpoints.GET_DETAILS_BY_ID(movieId)),
+        request(endpoints.GET_VIDEOS_BY_ID(movieId)),
+    ]);
 }
