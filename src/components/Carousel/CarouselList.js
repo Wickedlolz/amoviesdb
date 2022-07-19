@@ -25,7 +25,8 @@ function CarouselList({ fetchUrl }) {
         <Carousel
             additionalTransfrom={0}
             arrows
-            autoPlaySpeed={3000}
+            autoPlay
+            autoPlaySpeed={2000}
             centerMode={false}
             className=""
             containerClass="container-with-dots"
