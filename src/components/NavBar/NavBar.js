@@ -54,12 +54,14 @@ function NavBar() {
                 <Navbar.Brand>
                     <img
                         src="/images/clipart88403.png"
-                        width="25"
-                        height="25"
+                        width="21"
+                        height="21"
                         alt="logo"
                     />
                 </Navbar.Brand>
-                <Navbar.Brand>AMoviesDB</Navbar.Brand>
+                <Navbar.Brand to={'/'} as={NavLink}>
+                    AMoviesDB
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
