@@ -59,14 +59,16 @@ function MovieDetails() {
     const onModalNoClickHandler = () => setShowModal(false);
 
     const onModalYesClickHandler = () => {
+        setIsLoading(true);
         movieService
             .deleteById(movieId)
             .then((result) => {
+                setIsLoading(false);
                 addNotification(
                     'Successfully delete ' + result.title,
                     'Success'
                 );
-                navigate('/');
+                navigate('/', { replace: true });
             })
             .catch((error) => {
                 addNotification(error.message, 'Error');
@@ -77,6 +79,7 @@ function MovieDetails() {
     };
 
     const onSubmitCommentFormHandler = (content) => {
+        setIsUpdated(false);
         movieService
             .comment(movieId, content)
             .then((result) => {
