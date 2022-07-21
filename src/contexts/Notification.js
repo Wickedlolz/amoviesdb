@@ -9,14 +9,16 @@ export const NotificationProvider = ({ children }) => {
         type: '',
     });
 
-    const addNotification = useCallback(
-        (message, notifyType) =>
-            setNotification({ show: true, message, type: notifyType }),
-        []
-    );
+    const addNotification = (message, notifyType) => {
+        setNotification({ show: true, message, type: notifyType });
+
+        setTimeout(() => {
+            setNotification({ show: false, message: '', type: '' });
+        }, 3000);
+    };
 
     const clearNotification = useCallback(
-        () => setNotification({ show: false, message: '' }),
+        () => setNotification({ show: false, message: '', type: '' }),
         []
     );
 
