@@ -13,7 +13,7 @@ function Catalog() {
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [moviesCount, setMoviesCount] = useState(0);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const { addNotification } = useContext(NotificationContext);
     const search = searchParams.get('search');
     const page = Number(searchParams.get('page')) || 1;
