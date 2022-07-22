@@ -21,7 +21,11 @@ const useLocalStorage = (key, initialValue) => {
         }
     };
 
-    return [state, setItem];
+    const updateUserData = (value) => {
+        setState((state) => ({ ...state, ...value }));
+    };
+
+    return [state, setItem, updateUserData];
 };
 
 export default useLocalStorage;
