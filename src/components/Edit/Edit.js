@@ -50,7 +50,7 @@ function Edit() {
                     `${result.title} updated successfully.`,
                     'Success'
                 );
-                navigate('/movie/' + result._id);
+                navigate('/movie/' + result._id, { replace: true });
             })
             .catch((error) => addNotification(error.message, 'Error'));
     };

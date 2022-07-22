@@ -68,7 +68,7 @@ function MovieDetails() {
                     'Successfully delete ' + result.title,
                     'Success'
                 );
-                navigate('/', { replace: true });
+                navigate('/catalog', { replace: true });
             })
             .catch((error) => {
                 addNotification(error.message, 'Error');
