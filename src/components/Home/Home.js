@@ -4,8 +4,8 @@ import { NotificationContext } from '../../contexts/Notification';
 import * as movieService from '../../services/data';
 import { endpoints } from '../../services/tmdb-api';
 
-import LoadingSpinner from '../Common/LoadingSpinner';
 import MovieCard from '../MovieList/MovieCard';
+import PlaceholderCard from '../Common/PlaceholderCard';
 import { Row, Col } from 'react-bootstrap';
 import CarouselList from '../Carousel/CarouselList';
 import './Home.css';
@@ -38,6 +38,16 @@ function Home() {
             <h3 className="p-5 text-center">No movies in database.</h3>
         );
 
+    const placeholders = (
+        <Row xs={1} md={4} className="g-3">
+            {[1, 2, 3, 4].map((x) => (
+                <Col key={x}>
+                    <PlaceholderCard />
+                </Col>
+            ))}
+        </Row>
+    );
+
     return (
         <>
             <div className="p-5 text-center bg-image jumbotron-image">
@@ -57,7 +67,7 @@ function Home() {
                 </div>
             </div>
             <h2 className="text-center p-2">Most liked movies</h2>
-            {isLoading ? <LoadingSpinner /> : movieList}
+            {isLoading ? placeholders : movieList}
             <h2 className="text-center p-3">Upcoming Movies</h2>
             <CarouselList fetchUrl={endpoints.UPCOMING} />
             <h2 className="text-center p-3">Popular Movies</h2>
