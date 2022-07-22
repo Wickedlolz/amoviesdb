@@ -4,10 +4,10 @@ import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
 
-import { Row } from 'react-bootstrap';
-import LoadingSpinner from '../Common/LoadingSpinner';
+import { Row, Col } from 'react-bootstrap';
 import MovieList from '../MovieList/MovieList';
 import Pagination from '../Pagination/Pagination';
+import PlaceholderCard from '../Common/PlaceholderCard';
 
 function Catalog() {
     const [movies, setMovies] = useState([]);
@@ -38,9 +38,19 @@ function Catalog() {
             <h3 className="p-5 text-center">No movies in database.</h3>
         );
 
+    const placeholders = (
+        <Row xs={1} md={4} className="g-3">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((x) => (
+                <Col>
+                    <PlaceholderCard />
+                </Col>
+            ))}
+        </Row>
+    );
+
     return (
         <>
-            {isLoading ? <LoadingSpinner /> : movieList}
+            {isLoading ? placeholders : movieList}
             <Pagination moviesCount={moviesCount} page={page} search={search} />
         </>
     );
