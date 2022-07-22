@@ -11,7 +11,7 @@ import PlaceholderCard from '../Common/PlaceholderCard';
 
 function Catalog() {
     const [movies, setMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [moviesCount, setMoviesCount] = useState(0);
     const [searchParams, setSearchParams] = useSearchParams();
     const { addNotification } = useContext(NotificationContext);
@@ -19,6 +19,7 @@ function Catalog() {
     const page = Number(searchParams.get('page')) || 1;
 
     useEffect(() => {
+        setIsLoading(true);
         movieService
             .getAll(search, page)
             .then(([movies, moviesCount]) => {
