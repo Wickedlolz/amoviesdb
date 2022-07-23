@@ -16,7 +16,6 @@
 ### Functionality
 
 -   Guest users can see home page, movie details and about
--   Logged users extend functionality with option to create/(edit/delete movie if is owner), can like, comment movie and can edit own profile + upload own picture for user profile and see own created movies.
 -   Logged users extend functionality with option to create movie, like, comment, edit profile + upload profiile picture and see own created movies.
 -   Logged users who is owners of some movie extend functionlity with edit/delete
 
