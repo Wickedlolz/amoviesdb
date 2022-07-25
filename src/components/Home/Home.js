@@ -8,6 +8,7 @@ import MovieCard from '../MovieList/MovieCard';
 import PlaceholderCard from '../Common/PlaceholderCard';
 import { Row, Col } from 'react-bootstrap';
 import CarouselList from '../Carousel/CarouselList';
+import ActorList from '../ActorList/ActorList';
 import './Home.css';
 
 function Home() {
@@ -76,6 +77,8 @@ function Home() {
             <CarouselList fetchUrl={endpoints.TOP_RATED} />
             <h2 className="text-center p-3">Now Playing Movies</h2>
             <CarouselList fetchUrl={endpoints.NOW_PLAYING} />
+            <h2 className="text-center p-2">Most popular actors</h2>
+            <ActorList fetchUrl={endpoints.POPULAR_ACTORS} />
         </>
     );
 }
