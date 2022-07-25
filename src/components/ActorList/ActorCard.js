@@ -9,12 +9,6 @@ function ActorCard({ actor }) {
             />
             <Card.Body>
                 <Card.Title>{actor.name}</Card.Title>
-                <Card.Text>
-                    Known for: {actor.known_for.map((x) => x.title).join(', ')}
-                </Card.Text>
-                <Card.Text>
-                    Known for department: {actor.known_for_department}
-                </Card.Text>
             </Card.Body>
         </Card>
     );
