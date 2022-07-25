@@ -67,15 +67,16 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <h2 className="text-center p-2">Most liked movies</h2>
+            <hr />
+            <h2 className="text-center p-2">Most Liked</h2>
             {isLoading ? placeholders : movieList}
-            <h2 className="text-center p-3">Upcoming Movies</h2>
+            <h2 className="text-center p-3">Upcoming</h2>
             <CarouselList fetchUrl={endpoints.UPCOMING} />
-            <h2 className="text-center p-3">Popular Movies</h2>
+            <h2 className="text-center p-3">Popular</h2>
             <CarouselList fetchUrl={endpoints.POPULAR} />
-            <h2 className="text-center p-3">Top Rated Movies</h2>
+            <h2 className="text-center p-3">Top Rated</h2>
             <CarouselList fetchUrl={endpoints.TOP_RATED} />
-            <h2 className="text-center p-3">Now Playing Movies</h2>
+            <h2 className="text-center p-3">Now Playing</h2>
             <CarouselList fetchUrl={endpoints.NOW_PLAYING} />
             <h2 className="text-center p-2">Most popular actors</h2>
             <ActorList fetchUrl={endpoints.POPULAR_ACTORS} />
