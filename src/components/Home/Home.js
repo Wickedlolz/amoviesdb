@@ -40,7 +40,7 @@ function Home() {
         );
 
     const placeholders = (
-        <Row xs={1} md={4} className="g-3">
+        <Row xs={2} md={4} className="g-3">
             {[1, 2, 3, 4].map((x) => (
                 <Col key={x}>
                     <PlaceholderCard />

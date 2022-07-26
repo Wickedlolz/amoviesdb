@@ -40,7 +40,7 @@ function Catalog() {
         );
 
     const placeholders = (
-        <Row xs={1} md={4} className="g-3">
+        <Row xs={3} md={4} className="g-3">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((x) => (
                 <Col key={x}>
                     <PlaceholderCard />
