@@ -1,0 +1,9 @@
+.overlay-card {
+    cursor: pointer;
+    opacity: 0;
+}
+
+.overlay-card:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 100;
+}

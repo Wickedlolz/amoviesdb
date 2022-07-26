@@ -3,6 +3,8 @@ import { getById } from '../../services/tmdb-api';
 import { NotificationContext } from '../../contexts/Notification';
 import DetailsModal from '../DetailsModal/DetailsModal';
 
+import styles from './CarouselItem.module.css';
+
 function CarouselItem({ movie }) {
     const [currentMovie, setCurrentMovie] = useState({});
     const [movieVideos, setMovieVideos] = useState({});
@@ -41,8 +43,10 @@ function CarouselItem({ movie }) {
                     className="card-img"
                     alt="movie poster"
                 />
-                <div className="card-img-overlay" style={{ cursor: 'pointer' }}>
-                    <h5 className="card-title text-white">{movie.title}</h5>
+                <div className={`card-img-overlay ${styles['overlay-card']}`}>
+                    <h5 className="card-title text-white text-center">
+                        {movie.title}
+                    </h5>
                 </div>
             </div>
         </>
