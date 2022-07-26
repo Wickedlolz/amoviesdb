@@ -59,7 +59,7 @@ function MovieDetailsCard({
                             )}
                         </div>
                     ) : null}
-                    {movie.owner._id == user?.id ? (
+                    {user && movie.owner._id == user.id ? (
                         <div className="p-3 text-center">
                             <Link
                                 to={'/edit/' + movie._id}

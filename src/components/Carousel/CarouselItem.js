@@ -32,7 +32,7 @@ function CarouselItem({ movie }) {
                 isLoading={isLoading}
                 videos={movieVideos}
             />
-            <div className="card bg-dark text-white" onClick={onReveal}>
+            <div className="card bg-white text-white p-1" onClick={onReveal}>
                 <img
                     src={
                         'https://image.tmdb.org/t/p/w500' +
