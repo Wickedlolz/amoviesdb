@@ -19,7 +19,7 @@ function ActorList({ fetchUrl }) {
     }, [fetchUrl]);
 
     return (
-        <Row xs={3} md={5} className="g-3">
+        <Row xs={2} md={5} className="g-3">
             {isLoading ? (
                 <LoadingSpinner />
             ) : (
