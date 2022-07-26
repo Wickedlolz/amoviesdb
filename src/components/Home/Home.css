@@ -1,8 +1,9 @@
 .jumbotron-image {
-    background-image: url('http://localhost:3000/images/feature.jpg');
-    height: 400px;
+    height: 550px;
+    background-size: cover;
 }
 
 .jumbotron-mask {
+    text-align: start;
     background-color: rgba(0, 0, 0, 0.6);
 }

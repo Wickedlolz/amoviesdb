@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
-import { endpoints } from '../../services/tmdb-api';
+import { endpoints, getAll } from '../../services/tmdb-api';
 
 import MovieCard from '../MovieList/MovieCard';
 import PlaceholderCard from '../Common/PlaceholderCard';
@@ -13,6 +13,7 @@ import './Home.css';
 
 function Home() {
     const [movies, setMovies] = useState([]);
+    const [tmdbMovies, setTmdbMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { addNotification } = useContext(NotificationContext);
 
@@ -24,7 +25,13 @@ function Home() {
                 setIsLoading(false);
             })
             .catch((error) => addNotification(error.message, 'Error'));
+
+        getAll(endpoints.POPULAR)
+            .then((result) => setTmdbMovies(result))
+            .catch((error) => addNotification(error.message, 'Error'));
     }, [addNotification]);
+
+    const movie = tmdbMovies[Math.floor(Math.random() * tmdbMovies?.length)];
 
     const movieList =
         movies.length > 0 ? (
@@ -49,19 +56,28 @@ function Home() {
         </Row>
     );
 
+    const truncateString = (string, number) => {
+        if (string?.length > number) {
+            return string.slice(0, number) + '...';
+        } else {
+            return string;
+        }
+    };
+
     return (
         <>
-            <div className="p-5 text-center bg-image jumbotron-image">
+            <div
+                className="p-5 text-center bg-image jumbotron-image"
+                style={{
+                    backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
+                }}
+            >
                 <div className="mask jumbotron-mask">
-                    <div className="d-flex justify-content-center align-items-center h-100">
+                    <div className="d-flex align-items-center">
                         <div className="text-white">
-                            <h1 className="mb-3">Welcome to AMoviesDB</h1>
+                            <h1 className="mb-3">{movie?.title}</h1>
                             <h4 className="mb-3">
-                                Here you can find all newest and most popular
-                                movies.
-                            </h4>
-                            <h4 className="mb-3">
-                                Fell free to join and add your best movies.
+                                {truncateString(movie?.overview, 150)}
                             </h4>
                         </div>
                     </div>
