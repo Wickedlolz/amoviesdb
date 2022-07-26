@@ -32,7 +32,7 @@ function Catalog() {
 
     const movieList =
         movies.length > 0 ? (
-            <Row xs={1} md={4} className="g-3">
+            <Row xs={3} md={4} className="g-3">
                 <MovieList movies={movies} />
             </Row>
         ) : (
