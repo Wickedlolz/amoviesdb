@@ -4,6 +4,7 @@ import { NotificationContext } from '../../contexts/Notification';
 import * as movieService from '../../services/data';
 import { endpoints } from '../../services/tmdb-api';
 import useFetchRandomMovie from '../../hooks/useFetchRandomMovie';
+import { truncateString } from '../../utils/utils';
 
 import MovieCard from '../MovieList/MovieCard';
 import PlaceholderCard from '../Common/PlaceholderCard';
@@ -51,14 +52,6 @@ function Home() {
             ))}
         </Row>
     );
-
-    const truncateString = (string, number) => {
-        if (string?.length > number) {
-            return string.slice(0, number) + '...';
-        } else {
-            return string;
-        }
-    };
 
     return (
         <>
