@@ -2,18 +2,20 @@ import { useState, useEffect, useContext } from 'react';
 import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
-import { endpoints, getAll } from '../../services/tmdb-api';
+import { endpoints } from '../../services/tmdb-api';
+import useFetchRandomMovie from '../../hooks/useFetchRandomMovie';
 
 import MovieCard from '../MovieList/MovieCard';
 import PlaceholderCard from '../Common/PlaceholderCard';
-import { Row, Col } from 'react-bootstrap';
 import CarouselList from '../Carousel/CarouselList';
 import ActorList from '../ActorList/ActorList';
+
+import { Row, Col, Button } from 'react-bootstrap';
 import './Home.css';
 
 function Home() {
     const [movies, setMovies] = useState([]);
-    const [tmdbMovies, setTmdbMovies] = useState([]);
+    const [movie] = useFetchRandomMovie();
     const [isLoading, setIsLoading] = useState(true);
     const { addNotification } = useContext(NotificationContext);
 
@@ -25,13 +27,7 @@ function Home() {
                 setIsLoading(false);
             })
             .catch((error) => addNotification(error.message, 'Error'));
-
-        getAll(endpoints.POPULAR)
-            .then((result) => setTmdbMovies(result))
-            .catch((error) => addNotification(error.message, 'Error'));
     }, [addNotification]);
-
-    const movie = tmdbMovies[Math.floor(Math.random() * tmdbMovies?.length)];
 
     const movieList =
         movies.length > 0 ? (
@@ -76,9 +72,12 @@ function Home() {
                     <div className="d-flex align-items-center">
                         <div className="text-white">
                             <h1 className="mb-3">{movie?.title}</h1>
-                            <h4 className="mb-3">
+                            <p className="mb-3">
                                 {truncateString(movie?.overview, 150)}
-                            </h4>
+                            </p>
+                            <Button className="m-2" variant="dark">
+                                Watch Trailer
+                            </Button>
                         </div>
                     </div>
                 </div>
