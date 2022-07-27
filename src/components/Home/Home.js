@@ -3,20 +3,16 @@ import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
 import { endpoints } from '../../services/tmdb-api';
-import useFetchRandomMovie from '../../hooks/useFetchRandomMovie';
-import { truncateString } from '../../utils/utils';
 
 import MovieCard from '../MovieList/MovieCard';
 import PlaceholderCard from '../Common/PlaceholderCard';
 import CarouselList from '../Carousel/CarouselList';
 import ActorList from '../ActorList/ActorList';
 
-import { Row, Col, Button } from 'react-bootstrap';
-import './Home.css';
+import { Row, Col } from 'react-bootstrap';
 
 function Home() {
     const [movies, setMovies] = useState([]);
-    const [movie] = useFetchRandomMovie();
     const [isLoading, setIsLoading] = useState(true);
     const { addNotification } = useContext(NotificationContext);
 
@@ -55,26 +51,6 @@ function Home() {
 
     return (
         <>
-            <div
-                className="p-5 text-center bg-image jumbotron-image"
-                style={{
-                    backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
-                }}
-            >
-                <div className="mask jumbotron-mask">
-                    <div className="d-flex align-items-center">
-                        <div className="text-white">
-                            <h1 className="mb-3">{movie?.title}</h1>
-                            <p className="mb-3">
-                                {truncateString(movie?.overview, 150)}
-                            </p>
-                            <Button className="m-2" variant="dark">
-                                Watch Trailer
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <hr />
             <h2 className="text-center p-2">Most Liked</h2>
             {isLoading ? placeholders : movieList}

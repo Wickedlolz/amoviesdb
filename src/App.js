@@ -18,7 +18,7 @@ import SignOut from './components/SignOut/SignOut';
 import Notification from './components/Common/Notification';
 import MyMovies from './components/MyMovies/MyMovies';
 import AboutUs from './components/AboutUs/AboutUs';
-import Home from './components/Home/Home';
+import Main from './components/Main/Main';
 import CustomErrorBoundry from './components/CustomErrorBoundry/CustomErrorBoundry';
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
                         <NavBar />
                         <Notification />
                         <Routes>
-                            <Route path="/" element={<Home />} />
+                            <Route path="/" element={<Main />} />
                             <Route path="/catalog" element={<Catalog />} />
                             <Route path="/signin" element={<SignIn />} />
                             <Route path="/signup" element={<SignUp />} />
