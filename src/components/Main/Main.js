@@ -1,4 +1,3 @@
-import React from 'react';
 import useFetchRandomMovie from '../../hooks/useFetchRandomMovie';
 import { truncateString } from '../../utils/utils';
 import Home from '../Home/Home';

@@ -45,7 +45,7 @@ function Create() {
                 <div className="row d-flex align-items-center justify-content-center h-100">
                     <div className="col-md-8 col-lg-7 col-xl-6">
                         <img
-                            src="/images/summer-movies.png"
+                            src="/images/feature2.jpg"
                             className="img-fluid"
                             alt="SignUp"
                         />
@@ -60,7 +60,15 @@ function Create() {
                                 {errors.title?.type === 'maxLength' && (
                                     <AlertMessage
                                         msg={
-                                            'Title must have max 20 characters.'
+                                            'Title must have max 50 characters.'
+                                        }
+                                    />
+                                )}
+
+                                {errors.title?.type === 'minLength' && (
+                                    <AlertMessage
+                                        msg={
+                                            'Title must be at least 3 characters long.'
                                         }
                                     />
                                 )}
@@ -73,6 +81,7 @@ function Create() {
                                     {...register('title', {
                                         required: true,
                                         maxLength: 50,
+                                        minLength: 3,
                                     })}
                                 />
                                 <label className="form-label" htmlFor="title">
@@ -145,9 +154,17 @@ function Create() {
                             </div>
 
                             <div className="form-outline mb-4">
-                                {errors.description && (
+                                {errors.description?.type === 'required' && (
                                     <AlertMessage
                                         msg={'Description is required.'}
+                                    />
+                                )}
+
+                                {errors.description?.type === 'minLength' && (
+                                    <AlertMessage
+                                        msg={
+                                            'Description must be at least 3 characters long.'
+                                        }
                                     />
                                 )}
 
@@ -158,6 +175,7 @@ function Create() {
                                     name="description"
                                     {...register('description', {
                                         required: true,
+                                        minLength: 3,
                                     })}
                                 />
                                 <label
