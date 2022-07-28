@@ -1,5 +1,4 @@
-import { useState, useContext } from 'react';
-import { NotificationContext } from '../contexts/Notification';
+import { useState } from 'react';
 
 const useLocalStorage = (key, initialValue) => {
     const [state, setState] = useState(() => {
@@ -9,12 +8,9 @@ const useLocalStorage = (key, initialValue) => {
             return item ? JSON.parse(item) : initialValue;
         } catch (error) {
             console.log(error);
-            addNotification(error.message, 'Error');
             return initialValue;
         }
     });
-
-    const { addNotification } = useContext(NotificationContext);
 
     const setItem = (value) => {
         try {
@@ -22,7 +18,6 @@ const useLocalStorage = (key, initialValue) => {
             setState(value);
         } catch (error) {
             console.log(error);
-            addNotification(error.message, 'Error');
         }
     };
 
