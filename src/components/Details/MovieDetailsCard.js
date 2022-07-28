@@ -29,8 +29,11 @@ function MovieDetailsCard({
                     <p className="card-text">{movie.description}</p>
                     <div className="p-3 card-text">
                         <ReactPlayer
+                            width="100%"
                             url={movie.youtubeUrl}
                             controls={true}
+                            muted={true}
+                            playing
                             config={{
                                 youtube: {
                                     playerVars: {

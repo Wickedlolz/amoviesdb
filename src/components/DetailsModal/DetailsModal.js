@@ -24,6 +24,9 @@ function DetailsModal({ show, onModalCloseClick, movie, isLoading, videos }) {
                     <Modal.Body>
                         <p>{movie.overview}</p>
                         <ReactPlayer
+                            muted={true}
+                            playing
+                            width="100%"
                             url={`https://www.youtube.com/watch?v=${videos[0].key}`}
                             controls={true}
                         />
