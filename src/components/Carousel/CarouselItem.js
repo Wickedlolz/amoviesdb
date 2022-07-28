@@ -7,7 +7,7 @@ import styles from './CarouselItem.module.css';
 
 function CarouselItem({ movie }) {
     const [currentMovie, setCurrentMovie] = useState({});
-    const [movieVideos, setMovieVideos] = useState({});
+    const [movieVideo, setMovieVideo] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [show, setShow] = useState(false);
     const { addNotification } = useContext(NotificationContext);
@@ -15,8 +15,11 @@ function CarouselItem({ movie }) {
     const onReveal = () => {
         getById(movie.id)
             .then(([movieResult, movieVideos]) => {
+                const index = movieVideos.results.findIndex(
+                    (element) => element.type === 'Trailer'
+                );
                 setCurrentMovie(movieResult);
-                setMovieVideos(movieVideos.results);
+                setMovieVideo(movieVideos.results[index]);
                 setIsLoading(false);
                 setShow(true);
             })
@@ -32,7 +35,7 @@ function CarouselItem({ movie }) {
                 onModalCloseClick={onModalCloseClick}
                 movie={currentMovie}
                 isLoading={isLoading}
-                videos={movieVideos}
+                video={movieVideo}
             />
             <div className="card bg-white text-white p-1" onClick={onReveal}>
                 <img

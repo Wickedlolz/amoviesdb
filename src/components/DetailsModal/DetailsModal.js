@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { StarHalf } from 'react-bootstrap-icons';
 import ReactPlayer from 'react-player/youtube';
 
-function DetailsModal({ show, onModalCloseClick, movie, isLoading, videos }) {
+function DetailsModal({ show, onModalCloseClick, movie, isLoading, video }) {
     return (
         <Modal
             show={show}
@@ -27,7 +27,7 @@ function DetailsModal({ show, onModalCloseClick, movie, isLoading, videos }) {
                             muted={true}
                             playing
                             width="100%"
-                            url={`https://www.youtube.com/watch?v=${videos[0].key}`}
+                            url={`https://www.youtube.com/watch?v=${video?.key}`}
                             controls={true}
                         />
                         <p>
