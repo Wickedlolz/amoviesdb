@@ -26,7 +26,7 @@ function Main() {
                                 <p className="mb-3 m-2">
                                     {truncateString(movie?.overview, 150)}
                                 </p>
-                                <p className="text-muted m-2 text-white">
+                                <p className="m-2">
                                     Released: {movie?.release_date}
                                 </p>
                             </div>

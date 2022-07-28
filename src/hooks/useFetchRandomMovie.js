@@ -15,7 +15,7 @@ const useFetchRandomMovie = () => {
             .then((result) => setMovies(result))
             .catch((error) => addNotification(error.message, 'Error'))
             .finally(() => setIsLoading(false));
-    }, []);
+    }, [addNotification]);
 
     return [movie, isLoading];
 };
