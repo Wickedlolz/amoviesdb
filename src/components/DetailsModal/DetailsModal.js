@@ -22,7 +22,6 @@ function DetailsModal({ show, onModalCloseClick, movie, isLoading, video }) {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <p>{movie.overview}</p>
                         <ReactPlayer
                             muted={true}
                             playing
@@ -30,12 +29,24 @@ function DetailsModal({ show, onModalCloseClick, movie, isLoading, video }) {
                             url={`https://www.youtube.com/watch?v=${video?.key}`}
                             controls={true}
                         />
+                        <p>{movie.overview}</p>
                         <p>
                             Genres:{' '}
                             {movie.genres.map((ganre) => ganre.name).join(', ')}
                         </p>
-                        <p className="text-muted">
-                            Release date: {movie.release_date}
+                        <p>
+                            <span className="text-muted">Release date:</span>{' '}
+                            {movie.release_date}
+                        </p>
+                        <p>
+                            <span className="text-muted">
+                                Original Language:
+                            </span>{' '}
+                            {movie.original_language}
+                        </p>
+                        <p>
+                            <span className="text-muted">Total Votes:</span>{' '}
+                            {movie.vote_count}
                         </p>
                         <p>
                             <StarHalf /> {movie.vote_average}
