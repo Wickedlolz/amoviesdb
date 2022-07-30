@@ -12,10 +12,10 @@ import styles from './EditProfile.module.css';
 
 function EditProfile() {
     const { userId } = useParams();
-    const [user, setUser] = useState({});
+    const [currentUser, setCurrentUser] = useState({});
     const [errors, setErrors] = useState({ emptyFields: false });
     const [isLoading, setIsLoading] = useState(true);
-    const { updateUser } = useContext(AuthContext);
+    const { user, updateUser } = useContext(AuthContext);
     const { addNotification } = useContext(NotificationContext);
     const navigate = useNavigate();
 
@@ -23,11 +23,15 @@ function EditProfile() {
         userService
             .getById(userId)
             .then((userData) => {
-                setUser(userData);
+                if (userData._id !== user?.id) {
+                    return navigate('/', { replace: true });
+                }
+
+                setCurrentUser(userData);
                 setIsLoading(false);
             })
             .catch((error) => addNotification(error.message, 'Error'));
-    }, [userId, addNotification]);
+    }, [userId, addNotification, navigate, user]);
 
     const onSubmitEditProfile = (event) => {
         event.preventDefault();
@@ -76,8 +80,8 @@ function EditProfile() {
                             <div className={styles.info}>
                                 {' '}
                                 <span>
-                                    <PersonLinesFill /> Edit {user.firstName}'s
-                                    Profile{' '}
+                                    <PersonLinesFill /> Edit{' '}
+                                    {currentUser.firstName}'s Profile{' '}
                                 </span>{' '}
                                 <button id="savebutton">edit</button>{' '}
                             </div>{' '}
@@ -89,7 +93,7 @@ function EditProfile() {
                                     <input
                                         type="text"
                                         name="firstName"
-                                        defaultValue={user.firstName}
+                                        defaultValue={currentUser.firstName}
                                     />{' '}
                                 </div>{' '}
                                 <div className={styles.inputs}>
@@ -98,7 +102,7 @@ function EditProfile() {
                                     <input
                                         type="text"
                                         name="lastName"
-                                        defaultValue={user.lastName}
+                                        defaultValue={currentUser.lastName}
                                     />{' '}
                                 </div>{' '}
                                 <div className={styles.inputs}>
@@ -107,7 +111,7 @@ function EditProfile() {
                                     <input
                                         type="text"
                                         name="email"
-                                        defaultValue={user.email}
+                                        defaultValue={currentUser.email}
                                     />{' '}
                                 </div>{' '}
                                 <div className={styles.inputs}>
@@ -116,7 +120,7 @@ function EditProfile() {
                                     <input
                                         type="text"
                                         name="username"
-                                        defaultValue={user.username}
+                                        defaultValue={currentUser.username}
                                     />{' '}
                                 </div>{' '}
                                 <div className={styles.inputs}>
