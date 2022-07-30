@@ -15,8 +15,12 @@ export const AuthProvider = ({ children }) => {
         setItem(null);
     };
 
+    const isAuthenticated = Boolean(user?.accessToken);
+
     return (
-        <AuthContext.Provider value={{ user, addUser, updateUser, signOut }}>
+        <AuthContext.Provider
+            value={{ user, addUser, updateUser, signOut, isAuthenticated }}
+        >
             {children}
         </AuthContext.Provider>
     );

@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../services/user';
 import { useForm } from 'react-hook-form';
 import { AlertMessage } from '../Common/AlertMessage';
-import { isGuest } from '../../hoc/isGuest';
 
 function SignIn() {
     const navigate = useNavigate();
@@ -129,4 +128,4 @@ function SignIn() {
     );
 }
 
-export default isGuest(SignIn);
+export default SignIn;

@@ -20,6 +20,8 @@ import MyMovies from './components/MyMovies/MyMovies';
 import AboutUs from './components/AboutUs/AboutUs';
 import Main from './components/Main/Main';
 import CustomErrorBoundry from './components/CustomErrorBoundry/CustomErrorBoundry';
+import ProtectedRoute from './components/Common/ProtectedRoute';
+import PublicRoute from './components/Common/PublicRoute';
 
 function App() {
     return (
@@ -32,27 +34,34 @@ function App() {
                         <Routes>
                             <Route path="/" element={<Main />} />
                             <Route path="/catalog" element={<Catalog />} />
-                            <Route path="/signin" element={<SignIn />} />
-                            <Route path="/signup" element={<SignUp />} />
-                            <Route path="/signout" element={<SignOut />} />
-                            <Route
-                                path="/profile/:userId"
-                                element={<Profile />}
-                            />
-                            <Route
-                                path="/profile/edit/:userId"
-                                element={<EditProfile />}
-                            />
+                            <Route element={<PublicRoute />}>
+                                <Route path="/signin" element={<SignIn />} />
+                                <Route path="/signup" element={<SignUp />} />
+                            </Route>
+                            <Route element={<ProtectedRoute />}>
+                                <Route
+                                    path="/profile/:userId"
+                                    element={<Profile />}
+                                />
+                                <Route
+                                    path="/profile/edit/:userId"
+                                    element={<EditProfile />}
+                                />
+                                <Route
+                                    path="/my-movies/:userId"
+                                    element={<MyMovies />}
+                                />
+                                <Route path="/create" element={<Create />} />
+                                <Route
+                                    path="/edit/:movieId"
+                                    element={<Edit />}
+                                />
+                                <Route path="/signout" element={<SignOut />} />
+                            </Route>
                             <Route
                                 path="/movie/:movieId"
                                 element={<MovieDetails />}
                             />
-                            <Route
-                                path="/my-movies/:userId"
-                                element={<MyMovies />}
-                            />
-                            <Route path="/create" element={<Create />} />
-                            <Route path="/edit/:movieId" element={<Edit />} />
                             <Route path="/about" element={<AboutUs />} />
                             <Route path="/*" element={<NotFound />} />
                         </Routes>

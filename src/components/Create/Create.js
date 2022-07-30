@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { isUser } from '../../hoc/isUser';
 import { NotificationContext } from '../../contexts/Notification';
 import * as movieService from '../../services/data';
 
@@ -208,4 +207,4 @@ function Create() {
     );
 }
 
-export default isUser(Create);
+export default Create;
