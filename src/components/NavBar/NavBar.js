@@ -60,8 +60,8 @@ function NavBar() {
                 <Navbar.Brand>
                     <img
                         src="/images/clipart88403.png"
-                        width="21"
-                        height="21"
+                        width="20"
+                        height="20"
                         alt="logo"
                     />
                 </Navbar.Brand>
@@ -75,14 +75,14 @@ function NavBar() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        {user ? authUserNav : null}
+                        {isAuthenticated ? authUserNav : null}
                         <Nav.Link to={'/about'} as={NavLink}>
                             About
                         </Nav.Link>
                     </Nav>
-                    {user ? (
+                    {isAuthenticated ? (
                         <>
-                            <Navbar.Text className="p-3">
+                            <Navbar.Text>
                                 Signed in as:{' '}
                                 <NavLink to={'/profile/' + user.id}>
                                     {user.firstName} {user.lastName}
