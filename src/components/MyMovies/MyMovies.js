@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { NotificationContext } from '../../contexts/Notification';
+import { useAuthContext } from '../../contexts/Auth';
 
 import * as movieService from '../../services/data';
 
@@ -13,16 +14,22 @@ function MyMovies() {
     const [movies, setMovies] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const { addNotification } = useContext(NotificationContext);
+    const { user } = useAuthContext();
+    const navigate = useNavigate();
 
     useEffect(() => {
         movieService
             .getMyMovies(userId)
             .then((movies) => {
+                if (userId !== user?.id) {
+                    return navigate('/', { replace: true });
+                }
+
                 setMovies(movies);
                 setIsLoading(false);
             })
             .catch((error) => addNotification(error.message, 'Error'));
-    }, [userId, addNotification]);
+    }, [userId, addNotification, navigate, user]);
 
     const myMovieList =
         movies.length > 0 ? (
