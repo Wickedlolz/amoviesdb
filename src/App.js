@@ -32,13 +32,13 @@ function App() {
                         <NavBar />
                         <Notification />
                         <Routes>
-                            <Route path="/" element={<Main />} />
-                            <Route path="/catalog" element={<Catalog />} />
                             <Route element={<PublicRoute />}>
                                 <Route path="/signin" element={<SignIn />} />
                                 <Route path="/signup" element={<SignUp />} />
                             </Route>
                             <Route element={<ProtectedRoute />}>
+                                <Route path="/" element={<Main />} />
+                                <Route path="/catalog" element={<Catalog />} />
                                 <Route
                                     path="/profile/:userId"
                                     element={<Profile />}
@@ -57,11 +57,11 @@ function App() {
                                     element={<Edit />}
                                 />
                                 <Route path="/signout" element={<SignOut />} />
+                                <Route
+                                    path="/movie/:movieId"
+                                    element={<MovieDetails />}
+                                />
                             </Route>
-                            <Route
-                                path="/movie/:movieId"
-                                element={<MovieDetails />}
-                            />
                             <Route path="/about" element={<AboutUs />} />
                             <Route path="/*" element={<NotFound />} />
                         </Routes>
