@@ -15,9 +15,9 @@
 
 ### Functionality
 
--   Guest/Logged users can see at home page movie details from carousel lists, most popular actors and jumbotron image with description wich is getting from other api [The Movie Database (TMDB)](https://www.themoviedb.org/documentation/api)
--   Guest users can see home page, movie details and about
--   Logged users extend functionality with option to create movie, like, comment, edit profile + upload profiile picture and see own created movies.
+-   Guest users can see sign in, sign up and about pages
+-   Logged users can see at home page movie details from carousel lists, most popular actors and jumbotron image with description wich is getting from other api [The Movie Database (TMDB)](https://www.themoviedb.org/documentation/api)
+    -   Logged users extend functionality to see other pages and option to create movie, like, comment, edit profile + upload profiile picture and see own created movies.
 -   Logged users who is owners of some movie extend functionlity with edit/delete
 
 ## Available Scripts
