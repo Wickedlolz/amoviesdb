@@ -8,7 +8,7 @@ async function request(method, url, data, imageUpload = false) {
         headers: {},
     };
 
-    if (data != undefined) {
+    if (data !== undefined) {
         if (imageUpload) {
             options.body = data;
         } else {
@@ -25,8 +25,8 @@ async function request(method, url, data, imageUpload = false) {
     try {
         const response = await fetch(host + url, options);
 
-        if (response.ok == false) {
-            if (response.status == 403) {
+        if (response.ok === false) {
+            if (response.status === 403) {
                 localStorage.removeItem('user');
             }
 
@@ -34,12 +34,12 @@ async function request(method, url, data, imageUpload = false) {
             throw new Error(err.message);
         }
 
-        if (response.status == 400) {
+        if (response.status === 400) {
             const err = await response.json();
             throw new Error(err.message);
         }
 
-        if (response.status == 204) {
+        if (response.status === 204) {
             return response;
         } else {
             return response.json();
