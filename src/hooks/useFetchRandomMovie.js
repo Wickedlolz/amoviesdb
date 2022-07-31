@@ -3,16 +3,16 @@ import { NotificationContext } from '../contexts/Notification';
 import { endpoints, getAll } from '../services/tmdb-api';
 
 const useFetchRandomMovie = () => {
-    const [movies, setMovies] = useState([]);
+    const [movie, setMovie] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { addNotification } = useContext(NotificationContext);
-
-    const movie = movies[Math.floor(Math.random() * movies?.length)];
 
     useEffect(() => {
         setIsLoading(true);
         getAll(endpoints.POPULAR)
-            .then((result) => setMovies(result))
+            .then((result) =>
+                setMovie(result[Math.floor(Math.random() * result.length)])
+            )
             .catch((error) => addNotification(error.message, 'Error'))
             .finally(() => setIsLoading(false));
     }, [addNotification]);
