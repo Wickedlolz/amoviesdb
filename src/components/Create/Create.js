@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { NotificationContext } from '../../contexts/Notification';
+import { Helmet } from 'react-helmet';
 import * as movieService from '../../services/data';
 
 import { AlertMessage } from '../Common/AlertMessage';
@@ -40,6 +41,9 @@ function Create() {
 
     return (
         <section>
+            <Helmet>
+                <title>Create - AMoviesDB</title>
+            </Helmet>
             <div className="container py-5 h-100">
                 <div className="row d-flex align-items-center justify-content-center h-100">
                     <div className="col-md-8 col-lg-7 col-xl-6">

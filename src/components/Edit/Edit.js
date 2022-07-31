@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useAuthContext } from '../../contexts/Auth';
 import { NotificationContext } from '../../contexts/Notification';
+import { Helmet } from 'react-helmet';
 
 import * as movieService from '../../services/data';
 
@@ -62,6 +63,9 @@ function Edit() {
 
     return (
         <>
+            <Helmet>
+                <title>Edit {movie.title} - AMoviesDB</title>
+            </Helmet>
             {isLoading ? (
                 <LoadingSpinner />
             ) : (

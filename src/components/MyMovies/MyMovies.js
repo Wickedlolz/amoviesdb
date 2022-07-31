@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { NotificationContext } from '../../contexts/Notification';
 import { useAuthContext } from '../../contexts/Auth';
+import { Helmet } from 'react-helmet';
 
 import * as movieService from '../../services/data';
 
@@ -42,6 +43,9 @@ function MyMovies() {
 
     return (
         <>
+            <Helmet>
+                <title>My Movies - AMoviesDB</title>
+            </Helmet>
             <h1 className="p-5 text-center">My Movies</h1>
             {isLoading ? <LoadingSpinner /> : myMovieList}
         </>

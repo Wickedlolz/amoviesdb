@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../contexts/Auth';
 import ReactPlayer from 'react-player/lazy';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import {
     HandThumbsUpFill,
     HandThumbsDownFill,
@@ -20,6 +21,9 @@ function MovieDetailsCard({
 
     return (
         <div className="row ">
+            <Helmet>
+                <title>{movie.title} - AMoviesDB</title>
+            </Helmet>
             <div className="col-md-7 px-4">
                 <div className="card-block px-6">
                     <h4 className="card-title">{movie.title}</h4>

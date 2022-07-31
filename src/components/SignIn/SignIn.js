@@ -3,6 +3,7 @@ import { AuthContext } from '../../contexts/Auth';
 import { NotificationContext } from '../../contexts/Notification';
 import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../services/user';
+import { Helmet } from 'react-helmet';
 import { useForm } from 'react-hook-form';
 import { AlertMessage } from '../Common/AlertMessage';
 
@@ -30,6 +31,9 @@ function SignIn() {
 
     return (
         <section>
+            <Helmet>
+                <title>Sign In - AMoviesDB</title>
+            </Helmet>
             <div className="container py-5 h-100">
                 <div className="row d-flex align-items-center justify-content-center h-100">
                     <div className="col-md-8 col-lg-7 col-xl-6">
