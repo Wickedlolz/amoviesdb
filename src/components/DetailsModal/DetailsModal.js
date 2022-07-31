@@ -1,7 +1,7 @@
 import LoadingSpinner from '../Common/LoadingSpinner';
 import { Modal, Button } from 'react-bootstrap';
 import { StarHalf } from 'react-bootstrap-icons';
-import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player/lazy';
 
 function DetailsModal({ show, onModalCloseClick, movie, isLoading, video }) {
     return (

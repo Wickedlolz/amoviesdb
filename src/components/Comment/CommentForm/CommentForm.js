@@ -20,14 +20,6 @@ function CommentForm({ onSubmitCommentFormHandler }) {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={styles['comment-card']}>
                 <div className="row">
-                    {/* <div className="col-2">
-                        <img
-                            src={avatar}
-                            width="70"
-                            className="rounded-circle mt-2"
-                            alt="avetar"
-                        />
-                    </div> */}
                     <div className="col-10">
                         <div className={styles['comment-box'] + ' ml-2'}>
                             <h4>Add a comment</h4>

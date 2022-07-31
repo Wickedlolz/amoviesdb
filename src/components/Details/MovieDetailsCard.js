@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/Auth';
-import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player/lazy';
 import { Link } from 'react-router-dom';
 import {
     HandThumbsUpFill,

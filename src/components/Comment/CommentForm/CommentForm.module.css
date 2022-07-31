@@ -17,7 +17,7 @@
 }
 
 .comment-area textarea {
-    resize: none;
+    /* resize: none; */
     border: 1px solid #ad9f9f;
 }
 
