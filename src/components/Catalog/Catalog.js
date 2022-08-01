@@ -4,7 +4,6 @@ import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
 
-import { Helmet } from 'react-helmet';
 import { Row, Col } from 'react-bootstrap';
 import MovieList from '../MovieList/MovieList';
 import Pagination from '../Pagination/Pagination';
@@ -52,9 +51,6 @@ function Catalog() {
 
     return (
         <>
-            <Helmet>
-                <title>Catalog - AMoviesDB</title>
-            </Helmet>
             {isLoading ? placeholders : movieList}
             <Pagination moviesCount={moviesCount} page={page} search={search} />
         </>

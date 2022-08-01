@@ -4,7 +4,6 @@ import { AuthContext } from '../../contexts/Auth';
 import { NotificationContext } from '../../contexts/Notification';
 import { Link, useNavigate } from 'react-router-dom';
 import * as userService from '../../services/user';
-import { Helmet } from 'react-helmet';
 
 import TermsAndConditions from '../TermsAndConditions/TermsAndConditions';
 import styles from './SignUp.module.css';
@@ -46,9 +45,6 @@ function SignUp() {
 
     return (
         <section>
-            <Helmet>
-                <title>Sign Up - AMoviesDB</title>
-            </Helmet>
             <TermsAndConditions show={isVisible} onTermsClose={onTermsClose} />
             <div className="container py-5 h-100">
                 <div className="row d-flex align-items-center justify-content-center h-100">

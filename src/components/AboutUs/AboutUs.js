@@ -1,12 +1,8 @@
-import { Helmet } from 'react-helmet';
 import { At, TelephoneFill } from 'react-bootstrap-icons';
 
 function AboutUs() {
     return (
         <>
-            <Helmet>
-                <title>About Us - AMoviesDB</title>
-            </Helmet>
             <div className="bg-light">
                 <div className="container py-5">
                     <div className="row h-100 align-items-center py-5">

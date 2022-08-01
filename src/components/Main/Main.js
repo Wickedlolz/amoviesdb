@@ -1,5 +1,6 @@
 import useFetchRandomMovie from '../../hooks/useFetchRandomMovie';
 import { truncateString } from '../../utils/utils';
+
 import Home from '../Home/Home';
 import LoadingSpinner from '../Common/LoadingSpinner';
 

@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { NotificationContext } from '../../contexts/Notification';
 import { useAuthContext } from '../../contexts/Auth';
-import { Helmet } from 'react-helmet';
 import * as userService from '../../services/user';
 
 import LoadingSpinner from '../Common/LoadingSpinner';
@@ -31,9 +30,6 @@ function Profile() {
 
     return (
         <>
-            <Helmet>
-                <title>Profile - AMoviesDB</title>
-            </Helmet>
             {isLoading ? (
                 <LoadingSpinner />
             ) : (

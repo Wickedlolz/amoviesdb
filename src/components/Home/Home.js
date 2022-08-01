@@ -4,7 +4,6 @@ import { NotificationContext } from '../../contexts/Notification';
 import * as movieService from '../../services/data';
 import { endpoints } from '../../services/tmdb-api';
 
-import { Helmet } from 'react-helmet';
 import MovieCard from '../MovieList/MovieCard';
 import PlaceholderCard from '../Common/PlaceholderCard';
 import CarouselList from '../Carousel/CarouselList';
@@ -52,9 +51,6 @@ function Home() {
 
     return (
         <>
-            <Helmet>
-                <title>Home - AMoviesDB</title>
-            </Helmet>
             <hr />
             <h2 className="text-center p-2">Most Liked</h2>
             {isLoading ? placeholders : movieList}

@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 
 import * as userService from '../../services/user';
 import { AuthContext } from '../../contexts/Auth';
@@ -68,9 +67,6 @@ function EditProfile() {
 
     return (
         <>
-            <Helmet>
-                <title>Edit Profile - AMoviesDB</title>
-            </Helmet>
             {isLoading ? (
                 <LoadingSpinner />
             ) : (
