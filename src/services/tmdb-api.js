@@ -4,7 +4,7 @@ const baseUrl = `https://api.themoviedb.org/3`;
 export const endpoints = {
     UPCOMING: `/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
     TOP_RATED: `/movie/top_rated?api_key=${API_KEY}&language=en-US&page=2`,
-    POPULAR: `/movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
+    POPULAR: `/movie/popular?api_key=${API_KEY}&language=en-US&page=2`,
     NOW_PLAYING: `/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`,
     GET_DETAILS_BY_ID: (movieId) =>
         `/movie/${movieId}?api_key=${API_KEY}&language=en-US`,
