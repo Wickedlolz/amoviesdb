@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, memo } from 'react';
 import { getAll } from '../../services/tmdb-api';
 import { NotificationContext } from '../../contexts/Notification';
 import Carousel from 'react-multi-carousel';
@@ -27,7 +27,7 @@ function CarouselList({ fetchUrl }) {
             arrows
             autoPlay
             autoPlaySpeed={2000}
-            centerMode={false}
+            centerMode={true}
             className=""
             containerClass="container-with-dots"
             dotListClass=""
@@ -87,4 +87,4 @@ function CarouselList({ fetchUrl }) {
     );
 }
 
-export default CarouselList;
+export default memo(CarouselList);
