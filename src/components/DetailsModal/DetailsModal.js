@@ -17,9 +17,7 @@ function DetailsModal({ show, onModalCloseClick, movie, isLoading, video }) {
             ) : (
                 <>
                     <Modal.Header onClick={onModalCloseClick} closeButton>
-                        <Modal.Title id="contained-modal-title-vcenter">
-                            {movie.title}
-                        </Modal.Title>
+                        <Modal.Title>{movie.title}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <ReactPlayer
@@ -29,9 +27,9 @@ function DetailsModal({ show, onModalCloseClick, movie, isLoading, video }) {
                             url={`https://www.youtube.com/watch?v=${video?.key}`}
                             controls={true}
                         />
-                        <p>{movie.overview}</p>
+                        <p className="fw-bold">{movie.overview}</p>
                         <p>
-                            Genres:{' '}
+                            <span className="text-muted">Genres:</span>{' '}
                             {movie.genres.map((ganre) => ganre.name).join(', ')}
                         </p>
                         <p>
