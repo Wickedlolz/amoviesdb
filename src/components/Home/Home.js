@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, memo } from 'react';
 import { NotificationContext } from '../../contexts/Notification';
 
 import * as movieService from '../../services/data';
@@ -68,4 +68,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default memo(Home);

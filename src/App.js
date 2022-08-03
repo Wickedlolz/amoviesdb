@@ -22,6 +22,7 @@ import Main from './components/Main/Main';
 import CustomErrorBoundry from './components/CustomErrorBoundry/CustomErrorBoundry';
 import ProtectedRoute from './components/Common/ProtectedRoute';
 import PublicRoute from './components/Common/PublicRoute';
+import Hero from './components/Hero/Hero';
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
                         <Notification />
                         <Routes>
                             <Route element={<PublicRoute />}>
+                                <Route path="/welcome" element={<Hero />} />
                                 <Route path="/signin" element={<SignIn />} />
                                 <Route path="/signup" element={<SignUp />} />
                             </Route>
