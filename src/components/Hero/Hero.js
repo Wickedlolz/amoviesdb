@@ -5,7 +5,7 @@ function Hero() {
         <div
             className="text-center border-bottom"
             style={{
-                backgroundImage: `url("http://localhost:3000/images/hero-background.jpg")`,
+                backgroundImage: `url("/images/hero-background.jpg")`,
                 backgroundSize: 'cover',
             }}
         >
