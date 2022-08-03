@@ -17,16 +17,12 @@ const endpoints = {
 export async function getAll(search, page) {
     let endpoint = endpoints.ALL_MOVIES;
 
-    if (search && page === undefined) {
-        endpoint += '?search=' + search;
-    }
-
-    if (page && search === undefined) {
+    if (page) {
         endpoint += '?page=' + page;
     }
 
-    if (search && page) {
-        endpoint += '?search=' + search + '&page=' + page;
+    if (search) {
+        endpoint += page ? '&search=' + search : '?search=' + search;
     }
 
     return await request.get(endpoint);
