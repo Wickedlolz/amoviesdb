@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function Hero() {
     return (
         <div
-            className={'text-center border-bottom'}
+            className="text-center border-bottom"
             style={{
                 backgroundImage: `url("http://localhost:3000/images/hero-background.jpg")`,
                 backgroundSize: 'cover',
