@@ -5,6 +5,7 @@ import Home from '../Home/Home';
 import LoadingSpinner from '../Common/LoadingSpinner';
 
 import styles from './Main.module.css';
+import Brands from '../Brands/Brands';
 
 function Main() {
     const [movie, isLoading] = useFetchRandomMovie();
@@ -35,6 +36,7 @@ function Main() {
                     </div>
                 </div>
             )}
+            <Brands />
             <Home />
         </>
     );
