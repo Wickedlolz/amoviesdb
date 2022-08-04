@@ -31,9 +31,8 @@ function Brands() {
                             className={`card-img-overlay ${styles['overlay-card']}`}
                         >
                             <img
+                                className="card-img"
                                 src="/images/disnep.png"
-                                width={200}
-                                height={110}
                                 alt="disnep"
                             />
                         </div>
