@@ -44,10 +44,10 @@ function EditProfile() {
         const username = formData.get('username').trim();
 
         if (
-            firstName == '' ||
-            lastName == '' ||
-            email == '' ||
-            username == ''
+            firstName === '' ||
+            lastName === '' ||
+            email === '' ||
+            username === ''
         ) {
             setErrors({ emptyFields: true });
             return;

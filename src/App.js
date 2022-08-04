@@ -19,14 +19,14 @@ import Notification from './components/Common/Notification';
 import MyMovies from './components/MyMovies/MyMovies';
 import AboutUs from './components/AboutUs/AboutUs';
 import Main from './components/Main/Main';
-import CustomErrorBoundry from './components/CustomErrorBoundry/CustomErrorBoundry';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import ProtectedRoute from './components/Common/ProtectedRoute';
 import PublicRoute from './components/Common/PublicRoute';
 import Hero from './components/Hero/Hero';
 
 function App() {
     return (
-        <CustomErrorBoundry>
+        <ErrorBoundary>
             <AuthProvider>
                 <NotificationProvider>
                     <Container>
@@ -71,7 +71,7 @@ function App() {
                     </Container>
                 </NotificationProvider>
             </AuthProvider>
-        </CustomErrorBoundry>
+        </ErrorBoundary>
     );
 }
 

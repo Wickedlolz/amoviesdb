@@ -43,7 +43,7 @@ function MovieDetailsCard({
                             }}
                         />
                     </div>
-                    {user && user.id != movie.owner._id ? (
+                    {user && user.id !== movie.owner._id ? (
                         <div className="p-3 text-center">
                             {movie.likes.includes(user.id) ? (
                                 <button
@@ -62,7 +62,7 @@ function MovieDetailsCard({
                             )}
                         </div>
                     ) : null}
-                    {user && movie.owner._id == user.id ? (
+                    {user && movie.owner._id === user.id ? (
                         <div className="p-3 text-center">
                             <Link
                                 to={'/edit/' + movie._id}

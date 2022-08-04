@@ -27,7 +27,7 @@ function Edit() {
         movieService
             .getById(movieId)
             .then((movie) => {
-                if (movie.owner._id != user?.id) {
+                if (movie.owner._id !== user?.id) {
                     return navigate('/');
                 }
 
