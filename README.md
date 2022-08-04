@@ -15,11 +15,15 @@
 
 ### Functionality
 
--   Guest users can see sign in, sign up and about pages
--   Logged users can see at home page movie details from carousel lists, most popular actors and jumbotron image with description wich is getting from other api [The Movie Database (TMDB)](https://www.themoviedb.org/documentation/api)
+-   Guest users can see welcome page, sign in, sign up and about page
+-   Logged users can see at home page most liked movies from my own api and movie details from carousel lists, most popular actors and jumbotron image with description wich is getting from other api [The Movie Database (TMDB)](https://www.themoviedb.org/documentation/api)
     -   Logged users extend functionality to see other pages and option to create movie, like, comment, edit profile + upload profiile picture and see own created movies.
 -   Logged users who is owners of some movie extend functionlity with edit/delete
--   Test it on [AMoviedDB](https://amoviesdb.web.app/) with `email: peter@abv.bg password: 123456`
+-   Test it on [AMoviesDB](https://amoviesdb.web.app/) with `email: peter@abv.bg password: 123456`
+
+### Before start
+
+-   `npm i` - for installing dependencies
 
 ## Available Scripts
 
