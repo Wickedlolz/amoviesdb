@@ -30,7 +30,10 @@ function EditProfile() {
                 setCurrentUser(userData);
                 setIsLoading(false);
             })
-            .catch((error) => addNotification(error.message, 'Error'));
+            .catch((error) => {
+                addNotification(error.message, 'Error');
+                navigate('/not-found', { replace: true });
+            });
     }, [userId, addNotification, navigate, user]);
 
     const onSubmitEditProfile = (event) => {

@@ -29,8 +29,11 @@ function MovieDetails() {
                 setMovie(movieResponse);
                 setIsLoading(false);
             })
-            .catch((error) => addNotification(error.message, 'Error'));
-    }, [movieId, addNotification, isUpdated]);
+            .catch((error) => {
+                addNotification(error.message, 'Error');
+                navigate('/not-found', { replace: true });
+            });
+    }, [movieId, addNotification, isUpdated, navigate]);
 
     const onLikeClick = () => {
         movieService

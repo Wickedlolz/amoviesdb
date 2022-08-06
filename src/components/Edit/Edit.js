@@ -34,7 +34,10 @@ function Edit() {
                 setMovie(movie);
                 setIsLoading(false);
             })
-            .catch((error) => addNotification(error.message, 'Error'));
+            .catch((error) => {
+                addNotification(error.message, 'Error');
+                navigate('/not-found', { replace: true });
+            });
     }, [movieId, user, navigate, addNotification]);
 
     const onSubmitEditHandler = (data) => {
@@ -52,7 +55,10 @@ function Edit() {
                 );
                 navigate('/movie/' + result._id, { replace: true });
             })
-            .catch((error) => addNotification(error.message, 'Error'));
+            .catch((error) => {
+                addNotification(error.message, 'Error');
+                navigate('/not-found', { replace: true });
+            });
     };
 
     const onCancelClick = (event) => {
