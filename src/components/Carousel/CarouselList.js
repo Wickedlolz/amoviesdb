@@ -25,19 +25,14 @@ function CarouselList({ fetchUrl }) {
         <Carousel
             additionalTransfrom={0}
             arrows
-            autoPlay
-            autoPlaySpeed={2000}
-            centerMode={true}
-            className=""
+            centerMode={false}
             containerClass="container-with-dots"
-            dotListClass=""
             draggable
-            focusOnSelect={false}
+            focusOnSelect={true}
             infinite
-            itemClass=""
             keyBoardControl
             minimumTouchDrag={80}
-            pauseOnHover
+            pauseOnHover={true}
             renderArrowsWhenDisabled={false}
             renderButtonGroupOutside={false}
             renderDotsOutside={false}
@@ -72,7 +67,6 @@ function CarouselList({ fetchUrl }) {
             rtl={false}
             shouldResetAutoplay
             showDots={false}
-            sliderClass=""
             slidesToSlide={1}
             swipeable
         >
