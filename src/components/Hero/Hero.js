@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function Hero() {
     return (
         <div
-            className="text-center border-bottom"
+            className="text-center"
             style={{
                 backgroundImage: `url("/images/hero-background.jpg")`,
                 backgroundSize: 'cover',
@@ -16,6 +16,7 @@ function Hero() {
                 width={700}
                 height={500}
                 loading="lazy"
+                style={{ paddingTop: '100px' }}
             />
             <div className="col-lg-6 mx-auto text-white">
                 <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5 p-2">
@@ -31,7 +32,10 @@ function Hero() {
                     The best stories in the world, all in one place.
                 </p>
             </div>
-            <div className="overflow-hidden" style={{ maxHeight: 30 + 'vh' }}>
+            <div
+                className="overflow-hidden p-3"
+                style={{ maxHeight: 30 + 'vh' }}
+            >
                 <div className="container px-5">
                     <img
                         src="/images/cta-logo-two.png"
@@ -43,6 +47,7 @@ function Hero() {
                     />
                 </div>
             </div>
+            <div style={{ padding: '100px' }}></div>
         </div>
     );
 }
