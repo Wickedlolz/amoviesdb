@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 
 import { getPersonById } from '../../services/tmdb-api';
 import LoadingSpinner from '../Common/LoadingSpinner';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+
+import styles from './Person.module.css';
 
 function Person() {
     const [person, setPerson] = useState({});
@@ -12,9 +16,9 @@ function Person() {
 
     useEffect(() => {
         getPersonById(personId)
-            .then(([person, personTvCredits]) => {
+            .then(([person, personMovieCredits]) => {
                 setPerson(person);
-                setPersonCredits(personTvCredits);
+                setPersonCredits(personMovieCredits);
                 setIsLoading(false);
             })
             .catch((error) => console.log(error.message));
@@ -49,11 +53,78 @@ function Person() {
                         {person.place_of_birth}
                     </p>
                     <h3 className="my-3">Known For</h3>
-                    <ul>
+                    <Carousel
+                        additionalTransfrom={0}
+                        arrows
+                        centerMode={false}
+                        containerClass="container-with-dots"
+                        draggable
+                        focusOnSelect={false}
+                        infinite
+                        keyBoardControl
+                        minimumTouchDrag={80}
+                        pauseOnHover={true}
+                        renderArrowsWhenDisabled={false}
+                        renderButtonGroupOutside={false}
+                        renderDotsOutside={false}
+                        responsive={{
+                            desktop: {
+                                breakpoint: {
+                                    max: 3000,
+                                    min: 1024,
+                                },
+                                items: 2,
+                                partialVisibilityGutter: 40,
+                            },
+                            mobile: {
+                                breakpoint: {
+                                    max: 464,
+                                    min: 0,
+                                },
+                                items: 1,
+                                partialVisibilityGutter: 30,
+                            },
+                            tablet: {
+                                breakpoint: {
+                                    max: 1024,
+                                    min: 464,
+                                },
+                                items: 2,
+                                partialVisibilityGutter: 30,
+                            },
+                        }}
+                        rewind={false}
+                        rewindWithAnimation={false}
+                        rtl={false}
+                        shouldResetAutoplay
+                        showDots={false}
+                        slidesToSlide={1}
+                        swipeable
+                    >
                         {personCredits.cast.map((item) => (
-                            <li key={item.id}>{item.name}</li>
+                            <div
+                                key={item.id}
+                                className="card bg-white text-white"
+                            >
+                                <img
+                                    src={
+                                        'https://image.tmdb.org/t/p/w500' +
+                                            item.backdrop_path ||
+                                        item.poster_path
+                                    }
+                                    className="card-img"
+                                    alt="movie poster"
+                                />
+                                <div
+                                    className={`card-img-overlay ${styles['overlay-card']}`}
+                                >
+                                    <h5 className="card-title text-white text-center">
+                                        {item.title}
+                                    </h5>
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </Carousel>
                 </div>
             </div>
         </div>

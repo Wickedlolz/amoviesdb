@@ -13,8 +13,8 @@ export const endpoints = {
     POPULAR_ACTORS: `/person/popular?api_key=${API_KEY}&language=en-US&page=1`,
     GET_PERSON_BY_ID: (personId) =>
         `/person/${personId}?api_key=${API_KEY}&language=en-US`,
-    GET_PERSON_TV_CREDITS_BY_ID: (personId) =>
-        `/person/${personId}/tv_credits?api_key=${API_KEY}&language=en-US`,
+    GET_PERSON_MOVIE_CREDITS_BY_ID: (personId) =>
+        `/person/${personId}/movie_credits?api_key=${API_KEY}&language=en-US`,
 };
 
 async function request(url) {
@@ -53,6 +53,6 @@ export async function getById(movieId) {
 export async function getPersonById(personId) {
     return Promise.all([
         request(endpoints.GET_PERSON_BY_ID(personId)),
-        request(endpoints.GET_PERSON_TV_CREDITS_BY_ID(personId)),
+        request(endpoints.GET_PERSON_MOVIE_CREDITS_BY_ID(personId)),
     ]);
 }
