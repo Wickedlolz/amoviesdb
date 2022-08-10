@@ -23,6 +23,7 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import ProtectedRoute from './components/Common/ProtectedRoute';
 import PublicRoute from './components/Common/PublicRoute';
 import Hero from './components/Hero/Hero';
+import Person from './components/Person/Person';
 
 function App() {
     return (
@@ -62,6 +63,10 @@ function App() {
                                 <Route
                                     path="/movie/:movieId"
                                     element={<MovieDetails />}
+                                />
+                                <Route
+                                    path="/person/:personId"
+                                    element={<Person />}
                                 />
                             </Route>
                             <Route path="/about" element={<AboutUs />} />

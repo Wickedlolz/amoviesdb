@@ -28,7 +28,7 @@ function CarouselList({ fetchUrl }) {
             centerMode={false}
             containerClass="container-with-dots"
             draggable
-            focusOnSelect={true}
+            focusOnSelect={false}
             infinite
             keyBoardControl
             minimumTouchDrag={80}
