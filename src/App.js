@@ -21,7 +21,6 @@ import AboutUs from './components/AboutUs/AboutUs';
 import Main from './components/Main/Main';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import ProtectedRoute from './components/Common/ProtectedRoute';
-import PublicRoute from './components/Common/PublicRoute';
 import Hero from './components/Hero/Hero';
 import Person from './components/Person/Person';
 
@@ -34,14 +33,20 @@ function App() {
                         <NavBar />
                         <Notification />
                         <Routes>
-                            <Route element={<PublicRoute />}>
-                                <Route path="/welcome" element={<Hero />} />
-                                <Route path="/signin" element={<SignIn />} />
-                                <Route path="/signup" element={<SignUp />} />
-                            </Route>
+                            <Route path="/welcome" element={<Hero />} />
+                            <Route path="/signin" element={<SignIn />} />
+                            <Route path="/signup" element={<SignUp />} />
+                            <Route path="/" element={<Main />} />
+                            <Route path="/catalog" element={<Catalog />} />
+                            <Route
+                                path="/movie/:movieId"
+                                element={<MovieDetails />}
+                            />
+                            <Route
+                                path="/person/:personId"
+                                element={<Person />}
+                            />
                             <Route element={<ProtectedRoute />}>
-                                <Route path="/" element={<Main />} />
-                                <Route path="/catalog" element={<Catalog />} />
                                 <Route
                                     path="/profile/:userId"
                                     element={<Profile />}
@@ -60,14 +65,6 @@ function App() {
                                     element={<Edit />}
                                 />
                                 <Route path="/signout" element={<SignOut />} />
-                                <Route
-                                    path="/movie/:movieId"
-                                    element={<MovieDetails />}
-                                />
-                                <Route
-                                    path="/person/:personId"
-                                    element={<Person />}
-                                />
                             </Route>
                             <Route path="/about" element={<AboutUs />} />
                             <Route path="/*" element={<NotFound />} />

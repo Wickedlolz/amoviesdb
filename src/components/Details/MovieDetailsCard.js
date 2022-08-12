@@ -2,13 +2,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../contexts/Auth';
 import ReactPlayer from 'react-player/lazy';
 import { Link } from 'react-router-dom';
-import {
-    HandThumbsUpFill,
-    HandThumbsDownFill,
-    PencilSquare,
-    Trash3,
-    HeartFill,
-} from 'react-bootstrap-icons';
+import { PencilSquare, Trash3, HeartFill, Heart } from 'react-bootstrap-icons';
 
 function MovieDetailsCard({
     movie,
@@ -50,14 +44,14 @@ function MovieDetailsCard({
                                     onClick={onDislikeClick}
                                     className="mt-auto btn btn-light"
                                 >
-                                    <HandThumbsDownFill /> {movie.likes.length}
+                                    <HeartFill /> {movie.likes.length}
                                 </button>
                             ) : (
                                 <button
                                     onClick={onLikeClick}
                                     className="mt-auto btn btn-light"
                                 >
-                                    <HandThumbsUpFill /> {movie.likes.length}
+                                    <Heart /> {movie.likes.length}
                                 </button>
                             )}
                         </div>

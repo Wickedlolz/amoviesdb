@@ -21,7 +21,7 @@ function Hero() {
             <div className="col-lg-6 mx-auto text-white">
                 <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5 p-2">
                     <Link
-                        to={'/signin'}
+                        to={'/'}
                         type="button"
                         className="btn btn-primary btn-lg px-5 me-sm-3 fw-bold"
                     >

@@ -41,17 +41,9 @@ function NavBar() {
     };
 
     const authUserNav = (
-        <>
-            <Nav.Link to={'/'} as={NavLink}>
-                Home
-            </Nav.Link>
-            <Nav.Link to={'/catalog?page=1'} as={NavLink}>
-                Catalog
-            </Nav.Link>
-            <Nav.Link to={'/create'} as={NavLink}>
-                Create
-            </Nav.Link>
-        </>
+        <Nav.Link to={'/create'} as={NavLink}>
+            Create
+        </Nav.Link>
     );
 
     return (
@@ -65,7 +57,7 @@ function NavBar() {
                         alt="logo"
                     />
                 </Navbar.Brand>
-                <Navbar.Brand to={'/'} as={NavLink}>
+                <Navbar.Brand to={'/welcome'} as={NavLink}>
                     AMoviesDB
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
@@ -75,6 +67,12 @@ function NavBar() {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
+                        <Nav.Link to={'/'} as={NavLink}>
+                            Home
+                        </Nav.Link>
+                        <Nav.Link to={'/catalog?page=1'} as={NavLink}>
+                            Catalog
+                        </Nav.Link>
                         {isAuthenticated ? authUserNav : null}
                         <Nav.Link to={'/about'} as={NavLink}>
                             About
