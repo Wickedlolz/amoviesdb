@@ -36,7 +36,7 @@ function SignUp() {
             .then((userData) => {
                 addUser(userData);
                 addNotification('Successfully registerd.', 'Success');
-                navigate('/');
+                navigate('/home');
             })
             .catch((error) => {
                 addNotification(error.message, 'Alert');

@@ -22,7 +22,7 @@ function MyMovies() {
             .getMyMovies(userId)
             .then((movies) => {
                 if (userId !== user?.id) {
-                    return navigate('/', { replace: true });
+                    return navigate('/home', { replace: true });
                 }
 
                 setMovies(movies);

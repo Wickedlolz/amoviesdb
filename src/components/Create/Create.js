@@ -35,7 +35,7 @@ function Create() {
 
     const onCancelClick = (event) => {
         event.preventDefault();
-        navigate('/');
+        navigate('/home');
     };
 
     return (

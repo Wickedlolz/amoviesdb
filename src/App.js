@@ -21,6 +21,7 @@ import AboutUs from './components/AboutUs/AboutUs';
 import Main from './components/Main/Main';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import ProtectedRoute from './components/Common/ProtectedRoute';
+import PublicRoute from './components/Common/PublicRoute';
 import Hero from './components/Hero/Hero';
 import Person from './components/Person/Person';
 
@@ -33,10 +34,8 @@ function App() {
                         <NavBar />
                         <Notification />
                         <Routes>
-                            <Route path="/welcome" element={<Hero />} />
-                            <Route path="/signin" element={<SignIn />} />
-                            <Route path="/signup" element={<SignUp />} />
-                            <Route path="/" element={<Main />} />
+                            <Route path="/" element={<Hero />} />
+                            <Route path="/home" element={<Main />} />
                             <Route path="/catalog" element={<Catalog />} />
                             <Route
                                 path="/movie/:movieId"
@@ -46,6 +45,10 @@ function App() {
                                 path="/person/:personId"
                                 element={<Person />}
                             />
+                            <Route element={<PublicRoute />}>
+                                <Route path="/signin" element={<SignIn />} />
+                                <Route path="/signup" element={<SignUp />} />
+                            </Route>
                             <Route element={<ProtectedRoute />}>
                                 <Route
                                     path="/profile/:userId"

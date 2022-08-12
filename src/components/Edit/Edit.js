@@ -28,7 +28,7 @@ function Edit() {
             .getById(movieId)
             .then((movie) => {
                 if (movie.owner._id !== user?.id) {
-                    return navigate('/');
+                    return navigate('/home');
                 }
 
                 setMovie(movie);

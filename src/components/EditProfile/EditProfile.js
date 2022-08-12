@@ -24,7 +24,7 @@ function EditProfile() {
             .getById(userId)
             .then((userData) => {
                 if (userData._id !== user?.id) {
-                    return navigate('/', { replace: true });
+                    return navigate('/home', { replace: true });
                 }
 
                 setCurrentUser(userData);

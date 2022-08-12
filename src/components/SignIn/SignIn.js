@@ -21,7 +21,7 @@ function SignIn() {
             .signIn(data.email, data.password)
             .then((userData) => {
                 addUser(userData);
-                navigate('/');
+                navigate('/home');
             })
             .catch((error) => {
                 addNotification(error.message, 'Alert');
