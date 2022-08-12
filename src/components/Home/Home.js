@@ -61,8 +61,6 @@ function Home() {
             <CarouselList fetchUrl={endpoints.TOP_RATED} />
             <h2 className="p-3">Now Playing</h2>
             <CarouselList fetchUrl={endpoints.NOW_PLAYING} />
-            <h2 className="p-2">Most popular actors</h2>
-            <ActorList fetchUrl={endpoints.POPULAR_ACTORS} />
         </>
     );
 }

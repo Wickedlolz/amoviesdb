@@ -24,6 +24,7 @@ import ProtectedRoute from './components/Common/ProtectedRoute';
 import PublicRoute from './components/Common/PublicRoute';
 import Hero from './components/Hero/Hero';
 import Person from './components/Person/Person';
+import People from './components/People/People';
 
 function App() {
     return (
@@ -45,6 +46,7 @@ function App() {
                                 path="/person/:personId"
                                 element={<Person />}
                             />
+                            <Route path="/people" element={<People />} />
                             <Route element={<PublicRoute />}>
                                 <Route path="/signin" element={<SignIn />} />
                                 <Route path="/signup" element={<SignUp />} />

@@ -73,6 +73,9 @@ function NavBar() {
                         <Nav.Link to={'/catalog?page=1'} as={NavLink}>
                             Catalog
                         </Nav.Link>
+                        <Nav.Link to={'/people'} as={NavLink}>
+                            People
+                        </Nav.Link>
                         {isAuthenticated ? authUserNav : null}
                         <Nav.Link to={'/about'} as={NavLink}>
                             About
