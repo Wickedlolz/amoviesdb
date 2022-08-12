@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/Auth';
 import { NotificationProvider } from './contexts/Notification';
 
+import { Container } from 'react-bootstrap';
 import NavBar from './components/NavBar/NavBar';
 import Catalog from './components/Catalog/Catalog';
 import MovieDetails from './components/Details/MovieDetails';
@@ -29,45 +30,50 @@ function App() {
         <ErrorBoundary>
             <AuthProvider>
                 <NotificationProvider>
-                    <NavBar />
-                    <Notification />
-                    <Routes>
-                        <Route element={<PublicRoute />}>
-                            <Route path="/welcome" element={<Hero />} />
-                            <Route path="/signin" element={<SignIn />} />
-                            <Route path="/signup" element={<SignUp />} />
-                        </Route>
-                        <Route element={<ProtectedRoute />}>
-                            <Route path="/" element={<Main />} />
-                            <Route path="/catalog" element={<Catalog />} />
-                            <Route
-                                path="/profile/:userId"
-                                element={<Profile />}
-                            />
-                            <Route
-                                path="/profile/edit/:userId"
-                                element={<EditProfile />}
-                            />
-                            <Route
-                                path="/my-movies/:userId"
-                                element={<MyMovies />}
-                            />
-                            <Route path="/create" element={<Create />} />
-                            <Route path="/edit/:movieId" element={<Edit />} />
-                            <Route path="/signout" element={<SignOut />} />
-                            <Route
-                                path="/movie/:movieId"
-                                element={<MovieDetails />}
-                            />
-                            <Route
-                                path="/person/:personId"
-                                element={<Person />}
-                            />
-                        </Route>
-                        <Route path="/about" element={<AboutUs />} />
-                        <Route path="/*" element={<NotFound />} />
-                    </Routes>
-                    <Footer />
+                    <Container>
+                        <NavBar />
+                        <Notification />
+                        <Routes>
+                            <Route element={<PublicRoute />}>
+                                <Route path="/welcome" element={<Hero />} />
+                                <Route path="/signin" element={<SignIn />} />
+                                <Route path="/signup" element={<SignUp />} />
+                            </Route>
+                            <Route element={<ProtectedRoute />}>
+                                <Route path="/" element={<Main />} />
+                                <Route path="/catalog" element={<Catalog />} />
+                                <Route
+                                    path="/profile/:userId"
+                                    element={<Profile />}
+                                />
+                                <Route
+                                    path="/profile/edit/:userId"
+                                    element={<EditProfile />}
+                                />
+                                <Route
+                                    path="/my-movies/:userId"
+                                    element={<MyMovies />}
+                                />
+                                <Route path="/create" element={<Create />} />
+                                <Route
+                                    path="/edit/:movieId"
+                                    element={<Edit />}
+                                />
+                                <Route path="/signout" element={<SignOut />} />
+                                <Route
+                                    path="/movie/:movieId"
+                                    element={<MovieDetails />}
+                                />
+                                <Route
+                                    path="/person/:personId"
+                                    element={<Person />}
+                                />
+                            </Route>
+                            <Route path="/about" element={<AboutUs />} />
+                            <Route path="/*" element={<NotFound />} />
+                        </Routes>
+                        <Footer />
+                    </Container>
                 </NotificationProvider>
             </AuthProvider>
         </ErrorBoundary>
