@@ -9,7 +9,7 @@ const useFetchRandomMovie = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        getAll(endpoints.POPULAR)
+        getAll(endpoints.UPCOMING)
             .then((result) =>
                 setMovie(result[Math.floor(Math.random() * result.length)])
             )
