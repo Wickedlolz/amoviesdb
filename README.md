@@ -1,7 +1,5 @@
 # [AMoviesDB Movie Catalog](https://amoviesdb.web.app/) + [AMoviesDB REST API](https://github.com/Wickedlolz/amoviesdb-rest-api)
 
-## ReactJS project for SoftUni React Course
-
 ### Technologies used:
 
 -   React JS
@@ -50,3 +48,9 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Successully completed course
+
+- [x] **ReactJS**
+
+[certificate](https://softuni.bg/certificates/details/140616/1b32203e)
